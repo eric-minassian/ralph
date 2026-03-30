@@ -8,8 +8,8 @@
 
 ```bash
 # TODO: replace with your project's commands
-npm install        # install dependencies
-npm run dev        # start dev server
+pnpm install        # install dependencies
+pnpm run dev        # start dev server
 ```
 
 ## Verify (backpressure)
@@ -18,9 +18,9 @@ These commands MUST pass before any commit:
 
 ```bash
 # TODO: replace with your project's commands
-npm run typecheck  # type checking
-npm run lint       # linting
-npm run test       # tests
+pnpm run typecheck  # type checking
+pnpm run lint       # linting
+pnpm run test       # tests
 ```
 
 ## Conventions
@@ -35,5 +35,5 @@ npm run test       # tests
 > Each entry should explain what AND why. Delete entries that no longer apply.
 
 <!-- Example:
-- Use `--legacy-peer-deps` for npm install — transitive dep conflict between X and Y (added 2026-03-30)
+- Use `--legacy-peer-deps` for pnpm install — transitive dep conflict between X and Y (added 2026-03-30)
 -->

@@ -39,7 +39,7 @@ Reads the plan and picks the highest-priority pending task. Implements it, runs 
 ## The Loop
 
 ```
-┌─────────────────────────────────────────────┐
+┌──────────────────────────────────────────────┐
 │              loop.sh starts                  │
 │                                              │
 │  for each iteration (1..max):                │
@@ -91,6 +91,7 @@ Edit `AGENTS.md` and replace the placeholder commands with your real build/test/
 
 ```markdown
 ## Verify (backpressure)
+
 npm run typecheck
 npm run lint
 npm run test
@@ -134,12 +135,12 @@ Examples:
 
 Ralph has no persistent context between iterations. Instead, memory lives in files:
 
-| File | Purpose | Who writes it |
-|------|---------|---------------|
-| `IMPLEMENTATION_PLAN.md` | Task list, status, dependencies | Plan mode creates; build mode updates |
-| `progress.txt` | Append-only log of what happened each iteration | Build mode appends |
-| `AGENTS.md` | Operational learnings and gotchas | Build mode adds entries when patterns are discovered |
-| `git history` | Code changes with commit messages | Build mode commits |
+| File                     | Purpose                                         | Who writes it                                        |
+| ------------------------ | ----------------------------------------------- | ---------------------------------------------------- |
+| `IMPLEMENTATION_PLAN.md` | Task list, status, dependencies                 | Plan mode creates; build mode updates                |
+| `progress.txt`           | Append-only log of what happened each iteration | Build mode appends                                   |
+| `AGENTS.md`              | Operational learnings and gotchas               | Build mode adds entries when patterns are discovered |
+| `git history`            | Code changes with commit messages               | Build mode commits                                   |
 
 ## Backpressure
 
