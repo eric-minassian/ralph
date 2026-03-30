@@ -1,0 +1,16 @@
+# Ralph ephemeral state
+progress.txt
+archive/
+.last-branch
+
+# OS
+.DS_Store
+
+# Dependencies (uncomment for your stack)
+# node_modules/
+# .venv/
+# target/
+
+# Environment
+.env
+.env.*
