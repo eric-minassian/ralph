@@ -6,10 +6,11 @@ archive/
 # OS
 .DS_Store
 
-# Dependencies (uncomment for your stack)
-# node_modules/
-# .venv/
-# target/
+# Dependencies
+node_modules/
+
+# Build output
+dist/
 
 # Environment
 .env
