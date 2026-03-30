@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 1 of 27 tasks complete
+Status: 2 of 27 tasks complete
 
 ## Overview
 
@@ -35,7 +35,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-002: Testing Infrastructure
 - **Spec**: `specs/20-testing-strategy.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 1
 - **Description**: Configure Vitest with jsdom environment and React Testing Library. Create `src/test-setup.ts` with MSW server setup, RTL cleanup, and i18n mock. Create test utilities in `src/test-utils/`: `renderWithProviders()` (wraps in QueryClient, Router, i18n, PermissionProvider), `createMockPermissions()`, `createTestQueryClient()` (no retries, no cache). Configure Playwright with base URL and page object model structure in `e2e/pages/`. Set coverage thresholds at 80% for statements/branches/functions/lines.
 - **Acceptance criteria**:
