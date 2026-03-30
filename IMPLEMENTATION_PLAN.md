@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 2 of 27 tasks complete
+Status: 3 of 27 tasks complete
 
 ## Overview
 
@@ -56,7 +56,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-003: Internationalization Setup
 - **Spec**: `specs/03-internationalization.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 1
 - **Description**: Configure react-i18next with i18next. Set up translation file structure in `src/locales/en/`. Create initial namespace files: `common.json`, `navigation.json`, `errors.json`, `validation.json`. Configure language detection from localStorage with English fallback. Set up Cloudscape i18n provider integration. Add language selector placeholder. Configure `react/jsx-no-literals` ESLint rule (or equivalent convention).
 - **Acceptance criteria**:
