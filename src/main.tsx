@@ -2,7 +2,10 @@ import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { I18nProvider } from '@cloudscape-design/components/i18n'
+import enMessages from '@cloudscape-design/components/i18n/messages/all.en'
 import { routeTree } from './routeTree.gen'
+import './i18n'
 import '@cloudscape-design/global-styles/index.css'
 
 const queryClient = new QueryClient({
@@ -44,9 +47,11 @@ void enableMocking().then(() => {
   const root = ReactDOM.createRoot(rootElement)
   root.render(
     <StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-      </QueryClientProvider>
+      <I18nProvider locale="en" messages={[enMessages]}>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
+      </I18nProvider>
     </StrictMode>,
   )
 })

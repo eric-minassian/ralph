@@ -1,0 +1,6 @@
+{
+  "generic": "An unexpected error occurred",
+  "notFound": "Resource not found",
+  "unauthorized": "You are not authorized to perform this action",
+  "network": "Network error. Please check your connection."
+}

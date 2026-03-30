@@ -1,0 +1,19 @@
+{
+  "sidebar": {
+    "userPools": "User Pools",
+    "users": "Users",
+    "groups": "Groups",
+    "appClients": "App Clients",
+    "identityProviders": "Identity Providers",
+    "domains": "Domains",
+    "resourceServers": "Resource Servers",
+    "branding": "Branding",
+    "security": "Security",
+    "termsOfService": "Terms of Service"
+  },
+  "topNav": {
+    "profile": "Profile",
+    "signOut": "Sign Out",
+    "language": "Language"
+  }
+}

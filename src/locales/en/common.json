@@ -1,0 +1,17 @@
+{
+  "appName": "Cognito Manager",
+  "loading": "Loading...",
+  "save": "Save",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "edit": "Edit",
+  "create": "Create",
+  "actions": "Actions",
+  "confirm": "Confirm",
+  "close": "Close",
+  "search": "Search",
+  "filter": "Filter",
+  "noResults": "No results found",
+  "error": "Error",
+  "success": "Success"
+}
