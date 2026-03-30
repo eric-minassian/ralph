@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 0 of 27 tasks complete
+Status: 1 of 27 tasks complete
 
 ## Overview
 
@@ -13,7 +13,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-001: Project Scaffolding & Core Infrastructure
 - **Spec**: `specs/00-core-infrastructure.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 1
 - **Description**: Initialize the Vite + React + TypeScript project. Install all dependencies (Cloudscape, TanStack Router, TanStack Query, AWS SDK, MSW, react-i18next, Vitest, Playwright, RTL). Configure `tsconfig.json` with strict settings (`strict: true`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`). Configure ESLint with `@typescript-eslint/strict-type-checked` and rules banning `any`, `as`, `!`, untyped `unknown`. Set up TanStack Router with file-based routing (`src/routes/`). Set up TanStack Query provider at app root. Apply Cloudscape global styles. Create `src/vite-env.d.ts` with typed env vars. Add pnpm scripts: `dev`, `build`, `typecheck`, `lint`, `test`, `test:e2e`, `test:coverage`.
 - **Acceptance criteria**:

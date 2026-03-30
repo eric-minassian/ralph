@@ -60,3 +60,7 @@ pnpm run test          # vitest run
 
 > Ralph adds entries here when it discovers patterns, gotchas, or workarounds.
 > Each entry should explain what AND why. Delete entries that no longer apply.
+
+- **@eslint/js must be explicit**: ESLint 9 flat config imports from `@eslint/js` but doesn't bundle it. Pin `@eslint/js` to `^9.x` to match `eslint ^9.x`.
+- **pnpm onlyBuiltDependencies**: esbuild and msw need build scripts. Add `"pnpm": { "onlyBuiltDependencies": ["esbuild", "msw"] }` to package.json to avoid interactive approval prompts.
+- **TanStack Router route tree generation**: The Vite plugin (`@tanstack/router-plugin/vite`) auto-generates `src/routeTree.gen.ts` on build. Running `vite build` once bootstraps it. The generated file is ignored by ESLint via `eslint.config.js`.
