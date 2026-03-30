@@ -14,4 +14,15 @@ dist/
 
 # Environment
 .env
-.env.*
+.env.local
+
+# Test
+coverage/
+test-results/
+playwright-report/
+
+# Editor
+*.swp
+*.swo
+.idea/
+.vscode/
