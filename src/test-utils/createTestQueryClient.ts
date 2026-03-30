@@ -1,0 +1,19 @@
+import { QueryClient } from '@tanstack/react-query'
+
+/**
+ * Creates a QueryClient configured for testing: no retries, no cache, no gc.
+ */
+export function createTestQueryClient(): QueryClient {
+  return new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+        gcTime: 0,
+        staleTime: 0,
+      },
+      mutations: {
+        retry: false,
+      },
+    },
+  })
+}
