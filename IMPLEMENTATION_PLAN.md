@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 3 of 27 tasks complete
+Status: 4 of 27 tasks complete
 
 ## Overview
 
@@ -75,7 +75,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-004: API Client & MSW Foundation
 - **Spec**: `specs/04-api-client-and-mocking.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 1
 - **Description**: Create `src/api/client.ts` with a single `CognitoIdentityProviderClient` instance reading from env vars. Create `src/api/queryKeys.ts` with structured query key factory. Set up MSW with browser worker (`src/mocks/browser.ts`) and node server (`src/mocks/server.ts`). Conditional MSW startup gated on `VITE_ENABLE_MOCKS=true`. Create handler directory structure (`src/mocks/handlers/`) and factory directory (`src/mocks/factories/`). Create base mock store pattern in `src/mocks/stores/` for in-memory CRUD state.
 - **Acceptance criteria**:

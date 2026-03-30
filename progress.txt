@@ -1,0 +1,31 @@
+# Ralph Progress Log
+Started: 2026-03-30T23:20:55Z
+---
+
+## Iteration — 2026-03-30T23:33:00Z
+Task: TASK-001 — Project Scaffolding & Core Infrastructure
+Result: done
+Summary: Initialized Vite + React 18 + TypeScript project with strict tsconfig, TanStack Router (file-based routing with Vite plugin), TanStack Query, Cloudscape Design System, MSW v2, ESLint with strict-type-checked config banning any/as/!, and Vitest. All three verification commands pass.
+Learnings: @eslint/js must be explicitly installed as a devDependency — it's not bundled with eslint 9. Pin @eslint/js to ^9.x to match eslint ^9.x.
+---
+
+## Iteration — 2026-03-30T16:42:00Z
+Task: TASK-002 — Testing Infrastructure
+Result: done
+Summary: Created test utilities (createTestQueryClient, createMockPermissions, renderWithProviders) with barrel export, Playwright config with dev server webServer setup, e2e/pages/ directory structure, and updated smoke test to validate the rendering setup.
+Learnings: renderWithProviders should use a simple wrapper pattern (QueryClientProvider wrapping children) rather than embedding RouterProvider — RouterProvider takes over rendering and doesn't pass through children. Router can be added per-test when needed.
+---
+
+## Iteration — 2026-03-30T18:15:00Z
+Task: TASK-003 — Internationalization Setup
+Result: done
+Summary: Configured react-i18next with 19 namespaced translation files (common, navigation, errors, validation, and 15 empty feature namespaces). Set up localStorage language persistence, Cloudscape I18nProvider integration in main.tsx, i18n test initialization in test-setup.ts, I18nextProvider wrapping in renderWithProviders, and unit tests validating translation resolution and fallback behavior.
+Learnings: none
+---
+
+## Iteration — 2026-03-30T16:56:00Z
+Task: TASK-004 — API Client & MSW Foundation
+Result: done
+Summary: Created CognitoIdentityProviderClient in src/api/client.ts (reads region/endpoint from env vars), query key factory in src/api/queryKeys.ts (all 15 domains with consistent ['cognito', domain, operation, ...params] structure), MSW Cognito handler dispatcher in src/mocks/handlers/cognitoHandler.ts (matches X-Amz-Target header, maps to operation resolvers, translates StoreError to AWS error format), BaseStore generic CRUD class in src/mocks/stores/baseStore.ts with pagination support, and factories directory. 37 tests passing.
+Learnings: OperationResolver return type must be `unknown` not `unknown | Promise<unknown>` — the `no-redundant-type-constituents` rule flags `unknown` absorbing other union members. Use `Promise.resolve()` wrapper in the caller to handle both sync/async resolvers.
+---
