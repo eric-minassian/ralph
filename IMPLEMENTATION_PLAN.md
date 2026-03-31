@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 11 of 27 tasks complete
+Status: 12 of 27 tasks complete
 
 ## Overview
 
@@ -248,7 +248,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-012: User Detail Page — Overview & Attributes Tabs
 - **Spec**: `specs/06-user-management.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 4
 - **Description**: Build the User Detail page with Cloudscape `Tabs`. Overview tab: username, status, enabled, email verified, phone verified, created, last modified, sub. Attributes tab: key-value table of all user attributes with edit/delete capability for mutable attributes, add custom attribute action. Standard attributes respect mutability settings from pool schema.
 - **Acceptance criteria**:
