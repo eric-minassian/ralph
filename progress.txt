@@ -106,3 +106,10 @@ Result: done
 Summary: Built DevicesTab (device table with forget/toggle remembered status actions via modals, StatusIndicator for remembered state) and WebAuthnTab (passkey credentials table with delete action, info alert about admin limitations). Added device and WebAuthn credential storage to userStore with seed data, MSW handlers for AdminGetDevice/AdminListDevices/AdminForgetDevice/AdminUpdateDeviceStatus/ListWebAuthnCredentials/DeleteWebAuthnCredential, WebAuthn hooks using synthetic AccessToken for mock, device factory. 8 new tests (4 devices, 4 WebAuthn). Total: 254 tests passing.
 Learnings: WebAuthn APIs (ListWebAuthnCredentials, DeleteWebAuthnCredential) use AccessToken not UserPoolId/Username — they're user-facing, not admin APIs. For the mock, encode userPoolId#username in the AccessToken field so the handler can identify the user. Real implementation would need actual access tokens or a different approach.
 ---
+
+## Iteration — 2026-03-30T19:35:00Z
+Task: TASK-016 — Group Management
+Result: done
+Summary: Created full group management feature: GroupStore with member tracking, group factory, MSW handlers (CreateGroup/GetGroup/UpdateGroup/DeleteGroup/ListGroups/ListUsersInGroup), TanStack Query hooks for all 6 operations, group list page with Table/TextFilter/Pagination/CollectionPreferences/sorting, create group form with validation, group detail page with general settings/members table/edit/delete/add user/remove user modals, permission-gated actions. Added groups namespace to test-setup i18n config. 40 new tests (18 store, 9 handler, 13 hooks+list). Total: 294 tests passing.
+Learnings: The Cognito ListGroups API uses `Limit` not `MaxResults` for pagination — different from ListUserPools. The GroupStore needs to track members separately from the UserStore group membership since they serve different query directions (group→users vs user→groups). Both stores need to be kept in sync when adding/removing users from groups.
+---

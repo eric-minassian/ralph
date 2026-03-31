@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 15 of 27 tasks complete
+Status: 16 of 27 tasks complete
 
 ## Overview
 
@@ -336,7 +336,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-016: Group Management
 - **Spec**: `specs/07-group-management.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 4
 - **Description**: Create `src/api/hooks/useGroups.ts` with hooks for `CreateGroup`, `GetGroup`, `UpdateGroup`, `DeleteGroup`, `ListGroups`, `ListUsersInGroup`. Create MSW handlers and mock store. Build Group List page (Table with Name, Description, Precedence, Role ARN, Created, Last Modified; TextFilter; Pagination; create button; row click to detail). Build Create/Edit Group form (Name required/immutable on edit, Description, Role ARN, Precedence). Build Group Detail page (header with edit/delete, Container with all fields, Members table with add/remove user actions, pagination).
 - **Acceptance criteria**:
