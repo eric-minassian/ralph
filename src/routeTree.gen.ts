@@ -15,6 +15,7 @@ import { Route as UserPoolsIndexRouteImport } from './routes/user-pools/index'
 import { Route as UserPoolsCreateRouteImport } from './routes/user-pools/create'
 import { Route as UserPoolsUserPoolIdRouteImport } from './routes/user-pools/$userPoolId'
 import { Route as UserPoolsUserPoolIdIndexRouteImport } from './routes/user-pools/$userPoolId/index'
+import { Route as UserPoolsUserPoolIdUsersIndexRouteImport } from './routes/user-pools/$userPoolId/users/index'
 
 const NotAuthorizedRoute = NotAuthorizedRouteImport.update({
   id: '/not-authorized',
@@ -47,6 +48,12 @@ const UserPoolsUserPoolIdIndexRoute =
     path: '/',
     getParentRoute: () => UserPoolsUserPoolIdRoute,
   } as any)
+const UserPoolsUserPoolIdUsersIndexRoute =
+  UserPoolsUserPoolIdUsersIndexRouteImport.update({
+    id: '/users/',
+    path: '/users/',
+    getParentRoute: () => UserPoolsUserPoolIdRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -55,6 +62,7 @@ export interface FileRoutesByFullPath {
   '/user-pools/create': typeof UserPoolsCreateRoute
   '/user-pools/': typeof UserPoolsIndexRoute
   '/user-pools/$userPoolId/': typeof UserPoolsUserPoolIdIndexRoute
+  '/user-pools/$userPoolId/users/': typeof UserPoolsUserPoolIdUsersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +70,7 @@ export interface FileRoutesByTo {
   '/user-pools/create': typeof UserPoolsCreateRoute
   '/user-pools': typeof UserPoolsIndexRoute
   '/user-pools/$userPoolId': typeof UserPoolsUserPoolIdIndexRoute
+  '/user-pools/$userPoolId/users': typeof UserPoolsUserPoolIdUsersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +80,7 @@ export interface FileRoutesById {
   '/user-pools/create': typeof UserPoolsCreateRoute
   '/user-pools/': typeof UserPoolsIndexRoute
   '/user-pools/$userPoolId/': typeof UserPoolsUserPoolIdIndexRoute
+  '/user-pools/$userPoolId/users/': typeof UserPoolsUserPoolIdUsersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +91,7 @@ export interface FileRouteTypes {
     | '/user-pools/create'
     | '/user-pools/'
     | '/user-pools/$userPoolId/'
+    | '/user-pools/$userPoolId/users/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -88,6 +99,7 @@ export interface FileRouteTypes {
     | '/user-pools/create'
     | '/user-pools'
     | '/user-pools/$userPoolId'
+    | '/user-pools/$userPoolId/users'
   id:
     | '__root__'
     | '/'
@@ -96,6 +108,7 @@ export interface FileRouteTypes {
     | '/user-pools/create'
     | '/user-pools/'
     | '/user-pools/$userPoolId/'
+    | '/user-pools/$userPoolId/users/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -150,15 +163,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserPoolsUserPoolIdIndexRouteImport
       parentRoute: typeof UserPoolsUserPoolIdRoute
     }
+    '/user-pools/$userPoolId/users/': {
+      id: '/user-pools/$userPoolId/users/'
+      path: '/users'
+      fullPath: '/user-pools/$userPoolId/users/'
+      preLoaderRoute: typeof UserPoolsUserPoolIdUsersIndexRouteImport
+      parentRoute: typeof UserPoolsUserPoolIdRoute
+    }
   }
 }
 
 interface UserPoolsUserPoolIdRouteChildren {
   UserPoolsUserPoolIdIndexRoute: typeof UserPoolsUserPoolIdIndexRoute
+  UserPoolsUserPoolIdUsersIndexRoute: typeof UserPoolsUserPoolIdUsersIndexRoute
 }
 
 const UserPoolsUserPoolIdRouteChildren: UserPoolsUserPoolIdRouteChildren = {
   UserPoolsUserPoolIdIndexRoute: UserPoolsUserPoolIdIndexRoute,
+  UserPoolsUserPoolIdUsersIndexRoute: UserPoolsUserPoolIdUsersIndexRoute,
 }
 
 const UserPoolsUserPoolIdRouteWithChildren =

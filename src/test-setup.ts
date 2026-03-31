@@ -8,12 +8,13 @@ import common from './locales/en/common.json'
 import navigation from './locales/en/navigation.json'
 import errors from './locales/en/errors.json'
 import userPools from './locales/en/userPools.json'
+import users from './locales/en/users.json'
 
 // Initialize i18n for tests with real translation files
 void i18n.use(initReactI18next).init({
   lng: 'en',
   fallbackLng: 'en',
-  ns: ['common', 'navigation', 'errors', 'userPools'],
+  ns: ['common', 'navigation', 'errors', 'userPools', 'users'],
   defaultNS: 'common',
   resources: {
     en: {
@@ -21,6 +22,7 @@ void i18n.use(initReactI18next).init({
       navigation,
       errors,
       userPools,
+      users,
     },
   },
   interpolation: {

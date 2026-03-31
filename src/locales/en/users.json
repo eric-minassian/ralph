@@ -1,2 +1,57 @@
 {
+  "list": {
+    "title": "Users",
+    "description": "Manage users in this user pool",
+    "createButton": "Create user",
+    "searchPlaceholder": "Search by username, email, or phone",
+    "columns": {
+      "username": "Username",
+      "email": "Email",
+      "phone": "Phone number",
+      "status": "Status",
+      "enabled": "Enabled",
+      "creationDate": "Created",
+      "lastModifiedDate": "Last modified"
+    },
+    "preferences": {
+      "title": "Preferences",
+      "pageSize": "Page size",
+      "columns": "Visible columns",
+      "wrapLines": "Wrap lines"
+    },
+    "emptyTitle": "No users",
+    "emptyDescription": "No users found in this user pool.",
+    "emptyAction": "Create user",
+    "selectedCount": "{{count}} user(s) selected",
+    "bulkActions": {
+      "enable": "Enable",
+      "disable": "Disable",
+      "delete": "Delete"
+    }
+  },
+  "status": {
+    "UNCONFIRMED": "Unconfirmed",
+    "CONFIRMED": "Confirmed",
+    "ARCHIVED": "Archived",
+    "COMPROMISED": "Compromised",
+    "UNKNOWN": "Unknown",
+    "RESET_REQUIRED": "Reset required",
+    "FORCE_CHANGE_PASSWORD": "Force change password",
+    "EXTERNAL_PROVIDER": "External provider"
+  },
+  "enabled": {
+    "true": "Enabled",
+    "false": "Disabled"
+  },
+  "notifications": {
+    "enableSuccess": "User enabled successfully",
+    "disableSuccess": "User disabled successfully",
+    "deleteSuccess": "User deleted successfully",
+    "enableError": "Failed to enable user",
+    "disableError": "Failed to disable user",
+    "deleteError": "Failed to delete user",
+    "bulkEnableSuccess": "{{count}} user(s) enabled successfully",
+    "bulkDisableSuccess": "{{count}} user(s) disabled successfully",
+    "bulkDeleteSuccess": "{{count}} user(s) deleted successfully"
+  }
 }
