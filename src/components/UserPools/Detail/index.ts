@@ -1,0 +1,1 @@
+export { UserPoolDetailPage } from './UserPoolDetailPage'
