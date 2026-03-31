@@ -110,12 +110,72 @@ Each domain spec MUST include:
 
 ## Phase 3 — Update AGENTS.md
 
-Update `AGENTS.md` with:
+Overwrite `AGENTS.md` using this exact structure (fill in project-specific values):
 
-- The real tech stack (including react-hook-form)
-- Reference doc URLs for the API and Cloudscape
-- Build/verify commands
-- TypeScript and i18n rules
+```markdown
+# {Project Name} — Agent Guide
+
+> Loaded by AI coding tools at the start of each Ralph loop iteration.
+> Keep brief (~60 lines max). Only add entries when you discover something that saves a future iteration from failure.
+
+## Stack
+
+{One-line tech stack summary}
+
+## Build & Run
+
+\```bash
+pnpm install
+pnpm run dev           # starts Vite dev server with MSW mocking enabled
+\```
+
+## Verify (backpressure)
+
+These commands MUST pass before any commit:
+
+\```bash
+pnpm run typecheck     # tsc --noEmit
+pnpm run lint          # eslint
+pnpm run test          # vitest run
+\```
+
+## TypeScript Rules
+
+- `strict: true` with `noUncheckedIndexedAccess` and `exactOptionalPropertyTypes`
+- No `any`, `as`, `!`, or untyped `unknown` — use type guards and narrowing
+- All API types from the SDK package
+
+## i18n Rules
+
+- All user-facing strings must use `t()` from react-i18next
+- Translation keys namespaced by feature: `t('domain:key.subkey')`
+- No string literals in JSX
+
+## Reference Docs
+
+### API
+- {API docs URL}
+- {Per-operation URL pattern if applicable}
+
+### Cloudscape Design System
+- Component docs: `https://cloudscape.design/components/{component-name}/index.html.md`
+- API reference: `https://cloudscape.design/components/{component-name}/index.html.json`
+- Patterns: `https://cloudscape.design/patterns/{pattern-name}/index.html.md`
+- Snippet index: `https://cloudscape.design/snippets-content/index.md`
+
+## Conventions
+
+- Commit messages: `feat: [TASK-ID] — short description`
+- One logical change per commit
+- Do not modify specs/ files during build mode
+- Tests co-located: `Component.tsx` → `Component.test.tsx`
+- E2E tests in `e2e/` with page object models in `e2e/pages/`
+
+## Operational Learnings
+
+> Ralph adds entries here when it discovers patterns, gotchas, or workarounds.
+> Each entry should explain what AND why. Delete entries that no longer apply.
+```
 
 ## Phase 4 — Verify Completeness
 
