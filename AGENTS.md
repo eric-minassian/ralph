@@ -71,3 +71,5 @@ pnpm run test          # vitest run
 - **AWS SDK needs dummy credentials for MSW tests**: Set `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION` in `vitest.config.ts` `env`. Without credentials, the SDK's signing middleware throws before MSW can intercept the request.
 - **Cognito JSON dates are epoch seconds**: MSW responses must serialize Date objects as epoch seconds (not ISO strings). The `serializeDates()` helper in `cognitoHandler.ts` handles this automatically for all handlers.
 - **`UserPoolType.Status` is deprecated**: The `Status` field on `UserPoolType`/`UserPoolDescriptionType` triggers `@typescript-eslint/no-deprecated`. Don't set or read it in mock data or UI code.
+- **Cloudscape Wizard duplicates step titles**: The Wizard component renders each step title in multiple DOM nodes (nav sidebar, step header, content container). Use `getAllByText` instead of `getByText` in tests for step titles.
+- **Cloudscape FormField errorText may not render as text in jsdom**: When testing form validation with Cloudscape components, verify validation by checking blocked navigation (wizard stays on same step) rather than searching for error text strings.

@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 7 of 27 tasks complete
+Status: 8 of 27 tasks complete
 
 ## Overview
 
@@ -164,7 +164,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-008: User Pool Create Wizard
 - **Spec**: `specs/05-user-pool-management.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 3
 - **Description**: Build the multi-step User Pool creation wizard using Cloudscape `Wizard`. Step 1: Pool name, description, deletion protection. Step 2: Sign-in options, attribute requirements. Step 3: Password policy, MFA configuration. Step 4: Email/SMS delivery configuration. Step 5: Review and create. Each step validates before allowing next. On success, show flash notification and redirect to detail page.
 - **Acceptance criteria**:
