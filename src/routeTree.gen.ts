@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as NotAuthorizedRouteImport } from './routes/not-authorized'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as UserPoolsIndexRouteImport } from './routes/user-pools/index'
+import { Route as UserPoolsCreateRouteImport } from './routes/user-pools/create'
 
 const NotAuthorizedRoute = NotAuthorizedRouteImport.update({
   id: '/not-authorized',
@@ -28,34 +29,48 @@ const UserPoolsIndexRoute = UserPoolsIndexRouteImport.update({
   path: '/user-pools/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UserPoolsCreateRoute = UserPoolsCreateRouteImport.update({
+  id: '/user-pools/create',
+  path: '/user-pools/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/not-authorized': typeof NotAuthorizedRoute
+  '/user-pools/create': typeof UserPoolsCreateRoute
   '/user-pools/': typeof UserPoolsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/not-authorized': typeof NotAuthorizedRoute
+  '/user-pools/create': typeof UserPoolsCreateRoute
   '/user-pools': typeof UserPoolsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/not-authorized': typeof NotAuthorizedRoute
+  '/user-pools/create': typeof UserPoolsCreateRoute
   '/user-pools/': typeof UserPoolsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/not-authorized' | '/user-pools/'
+  fullPaths: '/' | '/not-authorized' | '/user-pools/create' | '/user-pools/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/not-authorized' | '/user-pools'
-  id: '__root__' | '/' | '/not-authorized' | '/user-pools/'
+  to: '/' | '/not-authorized' | '/user-pools/create' | '/user-pools'
+  id:
+    | '__root__'
+    | '/'
+    | '/not-authorized'
+    | '/user-pools/create'
+    | '/user-pools/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   NotAuthorizedRoute: typeof NotAuthorizedRoute
+  UserPoolsCreateRoute: typeof UserPoolsCreateRoute
   UserPoolsIndexRoute: typeof UserPoolsIndexRoute
 }
 
@@ -82,12 +97,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserPoolsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/user-pools/create': {
+      id: '/user-pools/create'
+      path: '/user-pools/create'
+      fullPath: '/user-pools/create'
+      preLoaderRoute: typeof UserPoolsCreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   NotAuthorizedRoute: NotAuthorizedRoute,
+  UserPoolsCreateRoute: UserPoolsCreateRoute,
   UserPoolsIndexRoute: UserPoolsIndexRoute,
 }
 export const routeTree = rootRouteImport

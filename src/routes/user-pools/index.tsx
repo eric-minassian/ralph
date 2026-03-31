@@ -193,7 +193,7 @@ function UserPoolListPage() {
               <Button
                 variant="primary"
                 onClick={() => {
-                  void navigate({ to: '/user-pools' })
+                  void navigate({ to: '/user-pools/create' })
                 }}
               >
                 {t('list.createButton')}
@@ -265,7 +265,7 @@ function UserPoolListPage() {
             </Box>
             <Button
               onClick={() => {
-                void navigate({ to: '/user-pools' })
+                void navigate({ to: '/user-pools/create' })
               }}
             >
               {t('list.emptyAction')}
