@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 4 of 27 tasks complete
+Status: 5 of 27 tasks complete
 
 ## Overview
 
@@ -95,7 +95,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-005: Permission System
 - **Spec**: `specs/02-permission-system.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 2
 - **Description**: Define the `CognitoPermission` type as a union of all 122 Cognito API operation names in `src/types/permissions.ts`. Create `PermissionProvider` context that holds a `Set<CognitoPermission>`. Create `usePermissions()` hook with `hasPermission()`, `hasAnyPermission()`, `hasAllPermissions()`. Create `<PermissionGate>` component with `permission`, `anyOf`, `allOf` props. Add route-level guards that redirect to a "not authorized" page. Create MSW handler for permissions endpoint (configurable mock). Update test utilities with `createMockPermissions()`.
 - **Acceptance criteria**:

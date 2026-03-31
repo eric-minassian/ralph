@@ -29,3 +29,10 @@ Result: done
 Summary: Created CognitoIdentityProviderClient in src/api/client.ts (reads region/endpoint from env vars), query key factory in src/api/queryKeys.ts (all 15 domains with consistent ['cognito', domain, operation, ...params] structure), MSW Cognito handler dispatcher in src/mocks/handlers/cognitoHandler.ts (matches X-Amz-Target header, maps to operation resolvers, translates StoreError to AWS error format), BaseStore generic CRUD class in src/mocks/stores/baseStore.ts with pagination support, and factories directory. 37 tests passing.
 Learnings: OperationResolver return type must be `unknown` not `unknown | Promise<unknown>` — the `no-redundant-type-constituents` rule flags `unknown` absorbing other union members. Use `Promise.resolve()` wrapper in the caller to handle both sync/async resolvers.
 ---
+
+## Iteration — 2026-03-30T19:30:00Z
+Task: TASK-005 — Permission System
+Result: done
+Summary: Created CognitoPermission union type (all 122 operations) in src/types/permissions.ts, PermissionProvider context (split into permissionContext.ts + PermissionProvider.tsx for react-refresh compatibility), usePermissions hook, PermissionGate component (single/anyOf/allOf logic), not-authorized route page, updated createMockPermissions to use real types with ALL_COGNITO_PERMISSIONS default, updated renderWithProviders with PermissionProvider wrapping. 54 tests passing.
+Learnings: react-refresh/only-export-components warns when a file exports both a React context object and components — split context creation (plain .ts) from provider component (.tsx) to avoid the warning.
+---

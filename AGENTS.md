@@ -65,3 +65,4 @@ pnpm run test          # vitest run
 - **pnpm onlyBuiltDependencies**: esbuild and msw need build scripts. Add `"pnpm": { "onlyBuiltDependencies": ["esbuild", "msw"] }` to package.json to avoid interactive approval prompts.
 - **TanStack Router route tree generation**: The Vite plugin (`@tanstack/router-plugin/vite`) auto-generates `src/routeTree.gen.ts` on build. Running `vite build` once bootstraps it. The generated file is ignored by ESLint via `eslint.config.js`.
 - **`unknown` absorbs union members**: `unknown | Promise<unknown>` triggers `no-redundant-type-constituents`. For sync-or-async return types, use `unknown` and wrap calls with `Promise.resolve()` in the caller.
+- **react-refresh context split**: Exporting both a `createContext()` value and a component from the same file triggers `react-refresh/only-export-components`. Split context creation into a plain `.ts` file and the provider component into a `.tsx` file.
