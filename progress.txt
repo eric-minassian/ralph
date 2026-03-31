@@ -43,3 +43,10 @@ Result: done
 Summary: Created Cloudscape AppLayout shell with data-driven SideNavigation (permission-gated via navigation config), TopNavigation with user menu, auto-generated BreadcrumbGroup from TanStack Router matches, Flashbar-based notification system (NotificationProvider context with add/dismiss), and renderWithRouter test utility for components requiring router context. 69 tests passing.
 Learnings: TanStack Router's RouterProvider requires `await router.load()` before `render()` in tests — without it the route components don't mount synchronously. Created a `renderWithRouter` test utility that handles this. Cloudscape TopNavigation duplicates text in multiple DOM nodes (visible + aria), so tests must use `getAllByText` instead of `getByText`.
 ---
+
+## Iteration — 2026-03-30T17:40:00Z
+Task: TASK-007 — User Pool Hooks, MSW Handlers & List Page
+Result: done
+Summary: Created TanStack Query hooks for all 8 user pool operations (list, describe, create, update, delete, addCustomAttributes, getMfaConfig, setMfaConfig), MSW handlers with userPoolStore (CRUD + MFA config + pagination), mock data factory, Cloudscape Table-based list page with TextFilter/Pagination/CollectionPreferences/sorting, and comprehensive tests (store: 21, handlers: 13, hooks+list: 7). Total: 110 tests passing.
+Learnings: AWS SDK needs dummy credentials (AWS_ACCESS_KEY_ID/AWS_SECRET_ACCESS_KEY) set in vitest.config.ts env for MSW-intercepted requests to work — without them the SDK's signing middleware fails before the request reaches MSW. Also, Cognito JSON wire format uses epoch seconds for dates, not ISO strings — added serializeDates() helper in cognitoHandler.ts to convert Date objects to epoch seconds in MSW responses. The `assertionStyle: 'never'` ESLint rule requires type guard functions (isRecord, isString, etc.) instead of `as` assertions for extracting values from Record<string, unknown>.
+---

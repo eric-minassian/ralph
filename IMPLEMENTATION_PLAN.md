@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 6 of 27 tasks complete
+Status: 7 of 27 tasks complete
 
 ## Overview
 
@@ -140,7 +140,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-007: User Pool Hooks, MSW Handlers & List Page
 - **Spec**: `specs/04-api-client-and-mocking.md`, `specs/05-user-pool-management.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 3
 - **Description**: Create `src/api/hooks/useUserPools.ts` with TanStack Query hooks for all user pool operations: `useListUserPools`, `useDescribeUserPool`, `useCreateUserPool`, `useUpdateUserPool`, `useDeleteUserPool`, `useAddCustomAttributes`, `useGetUserPoolMfaConfig`, `useSetUserPoolMfaConfig`, `useGetLogDeliveryConfiguration`, `useSetLogDeliveryConfiguration`. Create MSW handlers in `src/mocks/handlers/userPools.ts` with in-memory store. Create mock data factory for user pools. Build the User Pool List page with Cloudscape `Table`, `TextFilter`, `Pagination`, `CollectionPreferences`. Create `src/locales/en/userPools.json`.
 - **Acceptance criteria**:
