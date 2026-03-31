@@ -4,6 +4,9 @@ import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { I18nProvider } from '@cloudscape-design/components/i18n'
 import enMessages from '@cloudscape-design/components/i18n/messages/all.en'
+import { NotificationProvider } from './contexts/NotificationProvider'
+import { PermissionProvider } from './contexts/PermissionProvider'
+import { ALL_COGNITO_PERMISSIONS } from './types/permissions'
 import { routeTree } from './routeTree.gen'
 import './i18n'
 import '@cloudscape-design/global-styles/index.css'
@@ -49,7 +52,13 @@ void enableMocking().then(() => {
     <StrictMode>
       <I18nProvider locale="en" messages={[enMessages]}>
         <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
+          <PermissionProvider
+            permissions={new Set(ALL_COGNITO_PERMISSIONS)}
+          >
+            <NotificationProvider>
+              <RouterProvider router={router} />
+            </NotificationProvider>
+          </PermissionProvider>
         </QueryClientProvider>
       </I18nProvider>
     </StrictMode>,

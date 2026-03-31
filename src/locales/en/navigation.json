@@ -9,11 +9,36 @@
     "resourceServers": "Resource Servers",
     "branding": "Branding",
     "security": "Security",
-    "termsOfService": "Terms of Service"
+    "termsOfService": "Terms of Service",
+    "sections": {
+      "poolResources": "Pool Resources",
+      "poolConfiguration": "Pool Configuration"
+    }
   },
   "topNav": {
     "profile": "Profile",
     "signOut": "Sign Out",
     "language": "Language"
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "notAuthorized": "Not Authorized",
+    "userPools": "User Pools",
+    "createUserPool": "Create User Pool",
+    "poolDetail": "Pool Detail",
+    "users": "Users",
+    "createUser": "Create User",
+    "userDetail": "User Detail",
+    "groups": "Groups",
+    "createGroup": "Create Group",
+    "groupDetail": "Group Detail",
+    "appClients": "App Clients",
+    "identityProviders": "Identity Providers",
+    "domains": "Domains",
+    "resourceServers": "Resource Servers",
+    "branding": "Branding",
+    "security": "Security",
+    "termsOfService": "Terms of Service",
+    "import": "Import"
   }
 }

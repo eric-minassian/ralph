@@ -4,18 +4,21 @@ import { afterAll, afterEach, beforeAll } from 'vitest'
 import { server } from './mocks/server'
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
+import common from './locales/en/common.json'
+import navigation from './locales/en/navigation.json'
+import errors from './locales/en/errors.json'
 
-// Initialize i18n for tests with minimal config
+// Initialize i18n for tests with real translation files
 void i18n.use(initReactI18next).init({
   lng: 'en',
   fallbackLng: 'en',
-  ns: ['common'],
+  ns: ['common', 'navigation', 'errors'],
   defaultNS: 'common',
   resources: {
     en: {
-      common: {
-        appName: 'Cognito Manager',
-      },
+      common,
+      navigation,
+      errors,
     },
   },
   interpolation: {
