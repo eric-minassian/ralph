@@ -7,12 +7,15 @@ You are an autonomous agent tasked with generating a complete set of requirement
 ## Inputs
 
 ### API Reference
+
 <!-- Replace this URL with your API docs -->
+
 API_URL: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
 
 ### Tech Stack
+
 - Build: Vite
-- Framework: React 18+
+- Framework: React 19+
 - Language: TypeScript (strict mode — no `any`, `!`, `unknown`, `as`)
 - Routing: TanStack Router (file-based)
 - Server State: TanStack Query
@@ -27,6 +30,7 @@ API_URL: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIRefer
 - Package Manager: pnpm
 
 ### Core Requirements
+
 1. 100% API coverage — every API operation gets a UI surface
 2. Strict typing — no escape hatches (`any`, `as`, `!`, untyped `unknown`)
 3. Dynamic permissions — UI elements shown/hidden based on user permissions, 1:1 with API operations
@@ -49,24 +53,31 @@ API_URL: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIRefer
 Create these spec files in `specs/`:
 
 ### `00-core-infrastructure.md`
+
 Project foundation: Vite, React, TypeScript strict config, TanStack Router, TanStack Query, Cloudscape, MSW, react-hook-form, ESLint rules banning type escape hatches. Include all packages to install.
 
 ### `01-layout-and-navigation.md`
+
 App shell: Cloudscape AppLayout, SideNavigation (data-driven, sections per API domain), TopNavigation, BreadcrumbGroup (auto-generated from routes), Flashbar (notification system). Navigation items dynamically filtered by permissions.
 
 ### `02-permission-system.md`
+
 Permission type = union of all API operation names. PermissionProvider context, usePermissions() hook, PermissionGate component (single/anyOf/allOf), route-level guards, MSW mock returns configurable permission set.
 
 ### `03-internationalization.md`
+
 react-i18next setup, namespaced translation files per feature domain, no string literals in JSX, date/number formatting, language selector, Cloudscape i18n provider integration.
 
 ### `04-api-client-and-mocking.md`
+
 API client setup, TanStack Query hooks (one file per API domain), query key structure, mutation invalidation, MSW handlers (one file per API domain), mock data stores with realistic CRUD behavior, mock data factories. Must cover ALL API operations.
 
 ### `05-forms-infrastructure.md`
+
 react-hook-form integration with Cloudscape components. Reusable form field wrapper that connects react-hook-form Controller to Cloudscape Input, Select, Multiselect, Toggle, DatePicker, Textarea, etc. Typed form schemas (no `any` form values). Validation patterns: required, pattern, min/max, custom async validators. Error message display using Cloudscape FormField error text. Shared validation utilities.
 
 ### `20-testing-strategy.md`
+
 Testing pyramid: unit tests (co-located, every component/hook/utility), integration tests (feature flows with MSW), E2E tests (Playwright with page objects). Coverage thresholds (80%+). Test utilities: renderWithProviders, createMockPermissions, createTestQueryClient.
 
 ## Phase 2 — Generate Domain Specs
@@ -89,6 +100,7 @@ Each domain spec MUST include:
 5. **Technical Constraints**: routes, Cloudscape components to use, form validation rules
 
 ### Rules for domain specs:
+
 - Every API operation MUST appear in at least one spec's "APIs Covered" section
 - If an API operation is used across multiple domains (e.g., tagging), note it in both specs
 - Use Cloudscape Wizard for any create flow with 3+ configuration sections
@@ -99,6 +111,7 @@ Each domain spec MUST include:
 ## Phase 3 — Update AGENTS.md
 
 Update `AGENTS.md` with:
+
 - The real tech stack (including react-hook-form)
 - Reference doc URLs for the API and Cloudscape
 - Build/verify commands
@@ -107,12 +120,14 @@ Update `AGENTS.md` with:
 ## Phase 4 — Verify Completeness
 
 Before finishing:
+
 1. Count all API operations from Phase 0
 2. Grep all spec files for each operation name
 3. Confirm every operation appears in at least one spec's "APIs Covered"
 4. If any are missing, add them to the appropriate spec
 
 Output a summary:
+
 ```
 Total API operations: N
 Specs generated: M
