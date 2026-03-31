@@ -1,2 +1,170 @@
 {
+  "list": {
+    "title": "Identity providers",
+    "description": "Manage identity providers in this user pool",
+    "createButton": "Add provider",
+    "searchPlaceholder": "Find identity providers",
+    "emptyTitle": "No identity providers",
+    "emptyDescription": "No identity providers configured for this user pool.",
+    "emptyAction": "Add provider",
+    "columns": {
+      "providerName": "Provider name",
+      "providerType": "Provider type",
+      "creationDate": "Creation date",
+      "lastModifiedDate": "Last modified"
+    },
+    "preferences": {
+      "title": "Preferences",
+      "pageSize": "Page size",
+      "columns": "Select visible columns",
+      "wrapLines": "Wrap lines"
+    },
+    "providerTypes": {
+      "SAML": "SAML",
+      "OIDC": "OIDC",
+      "Facebook": "Facebook",
+      "Google": "Google",
+      "LoginWithAmazon": "Login with Amazon",
+      "SignInWithApple": "Sign in with Apple"
+    }
+  },
+  "detail": {
+    "title": "Identity provider: {{name}}",
+    "loading": "Loading identity provider...",
+    "notFound": "Identity provider not found",
+    "notFoundDescription": "The identity provider you are looking for does not exist.",
+    "backToList": "Back to identity providers",
+    "editButton": "Edit",
+    "deleteButton": "Delete",
+    "general": {
+      "title": "General settings",
+      "providerName": "Provider name",
+      "providerType": "Provider type",
+      "creationDate": "Creation date",
+      "lastModifiedDate": "Last modified",
+      "idpIdentifiers": "IdP identifiers",
+      "noneSet": "—"
+    },
+    "providerDetails": {
+      "title": "Provider details",
+      "metadataURL": "Metadata URL",
+      "metadataFile": "Metadata file",
+      "idpSignout": "IdP sign-out",
+      "idpInit": "IdP-initiated sign-on",
+      "requestSigningAlgorithm": "Request signing algorithm",
+      "encryptedResponses": "Encrypted responses",
+      "clientId": "Client ID",
+      "clientSecret": "Client secret",
+      "oidcIssuer": "Issuer URL",
+      "authorizeScopes": "Authorized scopes",
+      "authorizeUrl": "Authorization endpoint",
+      "tokenUrl": "Token endpoint",
+      "attributesUrl": "User info endpoint",
+      "jwksUri": "JWKS URI",
+      "attributesRequestMethod": "Attributes request method"
+    },
+    "attributeMapping": {
+      "title": "Attribute mapping",
+      "cognitoAttribute": "User pool attribute",
+      "providerAttribute": "IdP attribute",
+      "empty": "No attribute mappings configured.",
+      "addButton": "Add mapping",
+      "removeButton": "Remove"
+    },
+    "delete": {
+      "title": "Delete identity provider",
+      "description": "Permanently delete this identity provider? This action cannot be undone.",
+      "confirmLabel": "To confirm deletion, type the provider name:",
+      "confirmPlaceholder": "Enter provider name",
+      "deleteButton": "Delete",
+      "cancelButton": "Cancel"
+    },
+    "edit": {
+      "title": "Edit identity provider",
+      "saveButton": "Save changes",
+      "cancelButton": "Cancel"
+    }
+  },
+  "create": {
+    "title": "Add identity provider",
+    "selectType": "Select provider type",
+    "selectTypePlaceholder": "Choose a provider type",
+    "form": {
+      "providerName": "Provider name",
+      "providerNamePlaceholder": "Enter a unique name for this provider",
+      "providerNameConstraint": "Required. Must be unique within the user pool.",
+      "providerType": "Provider type",
+      "idpIdentifiers": "IdP identifiers",
+      "idpIdentifiersPlaceholder": "Enter identifier (optional)",
+      "idpIdentifiersConstraint": "Optional identifiers for this provider, separated by commas.",
+      "createButton": "Add provider",
+      "cancelButton": "Cancel",
+      "saml": {
+        "title": "SAML provider settings",
+        "metadataSource": "Metadata source",
+        "metadataURL": "Metadata document endpoint URL",
+        "metadataURLPlaceholder": "https://idp.example.com/saml/metadata",
+        "metadataFile": "Metadata document",
+        "metadataFilePlaceholder": "Paste SAML metadata XML here",
+        "metadataSourceUrl": "Metadata URL",
+        "metadataSourceFile": "Upload metadata file",
+        "idpSignout": "Enable IdP sign-out flow",
+        "idpInit": "Enable IdP-initiated SAML sign-on",
+        "encryptedResponses": "Require encrypted SAML assertions",
+        "requestSigningAlgorithm": "Request signing algorithm",
+        "rsaSha256": "RSA-SHA256",
+        "rsaSha1": "RSA-SHA1"
+      },
+      "oidc": {
+        "title": "OIDC provider settings",
+        "clientId": "Client ID",
+        "clientIdPlaceholder": "Enter the client ID from your IdP",
+        "clientSecret": "Client secret",
+        "clientSecretPlaceholder": "Enter the client secret from your IdP",
+        "issuerUrl": "Issuer URL",
+        "issuerUrlPlaceholder": "https://auth.example.com",
+        "authorizeScopes": "Authorized scopes",
+        "authorizeScopesPlaceholder": "openid email profile",
+        "authorizeScopesConstraint": "Space-separated list of scopes.",
+        "attributesRequestMethod": "Attributes request method",
+        "methodGet": "GET",
+        "methodPost": "POST"
+      },
+      "social": {
+        "title": "Social provider settings",
+        "clientId": "App ID",
+        "clientIdPlaceholder": "Enter the app ID from your provider",
+        "clientSecret": "App secret",
+        "clientSecretPlaceholder": "Enter the app secret from your provider",
+        "authorizeScopes": "Authorized scopes",
+        "authorizeScopesPlaceholder": "Enter scopes"
+      },
+      "attributeMapping": {
+        "title": "Attribute mapping",
+        "description": "Map attributes from this identity provider to user pool attributes.",
+        "cognitoAttribute": "User pool attribute",
+        "cognitoAttributePlaceholder": "Select attribute",
+        "providerAttribute": "IdP attribute",
+        "providerAttributePlaceholder": "Enter IdP attribute name",
+        "addButton": "Add attribute mapping",
+        "removeButton": "Remove"
+      }
+    },
+    "validation": {
+      "providerNameRequired": "Provider name is required",
+      "providerTypeRequired": "Provider type is required",
+      "metadataRequired": "Either metadata URL or metadata file is required",
+      "clientIdRequired": "Client ID is required",
+      "issuerUrlRequired": "Issuer URL is required",
+      "invalidUrl": "Enter a valid URL"
+    }
+  },
+  "notifications": {
+    "createSuccess": "Identity provider \"{{name}}\" created successfully",
+    "createError": "Failed to create identity provider",
+    "updateSuccess": "Identity provider \"{{name}}\" updated successfully",
+    "updateError": "Failed to update identity provider",
+    "deleteSuccess": "Identity provider \"{{name}}\" deleted successfully",
+    "deleteError": "Failed to delete identity provider"
+  }
 }

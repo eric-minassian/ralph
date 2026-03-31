@@ -16,15 +16,19 @@ import { Route as UserPoolsCreateRouteImport } from './routes/user-pools/create'
 import { Route as UserPoolsUserPoolIdRouteImport } from './routes/user-pools/$userPoolId'
 import { Route as UserPoolsUserPoolIdIndexRouteImport } from './routes/user-pools/$userPoolId/index'
 import { Route as UserPoolsUserPoolIdUsersIndexRouteImport } from './routes/user-pools/$userPoolId/users/index'
+import { Route as UserPoolsUserPoolIdIdentityProvidersIndexRouteImport } from './routes/user-pools/$userPoolId/identity-providers/index'
 import { Route as UserPoolsUserPoolIdGroupsIndexRouteImport } from './routes/user-pools/$userPoolId/groups/index'
 import { Route as UserPoolsUserPoolIdAppClientsIndexRouteImport } from './routes/user-pools/$userPoolId/app-clients/index'
 import { Route as UserPoolsUserPoolIdUsersCreateRouteImport } from './routes/user-pools/$userPoolId/users/create'
 import { Route as UserPoolsUserPoolIdUsersUsernameRouteImport } from './routes/user-pools/$userPoolId/users/$username'
+import { Route as UserPoolsUserPoolIdIdentityProvidersCreateRouteImport } from './routes/user-pools/$userPoolId/identity-providers/create'
+import { Route as UserPoolsUserPoolIdIdentityProvidersProviderNameRouteImport } from './routes/user-pools/$userPoolId/identity-providers/$providerName'
 import { Route as UserPoolsUserPoolIdGroupsCreateRouteImport } from './routes/user-pools/$userPoolId/groups/create'
 import { Route as UserPoolsUserPoolIdGroupsGroupNameRouteImport } from './routes/user-pools/$userPoolId/groups/$groupName'
 import { Route as UserPoolsUserPoolIdAppClientsCreateRouteImport } from './routes/user-pools/$userPoolId/app-clients/create'
 import { Route as UserPoolsUserPoolIdAppClientsClientIdRouteImport } from './routes/user-pools/$userPoolId/app-clients/$clientId'
 import { Route as UserPoolsUserPoolIdUsersUsernameIndexRouteImport } from './routes/user-pools/$userPoolId/users/$username/index'
+import { Route as UserPoolsUserPoolIdIdentityProvidersProviderNameIndexRouteImport } from './routes/user-pools/$userPoolId/identity-providers/$providerName/index'
 import { Route as UserPoolsUserPoolIdGroupsGroupNameIndexRouteImport } from './routes/user-pools/$userPoolId/groups/$groupName/index'
 import { Route as UserPoolsUserPoolIdAppClientsClientIdIndexRouteImport } from './routes/user-pools/$userPoolId/app-clients/$clientId/index'
 
@@ -65,6 +69,12 @@ const UserPoolsUserPoolIdUsersIndexRoute =
     path: '/users/',
     getParentRoute: () => UserPoolsUserPoolIdRoute,
   } as any)
+const UserPoolsUserPoolIdIdentityProvidersIndexRoute =
+  UserPoolsUserPoolIdIdentityProvidersIndexRouteImport.update({
+    id: '/identity-providers/',
+    path: '/identity-providers/',
+    getParentRoute: () => UserPoolsUserPoolIdRoute,
+  } as any)
 const UserPoolsUserPoolIdGroupsIndexRoute =
   UserPoolsUserPoolIdGroupsIndexRouteImport.update({
     id: '/groups/',
@@ -87,6 +97,18 @@ const UserPoolsUserPoolIdUsersUsernameRoute =
   UserPoolsUserPoolIdUsersUsernameRouteImport.update({
     id: '/users/$username',
     path: '/users/$username',
+    getParentRoute: () => UserPoolsUserPoolIdRoute,
+  } as any)
+const UserPoolsUserPoolIdIdentityProvidersCreateRoute =
+  UserPoolsUserPoolIdIdentityProvidersCreateRouteImport.update({
+    id: '/identity-providers/create',
+    path: '/identity-providers/create',
+    getParentRoute: () => UserPoolsUserPoolIdRoute,
+  } as any)
+const UserPoolsUserPoolIdIdentityProvidersProviderNameRoute =
+  UserPoolsUserPoolIdIdentityProvidersProviderNameRouteImport.update({
+    id: '/identity-providers/$providerName',
+    path: '/identity-providers/$providerName',
     getParentRoute: () => UserPoolsUserPoolIdRoute,
   } as any)
 const UserPoolsUserPoolIdGroupsCreateRoute =
@@ -119,6 +141,12 @@ const UserPoolsUserPoolIdUsersUsernameIndexRoute =
     path: '/',
     getParentRoute: () => UserPoolsUserPoolIdUsersUsernameRoute,
   } as any)
+const UserPoolsUserPoolIdIdentityProvidersProviderNameIndexRoute =
+  UserPoolsUserPoolIdIdentityProvidersProviderNameIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => UserPoolsUserPoolIdIdentityProvidersProviderNameRoute,
+  } as any)
 const UserPoolsUserPoolIdGroupsGroupNameIndexRoute =
   UserPoolsUserPoolIdGroupsGroupNameIndexRouteImport.update({
     id: '/',
@@ -143,13 +171,17 @@ export interface FileRoutesByFullPath {
   '/user-pools/$userPoolId/app-clients/create': typeof UserPoolsUserPoolIdAppClientsCreateRoute
   '/user-pools/$userPoolId/groups/$groupName': typeof UserPoolsUserPoolIdGroupsGroupNameRouteWithChildren
   '/user-pools/$userPoolId/groups/create': typeof UserPoolsUserPoolIdGroupsCreateRoute
+  '/user-pools/$userPoolId/identity-providers/$providerName': typeof UserPoolsUserPoolIdIdentityProvidersProviderNameRouteWithChildren
+  '/user-pools/$userPoolId/identity-providers/create': typeof UserPoolsUserPoolIdIdentityProvidersCreateRoute
   '/user-pools/$userPoolId/users/$username': typeof UserPoolsUserPoolIdUsersUsernameRouteWithChildren
   '/user-pools/$userPoolId/users/create': typeof UserPoolsUserPoolIdUsersCreateRoute
   '/user-pools/$userPoolId/app-clients/': typeof UserPoolsUserPoolIdAppClientsIndexRoute
   '/user-pools/$userPoolId/groups/': typeof UserPoolsUserPoolIdGroupsIndexRoute
+  '/user-pools/$userPoolId/identity-providers/': typeof UserPoolsUserPoolIdIdentityProvidersIndexRoute
   '/user-pools/$userPoolId/users/': typeof UserPoolsUserPoolIdUsersIndexRoute
   '/user-pools/$userPoolId/app-clients/$clientId/': typeof UserPoolsUserPoolIdAppClientsClientIdIndexRoute
   '/user-pools/$userPoolId/groups/$groupName/': typeof UserPoolsUserPoolIdGroupsGroupNameIndexRoute
+  '/user-pools/$userPoolId/identity-providers/$providerName/': typeof UserPoolsUserPoolIdIdentityProvidersProviderNameIndexRoute
   '/user-pools/$userPoolId/users/$username/': typeof UserPoolsUserPoolIdUsersUsernameIndexRoute
 }
 export interface FileRoutesByTo {
@@ -160,12 +192,15 @@ export interface FileRoutesByTo {
   '/user-pools/$userPoolId': typeof UserPoolsUserPoolIdIndexRoute
   '/user-pools/$userPoolId/app-clients/create': typeof UserPoolsUserPoolIdAppClientsCreateRoute
   '/user-pools/$userPoolId/groups/create': typeof UserPoolsUserPoolIdGroupsCreateRoute
+  '/user-pools/$userPoolId/identity-providers/create': typeof UserPoolsUserPoolIdIdentityProvidersCreateRoute
   '/user-pools/$userPoolId/users/create': typeof UserPoolsUserPoolIdUsersCreateRoute
   '/user-pools/$userPoolId/app-clients': typeof UserPoolsUserPoolIdAppClientsIndexRoute
   '/user-pools/$userPoolId/groups': typeof UserPoolsUserPoolIdGroupsIndexRoute
+  '/user-pools/$userPoolId/identity-providers': typeof UserPoolsUserPoolIdIdentityProvidersIndexRoute
   '/user-pools/$userPoolId/users': typeof UserPoolsUserPoolIdUsersIndexRoute
   '/user-pools/$userPoolId/app-clients/$clientId': typeof UserPoolsUserPoolIdAppClientsClientIdIndexRoute
   '/user-pools/$userPoolId/groups/$groupName': typeof UserPoolsUserPoolIdGroupsGroupNameIndexRoute
+  '/user-pools/$userPoolId/identity-providers/$providerName': typeof UserPoolsUserPoolIdIdentityProvidersProviderNameIndexRoute
   '/user-pools/$userPoolId/users/$username': typeof UserPoolsUserPoolIdUsersUsernameIndexRoute
 }
 export interface FileRoutesById {
@@ -180,13 +215,17 @@ export interface FileRoutesById {
   '/user-pools/$userPoolId/app-clients/create': typeof UserPoolsUserPoolIdAppClientsCreateRoute
   '/user-pools/$userPoolId/groups/$groupName': typeof UserPoolsUserPoolIdGroupsGroupNameRouteWithChildren
   '/user-pools/$userPoolId/groups/create': typeof UserPoolsUserPoolIdGroupsCreateRoute
+  '/user-pools/$userPoolId/identity-providers/$providerName': typeof UserPoolsUserPoolIdIdentityProvidersProviderNameRouteWithChildren
+  '/user-pools/$userPoolId/identity-providers/create': typeof UserPoolsUserPoolIdIdentityProvidersCreateRoute
   '/user-pools/$userPoolId/users/$username': typeof UserPoolsUserPoolIdUsersUsernameRouteWithChildren
   '/user-pools/$userPoolId/users/create': typeof UserPoolsUserPoolIdUsersCreateRoute
   '/user-pools/$userPoolId/app-clients/': typeof UserPoolsUserPoolIdAppClientsIndexRoute
   '/user-pools/$userPoolId/groups/': typeof UserPoolsUserPoolIdGroupsIndexRoute
+  '/user-pools/$userPoolId/identity-providers/': typeof UserPoolsUserPoolIdIdentityProvidersIndexRoute
   '/user-pools/$userPoolId/users/': typeof UserPoolsUserPoolIdUsersIndexRoute
   '/user-pools/$userPoolId/app-clients/$clientId/': typeof UserPoolsUserPoolIdAppClientsClientIdIndexRoute
   '/user-pools/$userPoolId/groups/$groupName/': typeof UserPoolsUserPoolIdGroupsGroupNameIndexRoute
+  '/user-pools/$userPoolId/identity-providers/$providerName/': typeof UserPoolsUserPoolIdIdentityProvidersProviderNameIndexRoute
   '/user-pools/$userPoolId/users/$username/': typeof UserPoolsUserPoolIdUsersUsernameIndexRoute
 }
 export interface FileRouteTypes {
@@ -202,13 +241,17 @@ export interface FileRouteTypes {
     | '/user-pools/$userPoolId/app-clients/create'
     | '/user-pools/$userPoolId/groups/$groupName'
     | '/user-pools/$userPoolId/groups/create'
+    | '/user-pools/$userPoolId/identity-providers/$providerName'
+    | '/user-pools/$userPoolId/identity-providers/create'
     | '/user-pools/$userPoolId/users/$username'
     | '/user-pools/$userPoolId/users/create'
     | '/user-pools/$userPoolId/app-clients/'
     | '/user-pools/$userPoolId/groups/'
+    | '/user-pools/$userPoolId/identity-providers/'
     | '/user-pools/$userPoolId/users/'
     | '/user-pools/$userPoolId/app-clients/$clientId/'
     | '/user-pools/$userPoolId/groups/$groupName/'
+    | '/user-pools/$userPoolId/identity-providers/$providerName/'
     | '/user-pools/$userPoolId/users/$username/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -219,12 +262,15 @@ export interface FileRouteTypes {
     | '/user-pools/$userPoolId'
     | '/user-pools/$userPoolId/app-clients/create'
     | '/user-pools/$userPoolId/groups/create'
+    | '/user-pools/$userPoolId/identity-providers/create'
     | '/user-pools/$userPoolId/users/create'
     | '/user-pools/$userPoolId/app-clients'
     | '/user-pools/$userPoolId/groups'
+    | '/user-pools/$userPoolId/identity-providers'
     | '/user-pools/$userPoolId/users'
     | '/user-pools/$userPoolId/app-clients/$clientId'
     | '/user-pools/$userPoolId/groups/$groupName'
+    | '/user-pools/$userPoolId/identity-providers/$providerName'
     | '/user-pools/$userPoolId/users/$username'
   id:
     | '__root__'
@@ -238,13 +284,17 @@ export interface FileRouteTypes {
     | '/user-pools/$userPoolId/app-clients/create'
     | '/user-pools/$userPoolId/groups/$groupName'
     | '/user-pools/$userPoolId/groups/create'
+    | '/user-pools/$userPoolId/identity-providers/$providerName'
+    | '/user-pools/$userPoolId/identity-providers/create'
     | '/user-pools/$userPoolId/users/$username'
     | '/user-pools/$userPoolId/users/create'
     | '/user-pools/$userPoolId/app-clients/'
     | '/user-pools/$userPoolId/groups/'
+    | '/user-pools/$userPoolId/identity-providers/'
     | '/user-pools/$userPoolId/users/'
     | '/user-pools/$userPoolId/app-clients/$clientId/'
     | '/user-pools/$userPoolId/groups/$groupName/'
+    | '/user-pools/$userPoolId/identity-providers/$providerName/'
     | '/user-pools/$userPoolId/users/$username/'
   fileRoutesById: FileRoutesById
 }
@@ -307,6 +357,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserPoolsUserPoolIdUsersIndexRouteImport
       parentRoute: typeof UserPoolsUserPoolIdRoute
     }
+    '/user-pools/$userPoolId/identity-providers/': {
+      id: '/user-pools/$userPoolId/identity-providers/'
+      path: '/identity-providers'
+      fullPath: '/user-pools/$userPoolId/identity-providers/'
+      preLoaderRoute: typeof UserPoolsUserPoolIdIdentityProvidersIndexRouteImport
+      parentRoute: typeof UserPoolsUserPoolIdRoute
+    }
     '/user-pools/$userPoolId/groups/': {
       id: '/user-pools/$userPoolId/groups/'
       path: '/groups'
@@ -333,6 +390,20 @@ declare module '@tanstack/react-router' {
       path: '/users/$username'
       fullPath: '/user-pools/$userPoolId/users/$username'
       preLoaderRoute: typeof UserPoolsUserPoolIdUsersUsernameRouteImport
+      parentRoute: typeof UserPoolsUserPoolIdRoute
+    }
+    '/user-pools/$userPoolId/identity-providers/create': {
+      id: '/user-pools/$userPoolId/identity-providers/create'
+      path: '/identity-providers/create'
+      fullPath: '/user-pools/$userPoolId/identity-providers/create'
+      preLoaderRoute: typeof UserPoolsUserPoolIdIdentityProvidersCreateRouteImport
+      parentRoute: typeof UserPoolsUserPoolIdRoute
+    }
+    '/user-pools/$userPoolId/identity-providers/$providerName': {
+      id: '/user-pools/$userPoolId/identity-providers/$providerName'
+      path: '/identity-providers/$providerName'
+      fullPath: '/user-pools/$userPoolId/identity-providers/$providerName'
+      preLoaderRoute: typeof UserPoolsUserPoolIdIdentityProvidersProviderNameRouteImport
       parentRoute: typeof UserPoolsUserPoolIdRoute
     }
     '/user-pools/$userPoolId/groups/create': {
@@ -369,6 +440,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/user-pools/$userPoolId/users/$username/'
       preLoaderRoute: typeof UserPoolsUserPoolIdUsersUsernameIndexRouteImport
       parentRoute: typeof UserPoolsUserPoolIdUsersUsernameRoute
+    }
+    '/user-pools/$userPoolId/identity-providers/$providerName/': {
+      id: '/user-pools/$userPoolId/identity-providers/$providerName/'
+      path: '/'
+      fullPath: '/user-pools/$userPoolId/identity-providers/$providerName/'
+      preLoaderRoute: typeof UserPoolsUserPoolIdIdentityProvidersProviderNameIndexRouteImport
+      parentRoute: typeof UserPoolsUserPoolIdIdentityProvidersProviderNameRoute
     }
     '/user-pools/$userPoolId/groups/$groupName/': {
       id: '/user-pools/$userPoolId/groups/$groupName/'
@@ -417,6 +495,21 @@ const UserPoolsUserPoolIdGroupsGroupNameRouteWithChildren =
     UserPoolsUserPoolIdGroupsGroupNameRouteChildren,
   )
 
+interface UserPoolsUserPoolIdIdentityProvidersProviderNameRouteChildren {
+  UserPoolsUserPoolIdIdentityProvidersProviderNameIndexRoute: typeof UserPoolsUserPoolIdIdentityProvidersProviderNameIndexRoute
+}
+
+const UserPoolsUserPoolIdIdentityProvidersProviderNameRouteChildren: UserPoolsUserPoolIdIdentityProvidersProviderNameRouteChildren =
+  {
+    UserPoolsUserPoolIdIdentityProvidersProviderNameIndexRoute:
+      UserPoolsUserPoolIdIdentityProvidersProviderNameIndexRoute,
+  }
+
+const UserPoolsUserPoolIdIdentityProvidersProviderNameRouteWithChildren =
+  UserPoolsUserPoolIdIdentityProvidersProviderNameRoute._addFileChildren(
+    UserPoolsUserPoolIdIdentityProvidersProviderNameRouteChildren,
+  )
+
 interface UserPoolsUserPoolIdUsersUsernameRouteChildren {
   UserPoolsUserPoolIdUsersUsernameIndexRoute: typeof UserPoolsUserPoolIdUsersUsernameIndexRoute
 }
@@ -438,10 +531,13 @@ interface UserPoolsUserPoolIdRouteChildren {
   UserPoolsUserPoolIdAppClientsCreateRoute: typeof UserPoolsUserPoolIdAppClientsCreateRoute
   UserPoolsUserPoolIdGroupsGroupNameRoute: typeof UserPoolsUserPoolIdGroupsGroupNameRouteWithChildren
   UserPoolsUserPoolIdGroupsCreateRoute: typeof UserPoolsUserPoolIdGroupsCreateRoute
+  UserPoolsUserPoolIdIdentityProvidersProviderNameRoute: typeof UserPoolsUserPoolIdIdentityProvidersProviderNameRouteWithChildren
+  UserPoolsUserPoolIdIdentityProvidersCreateRoute: typeof UserPoolsUserPoolIdIdentityProvidersCreateRoute
   UserPoolsUserPoolIdUsersUsernameRoute: typeof UserPoolsUserPoolIdUsersUsernameRouteWithChildren
   UserPoolsUserPoolIdUsersCreateRoute: typeof UserPoolsUserPoolIdUsersCreateRoute
   UserPoolsUserPoolIdAppClientsIndexRoute: typeof UserPoolsUserPoolIdAppClientsIndexRoute
   UserPoolsUserPoolIdGroupsIndexRoute: typeof UserPoolsUserPoolIdGroupsIndexRoute
+  UserPoolsUserPoolIdIdentityProvidersIndexRoute: typeof UserPoolsUserPoolIdIdentityProvidersIndexRoute
   UserPoolsUserPoolIdUsersIndexRoute: typeof UserPoolsUserPoolIdUsersIndexRoute
 }
 
@@ -454,12 +550,18 @@ const UserPoolsUserPoolIdRouteChildren: UserPoolsUserPoolIdRouteChildren = {
   UserPoolsUserPoolIdGroupsGroupNameRoute:
     UserPoolsUserPoolIdGroupsGroupNameRouteWithChildren,
   UserPoolsUserPoolIdGroupsCreateRoute: UserPoolsUserPoolIdGroupsCreateRoute,
+  UserPoolsUserPoolIdIdentityProvidersProviderNameRoute:
+    UserPoolsUserPoolIdIdentityProvidersProviderNameRouteWithChildren,
+  UserPoolsUserPoolIdIdentityProvidersCreateRoute:
+    UserPoolsUserPoolIdIdentityProvidersCreateRoute,
   UserPoolsUserPoolIdUsersUsernameRoute:
     UserPoolsUserPoolIdUsersUsernameRouteWithChildren,
   UserPoolsUserPoolIdUsersCreateRoute: UserPoolsUserPoolIdUsersCreateRoute,
   UserPoolsUserPoolIdAppClientsIndexRoute:
     UserPoolsUserPoolIdAppClientsIndexRoute,
   UserPoolsUserPoolIdGroupsIndexRoute: UserPoolsUserPoolIdGroupsIndexRoute,
+  UserPoolsUserPoolIdIdentityProvidersIndexRoute:
+    UserPoolsUserPoolIdIdentityProvidersIndexRoute,
   UserPoolsUserPoolIdUsersIndexRoute: UserPoolsUserPoolIdUsersIndexRoute,
 }
 
