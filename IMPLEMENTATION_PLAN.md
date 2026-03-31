@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 14 of 27 tasks complete
+Status: 15 of 27 tasks complete
 
 ## Overview
 
@@ -313,7 +313,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-015: User Devices & WebAuthn Tabs
 - **Spec**: `specs/06-user-management.md`, `specs/15-device-management.md`, `specs/16-webauthn.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 4
 - **Description**: Build the Devices tab in user detail: table of devices (Device Key, Device Name, Last IP, Last Authenticated, Created, Remembered Status), forget device action with confirmation modal, update device status toggle (remembered/not-remembered), device detail view. Build WebAuthn credentials section (within Security tab or dedicated sub-tab): table (Credential ID, Friendly Name, Created Date, Last Used), delete credential with confirmation, informational note about admin limitations.
 - **Acceptance criteria**:

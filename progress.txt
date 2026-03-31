@@ -99,3 +99,10 @@ Result: done
 Summary: Built GroupsTab (group membership table with add/remove via modals, permission-gated actions) and LinkedProvidersTab (linked IdP table with link/unlink via modals). Added provider tracking to userStore (LinkedProvider type, linkProvider/unlinkProvider/listLinkedProviders methods). Added MSW handlers for AdminLinkProviderForUser and AdminDisableProviderForUser. Integrated both tabs into UserDetailPage with 9 new tests (4 groups, 5 providers). Total: 246 tests passing.
 Learnings: Cognito doesn't have a dedicated "list linked providers" API — linked provider info must be returned as a custom field on AdminGetUser responses in the mock. The AdminDisableProviderForUser handler needs to search all users by provider link since the API identifies the link by provider info, not username.
 ---
+
+## Iteration — 2026-03-30T19:30:00Z
+Task: TASK-015 — User Devices & WebAuthn Tabs
+Result: done
+Summary: Built DevicesTab (device table with forget/toggle remembered status actions via modals, StatusIndicator for remembered state) and WebAuthnTab (passkey credentials table with delete action, info alert about admin limitations). Added device and WebAuthn credential storage to userStore with seed data, MSW handlers for AdminGetDevice/AdminListDevices/AdminForgetDevice/AdminUpdateDeviceStatus/ListWebAuthnCredentials/DeleteWebAuthnCredential, WebAuthn hooks using synthetic AccessToken for mock, device factory. 8 new tests (4 devices, 4 WebAuthn). Total: 254 tests passing.
+Learnings: WebAuthn APIs (ListWebAuthnCredentials, DeleteWebAuthnCredential) use AccessToken not UserPoolId/Username — they're user-facing, not admin APIs. For the mock, encode userPoolId#username in the AccessToken field so the handler can identify the user. Real implementation would need actual access tokens or a different approach.
+---
