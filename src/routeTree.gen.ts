@@ -18,6 +18,7 @@ import { Route as UserPoolsUserPoolIdIndexRouteImport } from './routes/user-pool
 import { Route as UserPoolsUserPoolIdUsersIndexRouteImport } from './routes/user-pools/$userPoolId/users/index'
 import { Route as UserPoolsUserPoolIdIdentityProvidersIndexRouteImport } from './routes/user-pools/$userPoolId/identity-providers/index'
 import { Route as UserPoolsUserPoolIdGroupsIndexRouteImport } from './routes/user-pools/$userPoolId/groups/index'
+import { Route as UserPoolsUserPoolIdDomainIndexRouteImport } from './routes/user-pools/$userPoolId/domain/index'
 import { Route as UserPoolsUserPoolIdAppClientsIndexRouteImport } from './routes/user-pools/$userPoolId/app-clients/index'
 import { Route as UserPoolsUserPoolIdUsersCreateRouteImport } from './routes/user-pools/$userPoolId/users/create'
 import { Route as UserPoolsUserPoolIdUsersUsernameRouteImport } from './routes/user-pools/$userPoolId/users/$username'
@@ -79,6 +80,12 @@ const UserPoolsUserPoolIdGroupsIndexRoute =
   UserPoolsUserPoolIdGroupsIndexRouteImport.update({
     id: '/groups/',
     path: '/groups/',
+    getParentRoute: () => UserPoolsUserPoolIdRoute,
+  } as any)
+const UserPoolsUserPoolIdDomainIndexRoute =
+  UserPoolsUserPoolIdDomainIndexRouteImport.update({
+    id: '/domain/',
+    path: '/domain/',
     getParentRoute: () => UserPoolsUserPoolIdRoute,
   } as any)
 const UserPoolsUserPoolIdAppClientsIndexRoute =
@@ -176,6 +183,7 @@ export interface FileRoutesByFullPath {
   '/user-pools/$userPoolId/users/$username': typeof UserPoolsUserPoolIdUsersUsernameRouteWithChildren
   '/user-pools/$userPoolId/users/create': typeof UserPoolsUserPoolIdUsersCreateRoute
   '/user-pools/$userPoolId/app-clients/': typeof UserPoolsUserPoolIdAppClientsIndexRoute
+  '/user-pools/$userPoolId/domain/': typeof UserPoolsUserPoolIdDomainIndexRoute
   '/user-pools/$userPoolId/groups/': typeof UserPoolsUserPoolIdGroupsIndexRoute
   '/user-pools/$userPoolId/identity-providers/': typeof UserPoolsUserPoolIdIdentityProvidersIndexRoute
   '/user-pools/$userPoolId/users/': typeof UserPoolsUserPoolIdUsersIndexRoute
@@ -195,6 +203,7 @@ export interface FileRoutesByTo {
   '/user-pools/$userPoolId/identity-providers/create': typeof UserPoolsUserPoolIdIdentityProvidersCreateRoute
   '/user-pools/$userPoolId/users/create': typeof UserPoolsUserPoolIdUsersCreateRoute
   '/user-pools/$userPoolId/app-clients': typeof UserPoolsUserPoolIdAppClientsIndexRoute
+  '/user-pools/$userPoolId/domain': typeof UserPoolsUserPoolIdDomainIndexRoute
   '/user-pools/$userPoolId/groups': typeof UserPoolsUserPoolIdGroupsIndexRoute
   '/user-pools/$userPoolId/identity-providers': typeof UserPoolsUserPoolIdIdentityProvidersIndexRoute
   '/user-pools/$userPoolId/users': typeof UserPoolsUserPoolIdUsersIndexRoute
@@ -220,6 +229,7 @@ export interface FileRoutesById {
   '/user-pools/$userPoolId/users/$username': typeof UserPoolsUserPoolIdUsersUsernameRouteWithChildren
   '/user-pools/$userPoolId/users/create': typeof UserPoolsUserPoolIdUsersCreateRoute
   '/user-pools/$userPoolId/app-clients/': typeof UserPoolsUserPoolIdAppClientsIndexRoute
+  '/user-pools/$userPoolId/domain/': typeof UserPoolsUserPoolIdDomainIndexRoute
   '/user-pools/$userPoolId/groups/': typeof UserPoolsUserPoolIdGroupsIndexRoute
   '/user-pools/$userPoolId/identity-providers/': typeof UserPoolsUserPoolIdIdentityProvidersIndexRoute
   '/user-pools/$userPoolId/users/': typeof UserPoolsUserPoolIdUsersIndexRoute
@@ -246,6 +256,7 @@ export interface FileRouteTypes {
     | '/user-pools/$userPoolId/users/$username'
     | '/user-pools/$userPoolId/users/create'
     | '/user-pools/$userPoolId/app-clients/'
+    | '/user-pools/$userPoolId/domain/'
     | '/user-pools/$userPoolId/groups/'
     | '/user-pools/$userPoolId/identity-providers/'
     | '/user-pools/$userPoolId/users/'
@@ -265,6 +276,7 @@ export interface FileRouteTypes {
     | '/user-pools/$userPoolId/identity-providers/create'
     | '/user-pools/$userPoolId/users/create'
     | '/user-pools/$userPoolId/app-clients'
+    | '/user-pools/$userPoolId/domain'
     | '/user-pools/$userPoolId/groups'
     | '/user-pools/$userPoolId/identity-providers'
     | '/user-pools/$userPoolId/users'
@@ -289,6 +301,7 @@ export interface FileRouteTypes {
     | '/user-pools/$userPoolId/users/$username'
     | '/user-pools/$userPoolId/users/create'
     | '/user-pools/$userPoolId/app-clients/'
+    | '/user-pools/$userPoolId/domain/'
     | '/user-pools/$userPoolId/groups/'
     | '/user-pools/$userPoolId/identity-providers/'
     | '/user-pools/$userPoolId/users/'
@@ -369,6 +382,13 @@ declare module '@tanstack/react-router' {
       path: '/groups'
       fullPath: '/user-pools/$userPoolId/groups/'
       preLoaderRoute: typeof UserPoolsUserPoolIdGroupsIndexRouteImport
+      parentRoute: typeof UserPoolsUserPoolIdRoute
+    }
+    '/user-pools/$userPoolId/domain/': {
+      id: '/user-pools/$userPoolId/domain/'
+      path: '/domain'
+      fullPath: '/user-pools/$userPoolId/domain/'
+      preLoaderRoute: typeof UserPoolsUserPoolIdDomainIndexRouteImport
       parentRoute: typeof UserPoolsUserPoolIdRoute
     }
     '/user-pools/$userPoolId/app-clients/': {
@@ -536,6 +556,7 @@ interface UserPoolsUserPoolIdRouteChildren {
   UserPoolsUserPoolIdUsersUsernameRoute: typeof UserPoolsUserPoolIdUsersUsernameRouteWithChildren
   UserPoolsUserPoolIdUsersCreateRoute: typeof UserPoolsUserPoolIdUsersCreateRoute
   UserPoolsUserPoolIdAppClientsIndexRoute: typeof UserPoolsUserPoolIdAppClientsIndexRoute
+  UserPoolsUserPoolIdDomainIndexRoute: typeof UserPoolsUserPoolIdDomainIndexRoute
   UserPoolsUserPoolIdGroupsIndexRoute: typeof UserPoolsUserPoolIdGroupsIndexRoute
   UserPoolsUserPoolIdIdentityProvidersIndexRoute: typeof UserPoolsUserPoolIdIdentityProvidersIndexRoute
   UserPoolsUserPoolIdUsersIndexRoute: typeof UserPoolsUserPoolIdUsersIndexRoute
@@ -559,6 +580,7 @@ const UserPoolsUserPoolIdRouteChildren: UserPoolsUserPoolIdRouteChildren = {
   UserPoolsUserPoolIdUsersCreateRoute: UserPoolsUserPoolIdUsersCreateRoute,
   UserPoolsUserPoolIdAppClientsIndexRoute:
     UserPoolsUserPoolIdAppClientsIndexRoute,
+  UserPoolsUserPoolIdDomainIndexRoute: UserPoolsUserPoolIdDomainIndexRoute,
   UserPoolsUserPoolIdGroupsIndexRoute: UserPoolsUserPoolIdGroupsIndexRoute,
   UserPoolsUserPoolIdIdentityProvidersIndexRoute:
     UserPoolsUserPoolIdIdentityProvidersIndexRoute,

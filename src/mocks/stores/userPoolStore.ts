@@ -57,6 +57,18 @@ function getUserPoolKey(pool: UserPoolType): string {
   return pool.Id ?? ''
 }
 
+/**
+ * Safely copy a field from one UserPoolType to another by key name.
+ * Uses Object.defineProperty to avoid triggering exactOptionalPropertyTypes
+ * restrictions on direct assignment of potentially undefined values.
+ */
+function assignPoolField(target: UserPoolType, source: UserPoolType, key: string): void {
+  const descriptor = Object.getOwnPropertyDescriptor(source, key)
+  if (descriptor) {
+    Object.defineProperty(target, key, descriptor)
+  }
+}
+
 function validateUniqueName(store: BaseStore<UserPoolType>, name: string, excludeId?: string): void {
   const existing = store.list().find(
     (p) => p.Name === name && p.Id !== excludeId,
@@ -282,6 +294,32 @@ class UserPoolStore {
       result.SoftwareTokenMfaConfiguration = softwareTokenMfaConfiguration
     }
     return result
+  }
+
+  setDomain(userPoolId: string, domain: string, isCustom: boolean): void {
+    this.store.update(userPoolId, (existing) => {
+      const updated: UserPoolType = { ...existing, LastModifiedDate: new Date() }
+      if (isCustom) {
+        updated.CustomDomain = domain
+      } else {
+        updated.Domain = domain
+      }
+      return updated
+    })
+  }
+
+  clearDomain(userPoolId: string): void {
+    this.store.update(userPoolId, (existing) => {
+      // Re-create pool without Domain/CustomDomain fields
+      const updated: UserPoolType = { LastModifiedDate: new Date() }
+      // Copy all existing fields except domain-related ones
+      for (const key of Object.keys(existing)) {
+        if (key !== 'Domain' && key !== 'CustomDomain' && key !== 'LastModifiedDate') {
+          assignPoolField(updated, existing, key)
+        }
+      }
+      return updated
+    })
   }
 
   clear(): void {

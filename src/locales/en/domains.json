@@ -1,2 +1,78 @@
 {
+  "page": {
+    "title": "Domain",
+    "description": "Configure a domain for your user pool's hosted login page.",
+    "noDomainTitle": "No domain configured",
+    "noDomainDescription": "Configure a domain to enable hosted UI / managed login for this user pool.",
+    "createButton": "Create domain"
+  },
+  "detail": {
+    "title": "Domain: {{domain}}",
+    "domainUrl": "Domain URL",
+    "domainName": "Domain name",
+    "domainType": "Domain type",
+    "prefixType": "Cognito prefix domain",
+    "customType": "Custom domain",
+    "status": "Status",
+    "cloudFrontDistribution": "CloudFront distribution",
+    "certificateArn": "ACM certificate ARN",
+    "managedLoginVersion": "Managed login version",
+    "userPoolId": "User pool ID",
+    "awsAccountId": "AWS account ID",
+    "openHostedUi": "Open hosted UI",
+    "editButton": "Edit",
+    "deleteButton": "Delete domain"
+  },
+  "create": {
+    "title": "Add domain",
+    "domainTypeLabel": "Domain type",
+    "prefixOption": "Cognito domain",
+    "prefixDescription": "Use an Amazon Cognito prefix domain",
+    "customOption": "Custom domain",
+    "customDescription": "Use your own custom domain",
+    "prefixLabel": "Domain prefix",
+    "prefixSuffix": ".auth.{{region}}.amazoncognito.com",
+    "prefixHelp": "Enter a domain prefix. The full URL will be shown below.",
+    "customDomainLabel": "Custom domain name",
+    "customDomainHelp": "Enter the fully-qualified domain name (e.g. auth.example.com)",
+    "certificateArnLabel": "ACM certificate ARN",
+    "certificateArnHelp": "The ARN of an ACM certificate in us-east-1",
+    "submitButton": "Create domain",
+    "cancelButton": "Cancel"
+  },
+  "edit": {
+    "title": "Update domain",
+    "certificateArnLabel": "ACM certificate ARN",
+    "submitButton": "Save changes",
+    "cancelButton": "Cancel"
+  },
+  "delete": {
+    "title": "Delete domain",
+    "confirmMessage": "Are you sure you want to delete the domain <strong>{{domain}}</strong>? This action cannot be undone.",
+    "confirmLabel": "Delete",
+    "cancelLabel": "Cancel"
+  },
+  "validation": {
+    "prefixRequired": "Domain prefix is required",
+    "prefixFormat": "Domain prefix can only contain lowercase letters, numbers, and hyphens",
+    "customDomainRequired": "Custom domain name is required",
+    "customDomainFormat": "Enter a valid fully-qualified domain name",
+    "certificateArnRequired": "ACM certificate ARN is required",
+    "certificateArnFormat": "Enter a valid ACM certificate ARN (arn:aws:acm:us-east-1:...)"
+  },
+  "notifications": {
+    "createSuccess": "Domain created successfully",
+    "createError": "Failed to create domain: {{message}}",
+    "updateSuccess": "Domain updated successfully",
+    "updateError": "Failed to update domain: {{message}}",
+    "deleteSuccess": "Domain deleted successfully",
+    "deleteError": "Failed to delete domain: {{message}}"
+  },
+  "status": {
+    "ACTIVE": "Active",
+    "CREATING": "Creating",
+    "DELETING": "Deleting",
+    "FAILED": "Failed",
+    "UPDATING": "Updating"
+  }
 }
