@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 17 of 27 tasks complete
+Status: 18 of 27 tasks complete
 
 ## Overview
 
@@ -383,7 +383,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-018: Identity Provider Management
 - **Spec**: `specs/09-identity-providers.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 5
 - **Description**: Create `src/api/hooks/useIdentityProviders.ts` with hooks for all 6 IdP operations. Create MSW handlers and mock store. Build IdP List page. Build dynamic Create/Edit form that renders different fields based on provider type: SAML (metadata URL/upload, attribute mapping), OIDC (client ID/secret, issuer, endpoints, scopes, attribute mapping), Social (client ID/secret, scopes). Build attribute mapping editor (table with IdP→Cognito attribute pairs, add/remove rows). Build Detail page with all config and mapping.
 - **Acceptance criteria**:
