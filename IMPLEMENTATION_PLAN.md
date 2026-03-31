@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 8 of 27 tasks complete
+Status: 9 of 27 tasks complete
 
 ## Overview
 
@@ -185,7 +185,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-009: User Pool Detail Page
 - **Spec**: `specs/05-user-pool-management.md`, `specs/17-mfa-management.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 3
 - **Description**: Build the User Pool detail page with Cloudscape `Container` sections: General settings (name, ID, ARN, status, dates), Sign-in configuration, Password policy, MFA configuration (with edit via `SetUserPoolMfaConfig` — OFF/OPTIONAL/REQUIRED, SMS/TOTP toggles), Custom attributes (with add via `AddCustomAttributes`), Log delivery configuration, Deletion protection. Each section has an edit button for inline editing or modal. Delete button with modal confirmation (type pool name). Tabs or sub-navigation for related resources (Users, Groups, App Clients, etc.).
 - **Acceptance criteria**:

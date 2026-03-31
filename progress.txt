@@ -57,3 +57,10 @@ Result: done
 Summary: Built 5-step Cloudscape Wizard for user pool creation (pool settings, sign-in config, security/MFA, delivery config, review). Step components in src/components/UserPools/CreateWizard/ with typed form state, per-step validation, review with edit navigation, and MSW integration. Route at /user-pools/create. Updated list page create buttons to navigate to create route. 29 new tests (19 validation unit + 10 wizard integration). Total: 139 tests passing.
 Learnings: Cloudscape Wizard duplicates step titles in multiple DOM nodes (nav sidebar, step header, content header) — use getAllByText in tests. Cloudscape FormField errorText may not render as plain text in jsdom — test validation by verifying blocked navigation instead. Controlled number inputs with Cloudscape Input require tripleClick+type pattern instead of clear+type since the controlled component re-renders from state after clear.
 ---
+
+## Iteration — 2026-03-30T18:10:00Z
+Task: TASK-009 — User Pool Detail Page
+Result: done
+Summary: Built user pool detail page with route at /user-pools/$userPoolId. Sections: General settings, Sign-in config, Password policy, MFA config (with edit modal for OFF/OPTIONAL/ON + SMS/TOTP), Custom attributes (with add modal), Deletion protection. Delete modal requires typing pool name and respects deletion protection. Tabbed sub-navigation for Users, Groups, App Clients, Identity Providers. Layout route provides Outlet for child routes. 14 new tests (9 sections display, 2 MFA edit, 2 delete flow, 1 add attribute). Total: 153 tests passing.
+Learnings: RadioGroup onChange returns string values — use type guard function (isUserPoolMfaType) instead of `as` assertion to satisfy the no-assertions ESLint rule.
+---
