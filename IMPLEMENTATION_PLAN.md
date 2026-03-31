@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 16 of 27 tasks complete
+Status: 17 of 27 tasks complete
 
 ## Overview
 
@@ -359,7 +359,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-017: App Client Management
 - **Spec**: `specs/08-app-client-management.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 4
 - **Description**: Create `src/api/hooks/useAppClients.ts` with hooks for all 8 app client operations (CRUD + secret management). Create MSW handlers and mock store. Build App Client List page. Build Create/Edit form with: client name, generate secret toggle, auth flows checkboxes, OAuth settings (flows, scopes, callback URLs, logout URLs), token validity (access/ID/refresh with units), read/write attributes, prevent user existence errors, enable token revocation. Build Detail page with all config sections, client ID copy-to-clipboard, client secret section (table of secrets, create new, delete, show-once on creation).
 - **Acceptance criteria**:
