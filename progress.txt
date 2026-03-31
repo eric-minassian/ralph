@@ -36,3 +36,10 @@ Result: done
 Summary: Created CognitoPermission union type (all 122 operations) in src/types/permissions.ts, PermissionProvider context (split into permissionContext.ts + PermissionProvider.tsx for react-refresh compatibility), usePermissions hook, PermissionGate component (single/anyOf/allOf logic), not-authorized route page, updated createMockPermissions to use real types with ALL_COGNITO_PERMISSIONS default, updated renderWithProviders with PermissionProvider wrapping. 54 tests passing.
 Learnings: react-refresh/only-export-components warns when a file exports both a React context object and components — split context creation (plain .ts) from provider component (.tsx) to avoid the warning.
 ---
+
+## Iteration — 2026-03-30T22:17:00Z
+Task: TASK-006 — Layout & Navigation Shell
+Result: done
+Summary: Created Cloudscape AppLayout shell with data-driven SideNavigation (permission-gated via navigation config), TopNavigation with user menu, auto-generated BreadcrumbGroup from TanStack Router matches, Flashbar-based notification system (NotificationProvider context with add/dismiss), and renderWithRouter test utility for components requiring router context. 69 tests passing.
+Learnings: TanStack Router's RouterProvider requires `await router.load()` before `render()` in tests — without it the route components don't mount synchronously. Created a `renderWithRouter` test utility that handles this. Cloudscape TopNavigation duplicates text in multiple DOM nodes (visible + aria), so tests must use `getAllByText` instead of `getByText`.
+---

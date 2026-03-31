@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 5 of 27 tasks complete
+Status: 6 of 27 tasks complete
 
 ## Overview
 
@@ -116,7 +116,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-006: Layout & Navigation Shell
 - **Spec**: `specs/01-layout-and-navigation.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 2
 - **Description**: Create the app shell using Cloudscape `AppLayout`. Implement `TopNavigation` with app title and user menu (profile, sign out, language selector). Implement data-driven `SideNavigation` with sections for all API domains (User Pools, Users, Groups, App Clients, Identity Providers, Domains, Resource Servers, Branding, Security, Terms of Service). Wire permission-based navigation filtering using the permission system. Implement `BreadcrumbGroup` auto-generated from current TanStack Router route. Create a `Flashbar`-based notification system (context/store with add/dismiss). Wire up help panel integration.
 - **Acceptance criteria**:
