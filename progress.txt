@@ -78,3 +78,10 @@ Result: done
 Summary: Built Cloudscape Form for user creation with username (required), temporary password (auto-generate toggle), email/phone/name fields, dynamic custom attributes from pool schema, and suppress invitation message option. Route at /user-pools/$userPoolId/users/create. Validation for username (required, max 128), email format, phone E.164 format, password min length. Added validation namespace to test-setup i18n config. 13 new tests (6 validation, 7 integration). Total: 213 tests passing.
 Learnings: The test-setup.ts i18n config must include ALL translation namespaces used by components under test — missing the 'validation' namespace caused t() to return raw keys instead of translated strings. Also, to avoid TFunction type incompatibility when passing t() to standalone validation functions, use error key enums and translate in the component instead.
 ---
+
+## Iteration — 2026-03-30T19:00:00Z
+Task: TASK-012 — User Detail Page — Overview & Attributes Tabs
+Result: done
+Summary: Built user detail page with route at /user-pools/$userPoolId/users/$username. Overview tab shows username, sub, status (with StatusIndicator), enabled state, email/phone verified, created/modified dates, MFA options. Attributes tab displays key-value table with edit (modal) for mutable attributes, delete (modal with confirmation) for custom: prefixed attributes, and add new attribute (modal). PermissionGate controls edit/delete/add actions. Also fixed 13 pre-existing TypeScript errors across the codebase (exactOptionalPropertyTypes violations, TFunction signature mismatches, deprecated type usage). 11 new tests (4 overview, 5 attributes, 2 hook). Total: 224 tests passing.
+Learnings: With exactOptionalPropertyTypes, you cannot assign `undefined` to optional properties — use conditional property assignment instead (check !== undefined, then assign). For validation functions that accept a translation function, use `TFunction` from i18next directly rather than a simplified function type to avoid branded type incompatibility. The `count` key in i18next interpolation options must be a number, not a string.
+---
