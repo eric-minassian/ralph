@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 12 of 27 tasks complete
+Status: 13 of 27 tasks complete
 
 ## Overview
 
@@ -270,7 +270,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-013: User Actions & Security Tab
 - **Spec**: `specs/06-user-management.md`, `specs/17-mfa-management.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 4
 - **Description**: Build the user actions dropdown in the detail page header: Enable/Disable (toggle), Reset password, Set password (with strength indicator), Confirm sign-up, Global sign-out, Delete (type username to confirm). Each action shows a confirmation modal. Build the Security tab: current MFA preferences display (SMS enabled/preferred, TOTP enabled/preferred), edit MFA preferences (toggle SMS/TOTP, set preferred), auth events table (Event ID, Type, Date, Risk, Response, IP) with feedback action (valid/invalid), pagination for auth events.
 - **Acceptance criteria**:
