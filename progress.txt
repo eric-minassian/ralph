@@ -71,3 +71,10 @@ Result: done
 Summary: Created TanStack Query hooks for all 26 admin user operations, MSW handlers with userStore (CRUD + state transitions + group membership + MFA preferences + filtering + pagination), mock data factory, Cloudscape Table-based list page with TextFilter/Pagination/CollectionPreferences/sorting/multi-select bulk actions (enable/disable/delete), and comprehensive tests (store: 24, handlers: 14, hooks+list: 9). Total: 200 tests passing.
 Learnings: Cognito ListUsers uses PaginationToken (not NextToken) for both request and response pagination fields — the handler must map the store's NextToken to PaginationToken in the response. Also, with exactOptionalPropertyTypes, optional interface properties cannot be assigned undefined — use flat boolean fields instead of optional nested objects to avoid the issue.
 ---
+
+## Iteration — 2026-03-30T18:35:00Z
+Task: TASK-011 — User Create Form
+Result: done
+Summary: Built Cloudscape Form for user creation with username (required), temporary password (auto-generate toggle), email/phone/name fields, dynamic custom attributes from pool schema, and suppress invitation message option. Route at /user-pools/$userPoolId/users/create. Validation for username (required, max 128), email format, phone E.164 format, password min length. Added validation namespace to test-setup i18n config. 13 new tests (6 validation, 7 integration). Total: 213 tests passing.
+Learnings: The test-setup.ts i18n config must include ALL translation namespaces used by components under test — missing the 'validation' namespace caused t() to return raw keys instead of translated strings. Also, to avoid TFunction type incompatibility when passing t() to standalone validation functions, use error key enums and translate in the component instead.
+---

@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 10 of 27 tasks complete
+Status: 11 of 27 tasks complete
 
 ## Overview
 
@@ -228,7 +228,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-011: User Create Form
 - **Spec**: `specs/06-user-management.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 4
 - **Description**: Build the Create User form with Cloudscape `Form`. Fields: Username (required), temporary password (optional with auto-generate toggle), email/phone/name (based on pool's required attributes), custom attributes (dynamic fields from pool schema, prefixed `custom:`), send invitation toggle (email/SMS), suppress welcome message option. Validate against the user pool's attribute schema.
 - **Acceptance criteria**:
