@@ -1,2 +1,136 @@
 {
+  "list": {
+    "title": "Import Jobs",
+    "description": "Manage bulk user import jobs for this user pool.",
+    "createButton": "Create import job",
+    "searchPlaceholder": "Find import jobs",
+    "emptyTitle": "No import jobs",
+    "emptyDescription": "No import jobs have been created for this user pool.",
+    "emptyAction": "Create import job",
+    "columns": {
+      "jobId": "Job ID",
+      "jobName": "Job name",
+      "status": "Status",
+      "creationDate": "Created",
+      "startDate": "Started",
+      "completionDate": "Completed",
+      "importedUsers": "Imported",
+      "skippedUsers": "Skipped",
+      "failedUsers": "Failed"
+    },
+    "preferences": {
+      "title": "Preferences",
+      "pageSize": "Page size",
+      "columns": "Visible columns",
+      "wrapLines": "Wrap lines"
+    },
+    "status": {
+      "Created": "Created",
+      "Pending": "Pending",
+      "InProgress": "In progress",
+      "Stopping": "Stopping",
+      "Stopped": "Stopped",
+      "Succeeded": "Succeeded",
+      "Failed": "Failed",
+      "Expired": "Expired"
+    }
+  },
+  "create": {
+    "title": "Create import job",
+    "steps": {
+      "jobName": "Job name",
+      "csvTemplate": "CSV template",
+      "fileUpload": "File upload",
+      "iamRole": "IAM role",
+      "review": "Review"
+    },
+    "form": {
+      "jobName": "Job name",
+      "jobNamePlaceholder": "Enter a friendly name for this import job",
+      "jobNameConstraint": "The job name must be between 1 and 128 characters.",
+      "downloadTemplate": "Download CSV template",
+      "downloadTemplateDescription": "Download the CSV template with the correct headers for your user pool. Fill in user data and upload the completed file in the next step.",
+      "downloadButton": "Download template",
+      "uploadFile": "CSV file",
+      "uploadFileDescription": "Upload the completed CSV file with user data. The file must use the headers from the template.",
+      "uploadConstraint": "File must be a CSV file.",
+      "iamRoleArn": "CloudWatch Logs IAM role ARN",
+      "iamRoleArnPlaceholder": "arn:aws:iam::123456789012:role/CognitoCloudWatchLogsRole",
+      "iamRoleArnConstraint": "The ARN of an IAM role with permission to write to CloudWatch Logs.",
+      "cancelButton": "Cancel",
+      "createButton": "Create import job",
+      "previousButton": "Previous",
+      "nextButton": "Next"
+    },
+    "review": {
+      "title": "Review and create",
+      "jobName": "Job name",
+      "csvFile": "CSV file",
+      "iamRoleArn": "IAM role ARN",
+      "noFile": "No file selected"
+    },
+    "validation": {
+      "jobNameRequired": "Job name is required.",
+      "jobNameTooLong": "Job name must be 128 characters or fewer.",
+      "fileRequired": "A CSV file is required.",
+      "iamRoleArnRequired": "IAM role ARN is required.",
+      "iamRoleArnInvalid": "Enter a valid IAM role ARN (arn:aws:iam::...)."
+    }
+  },
+  "detail": {
+    "title": "Import job: {{name}}",
+    "loading": "Loading import job...",
+    "notFound": "Import job not found",
+    "notFoundDescription": "The requested import job could not be found.",
+    "backToList": "Back to import jobs",
+    "startButton": "Start import",
+    "stopButton": "Stop import",
+    "general": {
+      "title": "General settings",
+      "jobId": "Job ID",
+      "jobName": "Job name",
+      "status": "Status",
+      "iamRoleArn": "IAM role ARN",
+      "creationDate": "Created",
+      "startDate": "Started",
+      "completionDate": "Completed",
+      "completionMessage": "Completion message",
+      "notStarted": "Not started",
+      "notCompleted": "Not completed",
+      "noneSet": "—"
+    },
+    "progress": {
+      "title": "Progress",
+      "importedUsers": "Users imported",
+      "skippedUsers": "Users skipped",
+      "failedUsers": "Users failed"
+    },
+    "preSignedUrl": {
+      "title": "CSV upload",
+      "description": "Use this pre-signed URL to upload your CSV file.",
+      "copyButton": "Copy URL"
+    },
+    "start": {
+      "title": "Start import job",
+      "description": "Are you sure you want to start this import job? This will begin importing users from the uploaded CSV file.",
+      "cancelButton": "Cancel",
+      "startButton": "Start"
+    },
+    "stop": {
+      "title": "Stop import job",
+      "description": "Are you sure you want to stop this import job? Users that have already been imported will remain in the user pool.",
+      "cancelButton": "Cancel",
+      "stopButton": "Stop"
+    }
+  },
+  "notifications": {
+    "createSuccess": "Import job \"{{name}}\" created successfully.",
+    "createError": "Failed to create import job.",
+    "startSuccess": "Import job \"{{name}}\" started successfully.",
+    "startError": "Failed to start import job.",
+    "stopSuccess": "Import job \"{{name}}\" stop requested.",
+    "stopError": "Failed to stop import job.",
+    "templateDownloaded": "CSV template downloaded.",
+    "templateError": "Failed to download CSV template."
+  }
 }

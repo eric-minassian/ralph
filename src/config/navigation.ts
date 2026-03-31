@@ -88,6 +88,13 @@ export const navigationConfig: readonly NavEntryConfig[] = [
       },
       {
         type: 'link',
+        id: 'import',
+        textKey: 'sidebar.import',
+        href: '/user-pools',
+        permissions: ['ListUserImportJobs', 'CreateUserImportJob'],
+      },
+      {
+        type: 'link',
         id: 'branding',
         textKey: 'sidebar.branding',
         href: '/user-pools',

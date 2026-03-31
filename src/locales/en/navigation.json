@@ -10,6 +10,7 @@
     "branding": "Branding",
     "security": "Security",
     "termsOfService": "Terms of Service",
+    "import": "Import Jobs",
     "sections": {
       "poolResources": "Pool Resources",
       "poolConfiguration": "Pool Configuration"

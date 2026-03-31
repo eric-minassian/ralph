@@ -17,6 +17,7 @@ import { Route as UserPoolsUserPoolIdRouteImport } from './routes/user-pools/$us
 import { Route as UserPoolsUserPoolIdIndexRouteImport } from './routes/user-pools/$userPoolId/index'
 import { Route as UserPoolsUserPoolIdUsersIndexRouteImport } from './routes/user-pools/$userPoolId/users/index'
 import { Route as UserPoolsUserPoolIdResourceServersIndexRouteImport } from './routes/user-pools/$userPoolId/resource-servers/index'
+import { Route as UserPoolsUserPoolIdImportIndexRouteImport } from './routes/user-pools/$userPoolId/import/index'
 import { Route as UserPoolsUserPoolIdIdentityProvidersIndexRouteImport } from './routes/user-pools/$userPoolId/identity-providers/index'
 import { Route as UserPoolsUserPoolIdGroupsIndexRouteImport } from './routes/user-pools/$userPoolId/groups/index'
 import { Route as UserPoolsUserPoolIdDomainIndexRouteImport } from './routes/user-pools/$userPoolId/domain/index'
@@ -25,6 +26,8 @@ import { Route as UserPoolsUserPoolIdUsersCreateRouteImport } from './routes/use
 import { Route as UserPoolsUserPoolIdUsersUsernameRouteImport } from './routes/user-pools/$userPoolId/users/$username'
 import { Route as UserPoolsUserPoolIdResourceServersCreateRouteImport } from './routes/user-pools/$userPoolId/resource-servers/create'
 import { Route as UserPoolsUserPoolIdResourceServersIdentifierRouteImport } from './routes/user-pools/$userPoolId/resource-servers/$identifier'
+import { Route as UserPoolsUserPoolIdImportCreateRouteImport } from './routes/user-pools/$userPoolId/import/create'
+import { Route as UserPoolsUserPoolIdImportJobIdRouteImport } from './routes/user-pools/$userPoolId/import/$jobId'
 import { Route as UserPoolsUserPoolIdIdentityProvidersCreateRouteImport } from './routes/user-pools/$userPoolId/identity-providers/create'
 import { Route as UserPoolsUserPoolIdIdentityProvidersProviderNameRouteImport } from './routes/user-pools/$userPoolId/identity-providers/$providerName'
 import { Route as UserPoolsUserPoolIdGroupsCreateRouteImport } from './routes/user-pools/$userPoolId/groups/create'
@@ -33,6 +36,7 @@ import { Route as UserPoolsUserPoolIdAppClientsCreateRouteImport } from './route
 import { Route as UserPoolsUserPoolIdAppClientsClientIdRouteImport } from './routes/user-pools/$userPoolId/app-clients/$clientId'
 import { Route as UserPoolsUserPoolIdUsersUsernameIndexRouteImport } from './routes/user-pools/$userPoolId/users/$username/index'
 import { Route as UserPoolsUserPoolIdResourceServersIdentifierIndexRouteImport } from './routes/user-pools/$userPoolId/resource-servers/$identifier/index'
+import { Route as UserPoolsUserPoolIdImportJobIdIndexRouteImport } from './routes/user-pools/$userPoolId/import/$jobId/index'
 import { Route as UserPoolsUserPoolIdIdentityProvidersProviderNameIndexRouteImport } from './routes/user-pools/$userPoolId/identity-providers/$providerName/index'
 import { Route as UserPoolsUserPoolIdGroupsGroupNameIndexRouteImport } from './routes/user-pools/$userPoolId/groups/$groupName/index'
 import { Route as UserPoolsUserPoolIdAppClientsClientIdIndexRouteImport } from './routes/user-pools/$userPoolId/app-clients/$clientId/index'
@@ -78,6 +82,12 @@ const UserPoolsUserPoolIdResourceServersIndexRoute =
   UserPoolsUserPoolIdResourceServersIndexRouteImport.update({
     id: '/resource-servers/',
     path: '/resource-servers/',
+    getParentRoute: () => UserPoolsUserPoolIdRoute,
+  } as any)
+const UserPoolsUserPoolIdImportIndexRoute =
+  UserPoolsUserPoolIdImportIndexRouteImport.update({
+    id: '/import/',
+    path: '/import/',
     getParentRoute: () => UserPoolsUserPoolIdRoute,
   } as any)
 const UserPoolsUserPoolIdIdentityProvidersIndexRoute =
@@ -128,6 +138,18 @@ const UserPoolsUserPoolIdResourceServersIdentifierRoute =
     path: '/resource-servers/$identifier',
     getParentRoute: () => UserPoolsUserPoolIdRoute,
   } as any)
+const UserPoolsUserPoolIdImportCreateRoute =
+  UserPoolsUserPoolIdImportCreateRouteImport.update({
+    id: '/import/create',
+    path: '/import/create',
+    getParentRoute: () => UserPoolsUserPoolIdRoute,
+  } as any)
+const UserPoolsUserPoolIdImportJobIdRoute =
+  UserPoolsUserPoolIdImportJobIdRouteImport.update({
+    id: '/import/$jobId',
+    path: '/import/$jobId',
+    getParentRoute: () => UserPoolsUserPoolIdRoute,
+  } as any)
 const UserPoolsUserPoolIdIdentityProvidersCreateRoute =
   UserPoolsUserPoolIdIdentityProvidersCreateRouteImport.update({
     id: '/identity-providers/create',
@@ -176,6 +198,12 @@ const UserPoolsUserPoolIdResourceServersIdentifierIndexRoute =
     path: '/',
     getParentRoute: () => UserPoolsUserPoolIdResourceServersIdentifierRoute,
   } as any)
+const UserPoolsUserPoolIdImportJobIdIndexRoute =
+  UserPoolsUserPoolIdImportJobIdIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => UserPoolsUserPoolIdImportJobIdRoute,
+  } as any)
 const UserPoolsUserPoolIdIdentityProvidersProviderNameIndexRoute =
   UserPoolsUserPoolIdIdentityProvidersProviderNameIndexRouteImport.update({
     id: '/',
@@ -208,6 +236,8 @@ export interface FileRoutesByFullPath {
   '/user-pools/$userPoolId/groups/create': typeof UserPoolsUserPoolIdGroupsCreateRoute
   '/user-pools/$userPoolId/identity-providers/$providerName': typeof UserPoolsUserPoolIdIdentityProvidersProviderNameRouteWithChildren
   '/user-pools/$userPoolId/identity-providers/create': typeof UserPoolsUserPoolIdIdentityProvidersCreateRoute
+  '/user-pools/$userPoolId/import/$jobId': typeof UserPoolsUserPoolIdImportJobIdRouteWithChildren
+  '/user-pools/$userPoolId/import/create': typeof UserPoolsUserPoolIdImportCreateRoute
   '/user-pools/$userPoolId/resource-servers/$identifier': typeof UserPoolsUserPoolIdResourceServersIdentifierRouteWithChildren
   '/user-pools/$userPoolId/resource-servers/create': typeof UserPoolsUserPoolIdResourceServersCreateRoute
   '/user-pools/$userPoolId/users/$username': typeof UserPoolsUserPoolIdUsersUsernameRouteWithChildren
@@ -216,11 +246,13 @@ export interface FileRoutesByFullPath {
   '/user-pools/$userPoolId/domain/': typeof UserPoolsUserPoolIdDomainIndexRoute
   '/user-pools/$userPoolId/groups/': typeof UserPoolsUserPoolIdGroupsIndexRoute
   '/user-pools/$userPoolId/identity-providers/': typeof UserPoolsUserPoolIdIdentityProvidersIndexRoute
+  '/user-pools/$userPoolId/import/': typeof UserPoolsUserPoolIdImportIndexRoute
   '/user-pools/$userPoolId/resource-servers/': typeof UserPoolsUserPoolIdResourceServersIndexRoute
   '/user-pools/$userPoolId/users/': typeof UserPoolsUserPoolIdUsersIndexRoute
   '/user-pools/$userPoolId/app-clients/$clientId/': typeof UserPoolsUserPoolIdAppClientsClientIdIndexRoute
   '/user-pools/$userPoolId/groups/$groupName/': typeof UserPoolsUserPoolIdGroupsGroupNameIndexRoute
   '/user-pools/$userPoolId/identity-providers/$providerName/': typeof UserPoolsUserPoolIdIdentityProvidersProviderNameIndexRoute
+  '/user-pools/$userPoolId/import/$jobId/': typeof UserPoolsUserPoolIdImportJobIdIndexRoute
   '/user-pools/$userPoolId/resource-servers/$identifier/': typeof UserPoolsUserPoolIdResourceServersIdentifierIndexRoute
   '/user-pools/$userPoolId/users/$username/': typeof UserPoolsUserPoolIdUsersUsernameIndexRoute
 }
@@ -233,17 +265,20 @@ export interface FileRoutesByTo {
   '/user-pools/$userPoolId/app-clients/create': typeof UserPoolsUserPoolIdAppClientsCreateRoute
   '/user-pools/$userPoolId/groups/create': typeof UserPoolsUserPoolIdGroupsCreateRoute
   '/user-pools/$userPoolId/identity-providers/create': typeof UserPoolsUserPoolIdIdentityProvidersCreateRoute
+  '/user-pools/$userPoolId/import/create': typeof UserPoolsUserPoolIdImportCreateRoute
   '/user-pools/$userPoolId/resource-servers/create': typeof UserPoolsUserPoolIdResourceServersCreateRoute
   '/user-pools/$userPoolId/users/create': typeof UserPoolsUserPoolIdUsersCreateRoute
   '/user-pools/$userPoolId/app-clients': typeof UserPoolsUserPoolIdAppClientsIndexRoute
   '/user-pools/$userPoolId/domain': typeof UserPoolsUserPoolIdDomainIndexRoute
   '/user-pools/$userPoolId/groups': typeof UserPoolsUserPoolIdGroupsIndexRoute
   '/user-pools/$userPoolId/identity-providers': typeof UserPoolsUserPoolIdIdentityProvidersIndexRoute
+  '/user-pools/$userPoolId/import': typeof UserPoolsUserPoolIdImportIndexRoute
   '/user-pools/$userPoolId/resource-servers': typeof UserPoolsUserPoolIdResourceServersIndexRoute
   '/user-pools/$userPoolId/users': typeof UserPoolsUserPoolIdUsersIndexRoute
   '/user-pools/$userPoolId/app-clients/$clientId': typeof UserPoolsUserPoolIdAppClientsClientIdIndexRoute
   '/user-pools/$userPoolId/groups/$groupName': typeof UserPoolsUserPoolIdGroupsGroupNameIndexRoute
   '/user-pools/$userPoolId/identity-providers/$providerName': typeof UserPoolsUserPoolIdIdentityProvidersProviderNameIndexRoute
+  '/user-pools/$userPoolId/import/$jobId': typeof UserPoolsUserPoolIdImportJobIdIndexRoute
   '/user-pools/$userPoolId/resource-servers/$identifier': typeof UserPoolsUserPoolIdResourceServersIdentifierIndexRoute
   '/user-pools/$userPoolId/users/$username': typeof UserPoolsUserPoolIdUsersUsernameIndexRoute
 }
@@ -261,6 +296,8 @@ export interface FileRoutesById {
   '/user-pools/$userPoolId/groups/create': typeof UserPoolsUserPoolIdGroupsCreateRoute
   '/user-pools/$userPoolId/identity-providers/$providerName': typeof UserPoolsUserPoolIdIdentityProvidersProviderNameRouteWithChildren
   '/user-pools/$userPoolId/identity-providers/create': typeof UserPoolsUserPoolIdIdentityProvidersCreateRoute
+  '/user-pools/$userPoolId/import/$jobId': typeof UserPoolsUserPoolIdImportJobIdRouteWithChildren
+  '/user-pools/$userPoolId/import/create': typeof UserPoolsUserPoolIdImportCreateRoute
   '/user-pools/$userPoolId/resource-servers/$identifier': typeof UserPoolsUserPoolIdResourceServersIdentifierRouteWithChildren
   '/user-pools/$userPoolId/resource-servers/create': typeof UserPoolsUserPoolIdResourceServersCreateRoute
   '/user-pools/$userPoolId/users/$username': typeof UserPoolsUserPoolIdUsersUsernameRouteWithChildren
@@ -269,11 +306,13 @@ export interface FileRoutesById {
   '/user-pools/$userPoolId/domain/': typeof UserPoolsUserPoolIdDomainIndexRoute
   '/user-pools/$userPoolId/groups/': typeof UserPoolsUserPoolIdGroupsIndexRoute
   '/user-pools/$userPoolId/identity-providers/': typeof UserPoolsUserPoolIdIdentityProvidersIndexRoute
+  '/user-pools/$userPoolId/import/': typeof UserPoolsUserPoolIdImportIndexRoute
   '/user-pools/$userPoolId/resource-servers/': typeof UserPoolsUserPoolIdResourceServersIndexRoute
   '/user-pools/$userPoolId/users/': typeof UserPoolsUserPoolIdUsersIndexRoute
   '/user-pools/$userPoolId/app-clients/$clientId/': typeof UserPoolsUserPoolIdAppClientsClientIdIndexRoute
   '/user-pools/$userPoolId/groups/$groupName/': typeof UserPoolsUserPoolIdGroupsGroupNameIndexRoute
   '/user-pools/$userPoolId/identity-providers/$providerName/': typeof UserPoolsUserPoolIdIdentityProvidersProviderNameIndexRoute
+  '/user-pools/$userPoolId/import/$jobId/': typeof UserPoolsUserPoolIdImportJobIdIndexRoute
   '/user-pools/$userPoolId/resource-servers/$identifier/': typeof UserPoolsUserPoolIdResourceServersIdentifierIndexRoute
   '/user-pools/$userPoolId/users/$username/': typeof UserPoolsUserPoolIdUsersUsernameIndexRoute
 }
@@ -292,6 +331,8 @@ export interface FileRouteTypes {
     | '/user-pools/$userPoolId/groups/create'
     | '/user-pools/$userPoolId/identity-providers/$providerName'
     | '/user-pools/$userPoolId/identity-providers/create'
+    | '/user-pools/$userPoolId/import/$jobId'
+    | '/user-pools/$userPoolId/import/create'
     | '/user-pools/$userPoolId/resource-servers/$identifier'
     | '/user-pools/$userPoolId/resource-servers/create'
     | '/user-pools/$userPoolId/users/$username'
@@ -300,11 +341,13 @@ export interface FileRouteTypes {
     | '/user-pools/$userPoolId/domain/'
     | '/user-pools/$userPoolId/groups/'
     | '/user-pools/$userPoolId/identity-providers/'
+    | '/user-pools/$userPoolId/import/'
     | '/user-pools/$userPoolId/resource-servers/'
     | '/user-pools/$userPoolId/users/'
     | '/user-pools/$userPoolId/app-clients/$clientId/'
     | '/user-pools/$userPoolId/groups/$groupName/'
     | '/user-pools/$userPoolId/identity-providers/$providerName/'
+    | '/user-pools/$userPoolId/import/$jobId/'
     | '/user-pools/$userPoolId/resource-servers/$identifier/'
     | '/user-pools/$userPoolId/users/$username/'
   fileRoutesByTo: FileRoutesByTo
@@ -317,17 +360,20 @@ export interface FileRouteTypes {
     | '/user-pools/$userPoolId/app-clients/create'
     | '/user-pools/$userPoolId/groups/create'
     | '/user-pools/$userPoolId/identity-providers/create'
+    | '/user-pools/$userPoolId/import/create'
     | '/user-pools/$userPoolId/resource-servers/create'
     | '/user-pools/$userPoolId/users/create'
     | '/user-pools/$userPoolId/app-clients'
     | '/user-pools/$userPoolId/domain'
     | '/user-pools/$userPoolId/groups'
     | '/user-pools/$userPoolId/identity-providers'
+    | '/user-pools/$userPoolId/import'
     | '/user-pools/$userPoolId/resource-servers'
     | '/user-pools/$userPoolId/users'
     | '/user-pools/$userPoolId/app-clients/$clientId'
     | '/user-pools/$userPoolId/groups/$groupName'
     | '/user-pools/$userPoolId/identity-providers/$providerName'
+    | '/user-pools/$userPoolId/import/$jobId'
     | '/user-pools/$userPoolId/resource-servers/$identifier'
     | '/user-pools/$userPoolId/users/$username'
   id:
@@ -344,6 +390,8 @@ export interface FileRouteTypes {
     | '/user-pools/$userPoolId/groups/create'
     | '/user-pools/$userPoolId/identity-providers/$providerName'
     | '/user-pools/$userPoolId/identity-providers/create'
+    | '/user-pools/$userPoolId/import/$jobId'
+    | '/user-pools/$userPoolId/import/create'
     | '/user-pools/$userPoolId/resource-servers/$identifier'
     | '/user-pools/$userPoolId/resource-servers/create'
     | '/user-pools/$userPoolId/users/$username'
@@ -352,11 +400,13 @@ export interface FileRouteTypes {
     | '/user-pools/$userPoolId/domain/'
     | '/user-pools/$userPoolId/groups/'
     | '/user-pools/$userPoolId/identity-providers/'
+    | '/user-pools/$userPoolId/import/'
     | '/user-pools/$userPoolId/resource-servers/'
     | '/user-pools/$userPoolId/users/'
     | '/user-pools/$userPoolId/app-clients/$clientId/'
     | '/user-pools/$userPoolId/groups/$groupName/'
     | '/user-pools/$userPoolId/identity-providers/$providerName/'
+    | '/user-pools/$userPoolId/import/$jobId/'
     | '/user-pools/$userPoolId/resource-servers/$identifier/'
     | '/user-pools/$userPoolId/users/$username/'
   fileRoutesById: FileRoutesById
@@ -427,6 +477,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserPoolsUserPoolIdResourceServersIndexRouteImport
       parentRoute: typeof UserPoolsUserPoolIdRoute
     }
+    '/user-pools/$userPoolId/import/': {
+      id: '/user-pools/$userPoolId/import/'
+      path: '/import'
+      fullPath: '/user-pools/$userPoolId/import/'
+      preLoaderRoute: typeof UserPoolsUserPoolIdImportIndexRouteImport
+      parentRoute: typeof UserPoolsUserPoolIdRoute
+    }
     '/user-pools/$userPoolId/identity-providers/': {
       id: '/user-pools/$userPoolId/identity-providers/'
       path: '/identity-providers'
@@ -481,6 +538,20 @@ declare module '@tanstack/react-router' {
       path: '/resource-servers/$identifier'
       fullPath: '/user-pools/$userPoolId/resource-servers/$identifier'
       preLoaderRoute: typeof UserPoolsUserPoolIdResourceServersIdentifierRouteImport
+      parentRoute: typeof UserPoolsUserPoolIdRoute
+    }
+    '/user-pools/$userPoolId/import/create': {
+      id: '/user-pools/$userPoolId/import/create'
+      path: '/import/create'
+      fullPath: '/user-pools/$userPoolId/import/create'
+      preLoaderRoute: typeof UserPoolsUserPoolIdImportCreateRouteImport
+      parentRoute: typeof UserPoolsUserPoolIdRoute
+    }
+    '/user-pools/$userPoolId/import/$jobId': {
+      id: '/user-pools/$userPoolId/import/$jobId'
+      path: '/import/$jobId'
+      fullPath: '/user-pools/$userPoolId/import/$jobId'
+      preLoaderRoute: typeof UserPoolsUserPoolIdImportJobIdRouteImport
       parentRoute: typeof UserPoolsUserPoolIdRoute
     }
     '/user-pools/$userPoolId/identity-providers/create': {
@@ -538,6 +609,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/user-pools/$userPoolId/resource-servers/$identifier/'
       preLoaderRoute: typeof UserPoolsUserPoolIdResourceServersIdentifierIndexRouteImport
       parentRoute: typeof UserPoolsUserPoolIdResourceServersIdentifierRoute
+    }
+    '/user-pools/$userPoolId/import/$jobId/': {
+      id: '/user-pools/$userPoolId/import/$jobId/'
+      path: '/'
+      fullPath: '/user-pools/$userPoolId/import/$jobId/'
+      preLoaderRoute: typeof UserPoolsUserPoolIdImportJobIdIndexRouteImport
+      parentRoute: typeof UserPoolsUserPoolIdImportJobIdRoute
     }
     '/user-pools/$userPoolId/identity-providers/$providerName/': {
       id: '/user-pools/$userPoolId/identity-providers/$providerName/'
@@ -608,6 +686,21 @@ const UserPoolsUserPoolIdIdentityProvidersProviderNameRouteWithChildren =
     UserPoolsUserPoolIdIdentityProvidersProviderNameRouteChildren,
   )
 
+interface UserPoolsUserPoolIdImportJobIdRouteChildren {
+  UserPoolsUserPoolIdImportJobIdIndexRoute: typeof UserPoolsUserPoolIdImportJobIdIndexRoute
+}
+
+const UserPoolsUserPoolIdImportJobIdRouteChildren: UserPoolsUserPoolIdImportJobIdRouteChildren =
+  {
+    UserPoolsUserPoolIdImportJobIdIndexRoute:
+      UserPoolsUserPoolIdImportJobIdIndexRoute,
+  }
+
+const UserPoolsUserPoolIdImportJobIdRouteWithChildren =
+  UserPoolsUserPoolIdImportJobIdRoute._addFileChildren(
+    UserPoolsUserPoolIdImportJobIdRouteChildren,
+  )
+
 interface UserPoolsUserPoolIdResourceServersIdentifierRouteChildren {
   UserPoolsUserPoolIdResourceServersIdentifierIndexRoute: typeof UserPoolsUserPoolIdResourceServersIdentifierIndexRoute
 }
@@ -646,6 +739,8 @@ interface UserPoolsUserPoolIdRouteChildren {
   UserPoolsUserPoolIdGroupsCreateRoute: typeof UserPoolsUserPoolIdGroupsCreateRoute
   UserPoolsUserPoolIdIdentityProvidersProviderNameRoute: typeof UserPoolsUserPoolIdIdentityProvidersProviderNameRouteWithChildren
   UserPoolsUserPoolIdIdentityProvidersCreateRoute: typeof UserPoolsUserPoolIdIdentityProvidersCreateRoute
+  UserPoolsUserPoolIdImportJobIdRoute: typeof UserPoolsUserPoolIdImportJobIdRouteWithChildren
+  UserPoolsUserPoolIdImportCreateRoute: typeof UserPoolsUserPoolIdImportCreateRoute
   UserPoolsUserPoolIdResourceServersIdentifierRoute: typeof UserPoolsUserPoolIdResourceServersIdentifierRouteWithChildren
   UserPoolsUserPoolIdResourceServersCreateRoute: typeof UserPoolsUserPoolIdResourceServersCreateRoute
   UserPoolsUserPoolIdUsersUsernameRoute: typeof UserPoolsUserPoolIdUsersUsernameRouteWithChildren
@@ -654,6 +749,7 @@ interface UserPoolsUserPoolIdRouteChildren {
   UserPoolsUserPoolIdDomainIndexRoute: typeof UserPoolsUserPoolIdDomainIndexRoute
   UserPoolsUserPoolIdGroupsIndexRoute: typeof UserPoolsUserPoolIdGroupsIndexRoute
   UserPoolsUserPoolIdIdentityProvidersIndexRoute: typeof UserPoolsUserPoolIdIdentityProvidersIndexRoute
+  UserPoolsUserPoolIdImportIndexRoute: typeof UserPoolsUserPoolIdImportIndexRoute
   UserPoolsUserPoolIdResourceServersIndexRoute: typeof UserPoolsUserPoolIdResourceServersIndexRoute
   UserPoolsUserPoolIdUsersIndexRoute: typeof UserPoolsUserPoolIdUsersIndexRoute
 }
@@ -671,6 +767,9 @@ const UserPoolsUserPoolIdRouteChildren: UserPoolsUserPoolIdRouteChildren = {
     UserPoolsUserPoolIdIdentityProvidersProviderNameRouteWithChildren,
   UserPoolsUserPoolIdIdentityProvidersCreateRoute:
     UserPoolsUserPoolIdIdentityProvidersCreateRoute,
+  UserPoolsUserPoolIdImportJobIdRoute:
+    UserPoolsUserPoolIdImportJobIdRouteWithChildren,
+  UserPoolsUserPoolIdImportCreateRoute: UserPoolsUserPoolIdImportCreateRoute,
   UserPoolsUserPoolIdResourceServersIdentifierRoute:
     UserPoolsUserPoolIdResourceServersIdentifierRouteWithChildren,
   UserPoolsUserPoolIdResourceServersCreateRoute:
@@ -684,6 +783,7 @@ const UserPoolsUserPoolIdRouteChildren: UserPoolsUserPoolIdRouteChildren = {
   UserPoolsUserPoolIdGroupsIndexRoute: UserPoolsUserPoolIdGroupsIndexRoute,
   UserPoolsUserPoolIdIdentityProvidersIndexRoute:
     UserPoolsUserPoolIdIdentityProvidersIndexRoute,
+  UserPoolsUserPoolIdImportIndexRoute: UserPoolsUserPoolIdImportIndexRoute,
   UserPoolsUserPoolIdResourceServersIndexRoute:
     UserPoolsUserPoolIdResourceServersIndexRoute,
   UserPoolsUserPoolIdUsersIndexRoute: UserPoolsUserPoolIdUsersIndexRoute,

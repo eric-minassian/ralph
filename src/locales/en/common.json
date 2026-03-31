@@ -14,5 +14,13 @@
   "noResults": "No results found",
   "error": "Error",
   "success": "Success",
-  "remove": "Remove"
+  "remove": "Remove",
+  "step": "Step",
+  "optional": "optional",
+  "choose": "Choose file",
+  "dropFile": "Drop file to upload",
+  "warning": "Warning",
+  "showFewer": "Show fewer",
+  "showMore": "Show more",
+  "autoRefreshing": "Auto-refreshing..."
 }
