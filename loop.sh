@@ -59,8 +59,8 @@ if [[ "$TOOL" != "claude" && "$TOOL" != "codex" && "$TOOL" != "kiro" ]]; then
   echo "Error: --tool must be claude, codex, or kiro (got '$TOOL')" >&2
   exit 1
 fi
-if [[ "$MODE" != "plan" && "$MODE" != "build" ]]; then
-  echo "Error: --mode must be plan or build (got '$MODE')" >&2
+if [[ "$MODE" != "plan" && "$MODE" != "build" && "$MODE" != "specs" ]]; then
+  echo "Error: --mode must be specs, plan, or build (got '$MODE')" >&2
   exit 1
 fi
 
