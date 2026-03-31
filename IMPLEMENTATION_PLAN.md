@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 9 of 27 tasks complete
+Status: 10 of 27 tasks complete
 
 ## Overview
 
@@ -207,7 +207,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-010: User Hooks, MSW Handlers & List Page
 - **Spec**: `specs/04-api-client-and-mocking.md`, `specs/06-user-management.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 3
 - **Description**: Create `src/api/hooks/useUsers.ts` with TanStack Query hooks for all 26 admin user operations (see spec 06 API list). Create MSW handlers in `src/mocks/handlers/users.ts` with in-memory user store supporting realistic CRUD and state transitions (enabled/disabled, confirmed, etc.). Create mock data factory for users. Build the User List page with Cloudscape `Table` (Username, Email, Phone, Status, Enabled, Created, Last Modified), `PropertyFilter` (filter by status, enabled, email, phone), `Pagination` using `NextToken`-based infinite loading, bulk actions (enable, disable, delete with multi-select), and create user button.
 - **Acceptance criteria**:

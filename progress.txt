@@ -64,3 +64,10 @@ Result: done
 Summary: Built user pool detail page with route at /user-pools/$userPoolId. Sections: General settings, Sign-in config, Password policy, MFA config (with edit modal for OFF/OPTIONAL/ON + SMS/TOTP), Custom attributes (with add modal), Deletion protection. Delete modal requires typing pool name and respects deletion protection. Tabbed sub-navigation for Users, Groups, App Clients, Identity Providers. Layout route provides Outlet for child routes. 14 new tests (9 sections display, 2 MFA edit, 2 delete flow, 1 add attribute). Total: 153 tests passing.
 Learnings: RadioGroup onChange returns string values — use type guard function (isUserPoolMfaType) instead of `as` assertion to satisfy the no-assertions ESLint rule.
 ---
+
+## Iteration — 2026-03-30T18:25:00Z
+Task: TASK-010 — User Hooks, MSW Handlers & List Page
+Result: done
+Summary: Created TanStack Query hooks for all 26 admin user operations, MSW handlers with userStore (CRUD + state transitions + group membership + MFA preferences + filtering + pagination), mock data factory, Cloudscape Table-based list page with TextFilter/Pagination/CollectionPreferences/sorting/multi-select bulk actions (enable/disable/delete), and comprehensive tests (store: 24, handlers: 14, hooks+list: 9). Total: 200 tests passing.
+Learnings: Cognito ListUsers uses PaginationToken (not NextToken) for both request and response pagination fields — the handler must map the store's NextToken to PaginationToken in the response. Also, with exactOptionalPropertyTypes, optional interface properties cannot be assigned undefined — use flat boolean fields instead of optional nested objects to avoid the issue.
+---

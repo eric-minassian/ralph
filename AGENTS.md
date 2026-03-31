@@ -19,7 +19,7 @@ pnpm run dev           # starts Vite dev server with MSW mocking enabled
 These commands MUST pass before any commit:
 
 ```bash
-pnpm run typecheck     # tsc --noEmit
+pnpm run build         # tsc -b && vite build
 pnpm run lint          # eslint
 pnpm run test          # vitest run
 ```
@@ -39,10 +39,12 @@ pnpm run test          # vitest run
 ## Reference Docs
 
 ### Cognito API
+
 - API operations: `https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html`
 - Per-operation detail: `https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_{OperationName}.html`
 
 ### Cloudscape Design System
+
 - Component docs: `https://cloudscape.design/components/{component-name}/index.html.md`
 - API reference: `https://cloudscape.design/components/{component-name}/index.html.json`
 - Patterns: `https://cloudscape.design/patterns/{pattern-name}/index.html.md`
@@ -73,3 +75,5 @@ pnpm run test          # vitest run
 - **`UserPoolType.Status` is deprecated**: The `Status` field on `UserPoolType`/`UserPoolDescriptionType` triggers `@typescript-eslint/no-deprecated`. Don't set or read it in mock data or UI code.
 - **Cloudscape Wizard duplicates step titles**: The Wizard component renders each step title in multiple DOM nodes (nav sidebar, step header, content container). Use `getAllByText` instead of `getByText` in tests for step titles.
 - **Cloudscape FormField errorText may not render as text in jsdom**: When testing form validation with Cloudscape components, verify validation by checking blocked navigation (wizard stays on same step) rather than searching for error text strings.
+- **Cognito ListUsers uses PaginationToken**: Unlike most Cognito operations that use NextToken, ListUsers uses `PaginationToken` in both request and response. MSW handlers must map internal NextToken to PaginationToken for the wire format.
+- **`exactOptionalPropertyTypes` forbids assigning undefined to optional props**: With this tsconfig flag, `sms?: T` means the property can be omitted but cannot be explicitly set to `undefined`. Use flat boolean fields instead of optional nested objects to sidestep this.
