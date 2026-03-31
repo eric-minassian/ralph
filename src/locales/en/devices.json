@@ -1,2 +1,32 @@
 {
+  "title": "Devices",
+  "deviceKey": "Device key",
+  "deviceName": "Device name",
+  "lastIp": "Last IP",
+  "lastAuthenticated": "Last authenticated",
+  "created": "Created",
+  "rememberedStatus": "Remembered",
+  "remembered": "Remembered",
+  "notRemembered": "Not remembered",
+  "empty": "No devices found for this user.",
+  "forgetButton": "Forget",
+  "toggleRemembered": "Toggle remembered",
+  "forgetModal": {
+    "title": "Forget device",
+    "description": "Are you sure you want to forget the device \"{{deviceKey}}\"? This action is irreversible.",
+    "cancelButton": "Cancel",
+    "submitButton": "Forget device"
+  },
+  "statusModal": {
+    "title": "Update device status",
+    "description": "Change the remembered status of device \"{{deviceKey}}\".",
+    "cancelButton": "Cancel",
+    "submitButton": "Update"
+  },
+  "notifications": {
+    "forgetSuccess": "Device forgotten successfully",
+    "forgetError": "Failed to forget device",
+    "updateStatusSuccess": "Device status updated successfully",
+    "updateStatusError": "Failed to update device status"
+  }
 }

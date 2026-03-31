@@ -16,6 +16,8 @@ import { AttributesTab } from './AttributesTab'
 import { SecurityTab } from './SecurityTab'
 import { GroupsTab } from './GroupsTab'
 import { LinkedProvidersTab } from './LinkedProvidersTab'
+import { DevicesTab } from './DevicesTab'
+import { WebAuthnTab } from './WebAuthnTab'
 import { UserActions } from './UserActions'
 
 interface LinkedProvider {
@@ -168,6 +170,26 @@ export function UserDetailPage({ userPoolId, username }: UserDetailPageProps) {
                 userPoolId={userPoolId}
                 username={username}
                 linkedProviders={linkedProviders}
+              />
+            ),
+          },
+          {
+            id: 'devices',
+            label: t('detail.tabs.devices'),
+            content: (
+              <DevicesTab
+                userPoolId={userPoolId}
+                username={username}
+              />
+            ),
+          },
+          {
+            id: 'webauthn',
+            label: t('detail.tabs.webauthn'),
+            content: (
+              <WebAuthnTab
+                userPoolId={userPoolId}
+                username={username}
               />
             ),
           },

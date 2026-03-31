@@ -30,6 +30,8 @@ import {
   AdminUpdateAuthEventFeedbackCommand,
   AdminInitiateAuthCommand,
   AdminRespondToAuthChallengeCommand,
+  ListWebAuthnCredentialsCommand,
+  DeleteWebAuthnCredentialCommand,
 } from '@aws-sdk/client-cognito-identity-provider'
 import type {
   AdminCreateUserCommandInput,
@@ -442,6 +444,40 @@ export function useAdminRespondToAuthChallenge() {
     mutationFn: async (input: AdminRespondToAuthChallengeCommandInput) => {
       const command = new AdminRespondToAuthChallengeCommand(input)
       return cognitoClient.send(command)
+    },
+  })
+}
+
+// ── List WebAuthn Credentials ──────────────────────────────────────
+// WebAuthn APIs use AccessToken. For the mock, we encode userPoolId#username.
+
+export function useListWebAuthnCredentials(userPoolId: string, username: string) {
+  return useQuery({
+    queryKey: queryKeys.webauthn.list(userPoolId, username),
+    queryFn: async () => {
+      const command = new ListWebAuthnCredentialsCommand({
+        AccessToken: `${userPoolId}#${username}`,
+      })
+      return cognitoClient.send(command)
+    },
+    enabled: userPoolId.length > 0 && username.length > 0,
+  })
+}
+
+// ── Delete WebAuthn Credential ─────────────────────────────────────
+
+export function useDeleteWebAuthnCredential() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: async (input: { userPoolId: string; username: string; credentialId: string }) => {
+      const command = new DeleteWebAuthnCredentialCommand({
+        AccessToken: `${input.userPoolId}#${input.username}`,
+        CredentialId: input.credentialId,
+      })
+      return cognitoClient.send(command)
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: queryKeys.webauthn.all })
     },
   })
 }

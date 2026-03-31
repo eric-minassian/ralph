@@ -10,12 +10,14 @@ import errors from './locales/en/errors.json'
 import userPools from './locales/en/userPools.json'
 import users from './locales/en/users.json'
 import validation from './locales/en/validation.json'
+import devices from './locales/en/devices.json'
+import webauthn from './locales/en/webauthn.json'
 
 // Initialize i18n for tests with real translation files
 void i18n.use(initReactI18next).init({
   lng: 'en',
   fallbackLng: 'en',
-  ns: ['common', 'navigation', 'errors', 'userPools', 'users', 'validation'],
+  ns: ['common', 'navigation', 'errors', 'userPools', 'users', 'validation', 'devices', 'webauthn'],
   defaultNS: 'common',
   resources: {
     en: {
@@ -25,6 +27,8 @@ void i18n.use(initReactI18next).init({
       userPools,
       users,
       validation,
+      devices,
+      webauthn,
     },
   },
   interpolation: {

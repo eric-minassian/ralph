@@ -234,6 +234,61 @@ const AdminUpdateAuthEventFeedback: OperationResolver = (body) => {
   return {}
 }
 
+const AdminGetDevice: OperationResolver = (body) => {
+  const userPoolId = getString(body, 'UserPoolId') ?? ''
+  const username = getString(body, 'Username') ?? ''
+  const deviceKey = getString(body, 'DeviceKey') ?? ''
+  const device = userStore.getDevice(userPoolId, username, deviceKey)
+  return { Device: device }
+}
+
+const AdminListDevices: OperationResolver = (body) => {
+  const userPoolId = getString(body, 'UserPoolId') ?? ''
+  const username = getString(body, 'Username') ?? ''
+  const limit = getNumber(body, 'Limit') ?? 10
+  const paginationToken = getString(body, 'PaginationToken')
+  return userStore.listDevices(userPoolId, username, limit, paginationToken)
+}
+
+const AdminForgetDevice: OperationResolver = (body) => {
+  const userPoolId = getString(body, 'UserPoolId') ?? ''
+  const username = getString(body, 'Username') ?? ''
+  const deviceKey = getString(body, 'DeviceKey') ?? ''
+  userStore.forgetDevice(userPoolId, username, deviceKey)
+  return {}
+}
+
+const AdminUpdateDeviceStatus: OperationResolver = (body) => {
+  const userPoolId = getString(body, 'UserPoolId') ?? ''
+  const username = getString(body, 'Username') ?? ''
+  const deviceKey = getString(body, 'DeviceKey') ?? ''
+  const rememberedStatus = getString(body, 'DeviceRememberedStatus') ?? 'not_remembered'
+  userStore.updateDeviceStatus(userPoolId, username, deviceKey, rememberedStatus)
+  return {}
+}
+
+// WebAuthn operations use AccessToken in the real API.
+// For the mock, we encode userPoolId#username in the AccessToken field.
+
+const ListWebAuthnCredentials: OperationResolver = (body) => {
+  const accessToken = getString(body, 'AccessToken') ?? ''
+  const parts = accessToken.split('#')
+  const userPoolId = parts[0] ?? ''
+  const username = parts[1] ?? ''
+  const nextToken = getString(body, 'NextToken')
+  return userStore.listWebAuthnCredentials(userPoolId, username, nextToken)
+}
+
+const DeleteWebAuthnCredential: OperationResolver = (body) => {
+  const accessToken = getString(body, 'AccessToken') ?? ''
+  const parts = accessToken.split('#')
+  const userPoolId = parts[0] ?? ''
+  const username = parts[1] ?? ''
+  const credentialId = getString(body, 'CredentialId') ?? ''
+  userStore.deleteWebAuthnCredential(userPoolId, username, credentialId)
+  return {}
+}
+
 export const userOperations: Record<string, OperationResolver> = {
   ListUsers,
   AdminCreateUser,
@@ -255,4 +310,10 @@ export const userOperations: Record<string, OperationResolver> = {
   AdminDisableProviderForUser,
   AdminListUserAuthEvents,
   AdminUpdateAuthEventFeedback,
+  AdminGetDevice,
+  AdminListDevices,
+  AdminForgetDevice,
+  AdminUpdateDeviceStatus,
+  ListWebAuthnCredentials,
+  DeleteWebAuthnCredential,
 }

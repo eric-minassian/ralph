@@ -80,7 +80,9 @@
       "attributes": "Attributes",
       "security": "Security",
       "groups": "Groups",
-      "linkedProviders": "Linked providers"
+      "linkedProviders": "Linked providers",
+      "devices": "Devices",
+      "webauthn": "Passkeys"
     },
     "actions": {
       "label": "Actions",

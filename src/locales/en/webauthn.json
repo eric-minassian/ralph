@@ -1,2 +1,22 @@
 {
+  "title": "Passkeys (WebAuthn)",
+  "credentialId": "Credential ID",
+  "friendlyName": "Friendly name",
+  "relyingPartyId": "Relying party ID",
+  "authenticatorType": "Authenticator type",
+  "transports": "Transports",
+  "created": "Created",
+  "empty": "No passkey credentials found for this user.",
+  "adminNote": "Passkey registration is initiated by the user. As an administrator, you can only view and delete credentials.",
+  "deleteButton": "Delete",
+  "deleteModal": {
+    "title": "Delete passkey credential",
+    "description": "Are you sure you want to delete the passkey \"{{name}}\"? The user will no longer be able to sign in with this credential.",
+    "cancelButton": "Cancel",
+    "submitButton": "Delete"
+  },
+  "notifications": {
+    "deleteSuccess": "Passkey credential deleted successfully",
+    "deleteError": "Failed to delete passkey credential"
+  }
 }

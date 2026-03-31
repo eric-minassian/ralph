@@ -3,8 +3,10 @@ import type {
   AttributeType,
   GroupType,
   AuthEventType,
+  DeviceType,
   FeedbackValueType,
   ProviderUserIdentifierType,
+  WebAuthnCredentialDescription,
 } from '@aws-sdk/client-cognito-identity-provider'
 import { BaseStore, StoreError } from './baseStore'
 
@@ -48,6 +50,8 @@ interface StoredUser {
   linkedProviders: LinkedProvider[]
   mfaPreference: MfaPreference
   authEvents: AuthEventType[]
+  devices: DeviceType[]
+  webauthnCredentials: WebAuthnCredentialDescription[]
 }
 
 function getStoredUserKey(stored: StoredUser): string {
@@ -127,6 +131,8 @@ class UserStore {
         softwareTokenPreferred: false,
       },
       authEvents: createSeedAuthEvents(),
+      devices: createSeedDevices(),
+      webauthnCredentials: createSeedWebAuthnCredentials(),
     }
 
     this.store.create(stored)
@@ -390,6 +396,90 @@ class UserStore {
     })
   }
 
+  // ── Devices ───────────────────────────────────────────────────────
+
+  listDevices(
+    userPoolId: string,
+    username: string,
+    limit: number,
+    paginationToken?: string,
+  ): { Devices: DeviceType[]; PaginationToken: string | undefined } {
+    const key = compositeKey(userPoolId, username)
+    const stored = this.store.get(key)
+    const startIndex = paginationToken ? parseInt(paginationToken, 10) : 0
+    const endIndex = startIndex + limit
+    const page = stored.devices.slice(startIndex, endIndex)
+    const nextToken = endIndex < stored.devices.length ? String(endIndex) : undefined
+    return { Devices: page, PaginationToken: nextToken }
+  }
+
+  getDevice(userPoolId: string, username: string, deviceKey: string): DeviceType {
+    const key = compositeKey(userPoolId, username)
+    const stored = this.store.get(key)
+    const device = stored.devices.find((d) => d.DeviceKey === deviceKey)
+    if (!device) {
+      throw new StoreError('ResourceNotFoundException', `Device ${deviceKey} not found`)
+    }
+    return device
+  }
+
+  forgetDevice(userPoolId: string, username: string, deviceKey: string): void {
+    const key = compositeKey(userPoolId, username)
+    this.store.update(key, (stored) => ({
+      ...stored,
+      devices: stored.devices.filter((d) => d.DeviceKey !== deviceKey),
+    }))
+  }
+
+  updateDeviceStatus(
+    userPoolId: string,
+    username: string,
+    deviceKey: string,
+    rememberedStatus: string,
+  ): void {
+    const key = compositeKey(userPoolId, username)
+    this.store.update(key, (stored) => ({
+      ...stored,
+      devices: stored.devices.map((d) => {
+        if (d.DeviceKey !== deviceKey) return d
+        const attrs = (d.DeviceAttributes ?? []).map((a) => {
+          if (a.Name === 'device_status') {
+            return { ...a, Value: rememberedStatus === 'remembered' ? 'remembered' : 'not_remembered' }
+          }
+          return a
+        })
+        return { ...d, DeviceAttributes: attrs, DeviceLastModifiedDate: new Date() }
+      }),
+    }))
+  }
+
+  // ── WebAuthn credentials ─────────────────────────────────────────
+
+  listWebAuthnCredentials(
+    userPoolId: string,
+    username: string,
+    nextToken?: string,
+  ): { Credentials: WebAuthnCredentialDescription[]; NextToken: string | undefined } {
+    const key = compositeKey(userPoolId, username)
+    const stored = this.store.get(key)
+    const maxResults = 10
+    const startIndex = nextToken ? parseInt(nextToken, 10) : 0
+    const endIndex = startIndex + maxResults
+    const page = stored.webauthnCredentials.slice(startIndex, endIndex)
+    const newNextToken = endIndex < stored.webauthnCredentials.length ? String(endIndex) : undefined
+    return { Credentials: page, NextToken: newNextToken }
+  }
+
+  deleteWebAuthnCredential(userPoolId: string, username: string, credentialId: string): void {
+    const key = compositeKey(userPoolId, username)
+    this.store.update(key, (stored) => ({
+      ...stored,
+      webauthnCredentials: stored.webauthnCredentials.filter(
+        (c) => c.CredentialId !== credentialId,
+      ),
+    }))
+  }
+
   // ── List with pagination ──────────────────────────────────────────
 
   listUsers(
@@ -447,6 +537,59 @@ function createSeedAuthEvents(): AuthEventType[] {
       EventResponse: 'Pass',
       EventRisk: { RiskDecision: 'NoRisk', RiskLevel: 'Low', CompromisedCredentialsDetected: false },
       EventContextData: { IpAddress: '203.0.113.42', DeviceName: 'Safari on iPhone', City: 'Portland', Country: 'US' },
+    },
+  ]
+}
+
+// ── Seed devices for new users ─────────────────────────────────────
+
+function createSeedDevices(): DeviceType[] {
+  const now = Date.now()
+  return [
+    {
+      DeviceKey: `us-east-1_${crypto.randomUUID().slice(0, 8)}`,
+      DeviceAttributes: [
+        { Name: 'device_name', Value: 'Chrome on Mac' },
+        { Name: 'device_status', Value: 'remembered' },
+        { Name: 'last_ip_used', Value: '203.0.113.42' },
+      ],
+      DeviceCreateDate: new Date(now - 7_200_000),
+      DeviceLastModifiedDate: new Date(now - 3_600_000),
+      DeviceLastAuthenticatedDate: new Date(now - 3_600_000),
+    },
+    {
+      DeviceKey: `us-east-1_${crypto.randomUUID().slice(0, 8)}`,
+      DeviceAttributes: [
+        { Name: 'device_name', Value: 'Safari on iPhone' },
+        { Name: 'device_status', Value: 'not_remembered' },
+        { Name: 'last_ip_used', Value: '198.51.100.7' },
+      ],
+      DeviceCreateDate: new Date(now - 86_400_000),
+      DeviceLastModifiedDate: new Date(now - 43_200_000),
+      DeviceLastAuthenticatedDate: new Date(now - 43_200_000),
+    },
+  ]
+}
+
+// ── Seed WebAuthn credentials for new users ────────────────────────
+
+function createSeedWebAuthnCredentials(): WebAuthnCredentialDescription[] {
+  return [
+    {
+      CredentialId: crypto.randomUUID(),
+      FriendlyCredentialName: 'MacBook Pro Touch ID',
+      RelyingPartyId: 'cognito.example.com',
+      AuthenticatorAttachment: 'platform',
+      AuthenticatorTransports: ['internal'],
+      CreatedAt: new Date(Date.now() - 604_800_000),
+    },
+    {
+      CredentialId: crypto.randomUUID(),
+      FriendlyCredentialName: 'YubiKey 5 NFC',
+      RelyingPartyId: 'cognito.example.com',
+      AuthenticatorAttachment: 'cross-platform',
+      AuthenticatorTransports: ['usb', 'nfc'],
+      CreatedAt: new Date(Date.now() - 172_800_000),
     },
   ]
 }
