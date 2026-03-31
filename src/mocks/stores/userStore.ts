@@ -4,6 +4,7 @@ import type {
   GroupType,
   AuthEventType,
   FeedbackValueType,
+  ProviderUserIdentifierType,
 } from '@aws-sdk/client-cognito-identity-provider'
 import { BaseStore, StoreError } from './baseStore'
 
@@ -34,10 +35,17 @@ interface MfaPreference {
   softwareTokenPreferred: boolean
 }
 
+interface LinkedProvider {
+  ProviderName: string
+  ProviderAttributeName: string
+  ProviderAttributeValue: string
+}
+
 interface StoredUser {
   userPoolId: string
   user: UserType
   groups: Set<string>
+  linkedProviders: LinkedProvider[]
   mfaPreference: MfaPreference
   authEvents: AuthEventType[]
 }
@@ -111,6 +119,7 @@ class UserStore {
       userPoolId,
       user,
       groups: new Set(),
+      linkedProviders: [],
       mfaPreference: {
         smsEnabled: false,
         smsPreferred: false,
@@ -270,6 +279,63 @@ class UserStore {
       GroupName: groupName,
       UserPoolId: userPoolId,
     }))
+  }
+
+  // ── Linked providers ──────────────────────────────────────────────
+
+  linkProvider(
+    userPoolId: string,
+    username: string,
+    sourceUser: ProviderUserIdentifierType,
+  ): void {
+    const key = compositeKey(userPoolId, username)
+    this.store.update(key, (stored) => {
+      const providerName = sourceUser.ProviderName ?? ''
+      const providerAttrName = sourceUser.ProviderAttributeName ?? ''
+      const providerAttrValue = sourceUser.ProviderAttributeValue ?? ''
+
+      // Avoid duplicates
+      const exists = stored.linkedProviders.some(
+        (lp) =>
+          lp.ProviderName === providerName &&
+          lp.ProviderAttributeValue === providerAttrValue,
+      )
+      if (exists) return stored
+
+      return {
+        ...stored,
+        linkedProviders: [
+          ...stored.linkedProviders,
+          {
+            ProviderName: providerName,
+            ProviderAttributeName: providerAttrName,
+            ProviderAttributeValue: providerAttrValue,
+          },
+        ],
+      }
+    })
+  }
+
+  unlinkProvider(
+    userPoolId: string,
+    username: string,
+    providerName: string,
+    providerAttributeValue: string,
+  ): void {
+    const key = compositeKey(userPoolId, username)
+    this.store.update(key, (stored) => ({
+      ...stored,
+      linkedProviders: stored.linkedProviders.filter(
+        (lp) =>
+          !(lp.ProviderName === providerName &&
+            lp.ProviderAttributeValue === providerAttributeValue),
+      ),
+    }))
+  }
+
+  listLinkedProviders(userPoolId: string, username: string): LinkedProvider[] {
+    const key = compositeKey(userPoolId, username)
+    return [...this.store.get(key).linkedProviders]
   }
 
   // ── Auth events ──────────────────────────────────────────────────

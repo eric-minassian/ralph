@@ -78,7 +78,9 @@
     "tabs": {
       "overview": "Overview",
       "attributes": "Attributes",
-      "security": "Security"
+      "security": "Security",
+      "groups": "Groups",
+      "linkedProviders": "Linked providers"
     },
     "actions": {
       "label": "Actions",
@@ -233,6 +235,56 @@
         "cancelButton": "Cancel",
         "submitButton": "Delete"
       }
+    },
+    "groups": {
+      "title": "Group memberships",
+      "groupName": "Group name",
+      "description": "Description",
+      "precedence": "Precedence",
+      "creationDate": "Created",
+      "empty": "This user is not a member of any groups.",
+      "addButton": "Add to group",
+      "removeButton": "Remove",
+      "addModal": {
+        "title": "Add user to group",
+        "groupName": "Group name",
+        "groupNamePlaceholder": "Enter group name",
+        "cancelButton": "Cancel",
+        "submitButton": "Add to group"
+      },
+      "removeModal": {
+        "title": "Remove from group",
+        "description": "Are you sure you want to remove this user from the group \"{{groupName}}\"?",
+        "cancelButton": "Cancel",
+        "submitButton": "Remove"
+      }
+    },
+    "linkedProviders": {
+      "title": "Linked identity providers",
+      "providerName": "Provider name",
+      "providerType": "Provider type",
+      "providerAttributeName": "Attribute name",
+      "providerAttributeValue": "Attribute value",
+      "empty": "No linked identity providers.",
+      "linkButton": "Link provider",
+      "unlinkButton": "Unlink",
+      "linkModal": {
+        "title": "Link identity provider",
+        "providerName": "Provider name",
+        "providerNamePlaceholder": "e.g. Google, Facebook, SAML-provider",
+        "providerAttributeName": "Provider attribute name",
+        "providerAttributeNamePlaceholder": "e.g. Cognito_Subject",
+        "providerAttributeValue": "Provider attribute value",
+        "providerAttributeValuePlaceholder": "e.g. user-id-from-provider",
+        "cancelButton": "Cancel",
+        "submitButton": "Link provider"
+      },
+      "unlinkModal": {
+        "title": "Unlink provider",
+        "description": "Are you sure you want to unlink the provider \"{{providerName}}\" from this user?",
+        "cancelButton": "Cancel",
+        "submitButton": "Unlink"
+      }
     }
   },
   "notifications": {
@@ -264,6 +316,14 @@
     "setMfaPreferenceSuccess": "MFA preferences updated successfully",
     "setMfaPreferenceError": "Failed to update MFA preferences",
     "authEventFeedbackSuccess": "Feedback submitted for event",
-    "authEventFeedbackError": "Failed to submit feedback"
+    "authEventFeedbackError": "Failed to submit feedback",
+    "addToGroupSuccess": "User added to group \"{{groupName}}\"",
+    "addToGroupError": "Failed to add user to group",
+    "removeFromGroupSuccess": "User removed from group \"{{groupName}}\"",
+    "removeFromGroupError": "Failed to remove user from group",
+    "linkProviderSuccess": "Provider \"{{providerName}}\" linked successfully",
+    "linkProviderError": "Failed to link provider",
+    "unlinkProviderSuccess": "Provider \"{{providerName}}\" unlinked successfully",
+    "unlinkProviderError": "Failed to unlink provider"
   }
 }

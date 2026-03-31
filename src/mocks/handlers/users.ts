@@ -64,6 +64,7 @@ const AdminGetUser: OperationResolver = (body) => {
   const userPoolId = getString(body, 'UserPoolId') ?? ''
   const username = getString(body, 'Username') ?? ''
   const user = userStore.getUser(userPoolId, username)
+  const linkedProviders = userStore.listLinkedProviders(userPoolId, username)
   return {
     Username: user.Username,
     UserAttributes: user.Attributes,
@@ -72,6 +73,7 @@ const AdminGetUser: OperationResolver = (body) => {
     Enabled: user.Enabled,
     UserStatus: user.UserStatus,
     MFAOptions: user.MFAOptions,
+    LinkedProviders: linkedProviders,
   }
 }
 
@@ -177,6 +179,44 @@ const AdminListGroupsForUser: OperationResolver = (body) => {
   return { Groups: groups }
 }
 
+const AdminLinkProviderForUser: OperationResolver = (body) => {
+  const userPoolId = getString(body, 'UserPoolId') ?? ''
+  const destinationUser = isRecord(body.DestinationUser) ? body.DestinationUser : {}
+  const sourceUser = isRecord(body.SourceUser) ? body.SourceUser : {}
+  const username = getString(destinationUser, 'ProviderAttributeValue') ?? ''
+  userStore.linkProvider(userPoolId, username, {
+    ProviderName: getString(sourceUser, 'ProviderName'),
+    ProviderAttributeName: getString(sourceUser, 'ProviderAttributeName'),
+    ProviderAttributeValue: getString(sourceUser, 'ProviderAttributeValue'),
+  })
+  return {}
+}
+
+const AdminDisableProviderForUser: OperationResolver = (body) => {
+  const userPoolId = getString(body, 'UserPoolId') ?? ''
+  const user = isRecord(body.User) ? body.User : {}
+  const providerName = getString(user, 'ProviderName') ?? ''
+  const providerAttrValue = getString(user, 'ProviderAttributeValue') ?? ''
+  // We need the username — Cognito resolves it from the provider link,
+  // but for the mock we look up by iterating. Use ProviderAttributeValue for username.
+  // In the real API, User identifies the provider link to remove.
+  // For simplicity, iterate all users in the pool to find who has this link.
+  const allUsers = userStore.listUsers(userPoolId, 1000)
+  for (const u of allUsers.Users) {
+    const uname = u.Username ?? ''
+    try {
+      const providers = userStore.listLinkedProviders(userPoolId, uname)
+      if (providers.some((p) => p.ProviderName === providerName && p.ProviderAttributeValue === providerAttrValue)) {
+        userStore.unlinkProvider(userPoolId, uname, providerName, providerAttrValue)
+        return {}
+      }
+    } catch {
+      // user not found, skip
+    }
+  }
+  return {}
+}
+
 const AdminListUserAuthEvents: OperationResolver = (body) => {
   const userPoolId = getString(body, 'UserPoolId') ?? ''
   const username = getString(body, 'Username') ?? ''
@@ -211,6 +251,8 @@ export const userOperations: Record<string, OperationResolver> = {
   AdminAddUserToGroup,
   AdminRemoveUserFromGroup,
   AdminListGroupsForUser,
+  AdminLinkProviderForUser,
+  AdminDisableProviderForUser,
   AdminListUserAuthEvents,
   AdminUpdateAuthEventFeedback,
 }
