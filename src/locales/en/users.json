@@ -69,6 +69,69 @@
     "suppressMessage": "Suppress invitation message",
     "suppressMessageDescription": "Do not send the invitation message. Use this when you want to set the temporary password without notifying the user."
   },
+  "detail": {
+    "loading": "Loading user...",
+    "notFound": "User not found",
+    "notFoundDescription": "The requested user could not be found.",
+    "backToList": "Back to users",
+    "title": "{{username}}",
+    "tabs": {
+      "overview": "Overview",
+      "attributes": "Attributes"
+    },
+    "overview": {
+      "title": "User overview",
+      "username": "Username",
+      "sub": "Sub",
+      "status": "Status",
+      "enabled": "Enabled",
+      "emailVerified": "Email verified",
+      "phoneVerified": "Phone verified",
+      "creationDate": "Created",
+      "lastModifiedDate": "Last modified",
+      "mfaOptions": "MFA options",
+      "yes": "Yes",
+      "no": "No",
+      "none": "None"
+    },
+    "attributes": {
+      "title": "User attributes",
+      "name": "Attribute name",
+      "value": "Value",
+      "mutable": "Mutable",
+      "actions": "Actions",
+      "empty": "No attributes found.",
+      "addButton": "Add attribute",
+      "editButton": "Edit",
+      "deleteButton": "Delete",
+      "standard": "Standard",
+      "custom": "Custom",
+      "immutable": "This attribute cannot be modified",
+      "addModal": {
+        "title": "Add attribute",
+        "name": "Attribute name",
+        "namePlaceholder": "custom:attribute_name",
+        "value": "Value",
+        "valuePlaceholder": "Enter value",
+        "cancelButton": "Cancel",
+        "submitButton": "Add attribute"
+      },
+      "editModal": {
+        "title": "Edit attribute",
+        "name": "Attribute name",
+        "value": "Value",
+        "valuePlaceholder": "Enter value",
+        "cancelButton": "Cancel",
+        "submitButton": "Save"
+      },
+      "deleteModal": {
+        "title": "Delete attribute",
+        "description": "Are you sure you want to delete the attribute \"{{name}}\"? This action cannot be undone.",
+        "cancelButton": "Cancel",
+        "submitButton": "Delete"
+      }
+    }
+  },
   "notifications": {
     "createSuccess": "User \"{{username}}\" created successfully",
     "createError": "Failed to create user",
@@ -80,6 +143,12 @@
     "deleteError": "Failed to delete user",
     "bulkEnableSuccess": "{{count}} user(s) enabled successfully",
     "bulkDisableSuccess": "{{count}} user(s) disabled successfully",
-    "bulkDeleteSuccess": "{{count}} user(s) deleted successfully"
+    "bulkDeleteSuccess": "{{count}} user(s) deleted successfully",
+    "updateAttributeSuccess": "Attribute \"{{name}}\" updated successfully",
+    "updateAttributeError": "Failed to update attribute",
+    "deleteAttributeSuccess": "Attribute \"{{name}}\" deleted successfully",
+    "deleteAttributeError": "Failed to delete attribute",
+    "addAttributeSuccess": "Attribute \"{{name}}\" added successfully",
+    "addAttributeError": "Failed to add attribute"
   }
 }

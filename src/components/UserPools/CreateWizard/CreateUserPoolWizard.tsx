@@ -157,7 +157,7 @@ export function CreateUserPoolWizard() {
         collapsedStepsLabel: (stepNumber, stepsCount) =>
           t('create.collapsedSteps', {
             step: String(stepNumber),
-            count: String(stepsCount),
+            count: stepsCount,
           }),
         navigationAriaLabel: t('create.stepNavigation'),
         cancelButton: t('create.cancelButton'),

@@ -69,7 +69,8 @@ export function createCognitoHandler(
       const body = isRecord(requestBody) ? requestBody : {}
       const resolverResult: unknown = await Promise.resolve(resolver(body))
       const result = serializeDates(resolverResult)
-      return HttpResponse.json(result, {
+      const jsonBody = isRecord(result) ? result : {}
+      return HttpResponse.json(jsonBody, {
         headers: { 'Content-Type': 'application/x-amz-json-1.1' },
       })
     } catch (error: unknown) {

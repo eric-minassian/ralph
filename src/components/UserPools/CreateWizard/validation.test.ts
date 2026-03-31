@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest'
+import i18next from 'i18next'
 import {
   validateGeneralStep,
   validateSignInStep,
@@ -11,7 +12,7 @@ import type {
   SecurityStepState,
 } from './types'
 
-const identity = (key: string) => key
+const identity = i18next.t.bind(i18next)
 
 describe('validateGeneralStep', () => {
   it('returns error when pool name is empty', () => {

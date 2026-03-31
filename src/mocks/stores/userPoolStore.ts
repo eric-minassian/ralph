@@ -4,6 +4,8 @@ import type {
   UserPoolMfaType,
   SmsMfaConfigType,
   SoftwareTokenMfaConfigType,
+  VerifiedAttributeType,
+  AttributeDataType,
 } from '@aws-sdk/client-cognito-identity-provider'
 import { BaseStore, StoreError } from './baseStore'
 
@@ -23,6 +25,19 @@ function isRecordArray(value: unknown): value is Record<string, unknown>[] {
 
 function isStringArray(value: unknown): value is string[] {
   return Array.isArray(value) && value.every((v): v is string => isString(v))
+}
+
+function isVerifiedAttributeType(value: string): value is VerifiedAttributeType {
+  return value === 'phone_number' || value === 'email'
+}
+
+function toVerifiedAttributes(value: unknown): VerifiedAttributeType[] {
+  if (!isStringArray(value)) return ['email']
+  return value.filter(isVerifiedAttributeType)
+}
+
+function isAttributeDataType(value: unknown): value is AttributeDataType {
+  return value === 'String' || value === 'Number' || value === 'DateTime' || value === 'Boolean'
 }
 
 function toDeletionProtection(value: unknown): 'ACTIVE' | 'INACTIVE' {
@@ -131,9 +146,7 @@ class UserPoolStore {
         { Name: 'sub', AttributeDataType: 'String', Mutable: false, Required: true },
         { Name: 'email', AttributeDataType: 'String', Mutable: true, Required: true },
       ],
-      AutoVerifiedAttributes: isStringArray(input.AutoVerifiedAttributes)
-        ? input.AutoVerifiedAttributes
-        : ['email'],
+      AutoVerifiedAttributes: toVerifiedAttributes(input.AutoVerifiedAttributes),
       EstimatedNumberOfUsers: 0,
     }
 
@@ -159,7 +172,7 @@ class UserPoolStore {
         updated.MfaConfiguration = toMfaConfiguration(input.MfaConfiguration)
       }
       if (isStringArray(input.AutoVerifiedAttributes)) {
-        updated.AutoVerifiedAttributes = input.AutoVerifiedAttributes
+        updated.AutoVerifiedAttributes = toVerifiedAttributes(input.AutoVerifiedAttributes)
       }
       return updated
     })
@@ -211,7 +224,7 @@ class UserPoolStore {
         }
         schema.push({
           Name: fullName,
-          AttributeDataType: isString(attr.AttributeDataType) ? attr.AttributeDataType : 'String',
+          AttributeDataType: isAttributeDataType(attr.AttributeDataType) ? attr.AttributeDataType : 'String',
           Mutable: attr.Mutable === false ? false : true,
           Required: false,
         })
@@ -223,11 +236,16 @@ class UserPoolStore {
   getMfaConfig(userPoolId: string): MfaConfigResult {
     this.store.get(userPoolId)
     const config = this.mfaConfigs.get(userPoolId)
-    return {
+    const result: MfaConfigResult = {
       MfaConfiguration: config?.mfaConfiguration ?? 'OFF',
-      SmsMfaConfiguration: config?.smsMfaConfiguration,
-      SoftwareTokenMfaConfiguration: config?.softwareTokenMfaConfiguration,
     }
+    if (config?.smsMfaConfiguration !== undefined) {
+      result.SmsMfaConfiguration = config.smsMfaConfiguration
+    }
+    if (config?.softwareTokenMfaConfiguration !== undefined) {
+      result.SoftwareTokenMfaConfiguration = config.softwareTokenMfaConfiguration
+    }
+    return result
   }
 
   setMfaConfig(input: Record<string, unknown>): MfaConfigResult {
@@ -241,11 +259,14 @@ class UserPoolStore {
     const smsMfaConfiguration = parseSmsMfaConfig(input.SmsMfaConfiguration)
     const softwareTokenMfaConfiguration = parseSoftwareTokenMfaConfig(input.SoftwareTokenMfaConfiguration)
 
-    this.mfaConfigs.set(userPoolId, {
-      mfaConfiguration,
-      smsMfaConfiguration,
-      softwareTokenMfaConfiguration,
-    })
+    const entry: MfaConfigEntry = { mfaConfiguration }
+    if (smsMfaConfiguration !== undefined) {
+      entry.smsMfaConfiguration = smsMfaConfiguration
+    }
+    if (softwareTokenMfaConfiguration !== undefined) {
+      entry.softwareTokenMfaConfiguration = softwareTokenMfaConfiguration
+    }
+    this.mfaConfigs.set(userPoolId, entry)
 
     this.store.update(userPoolId, (existing) => ({
       ...existing,
@@ -253,11 +274,14 @@ class UserPoolStore {
       LastModifiedDate: new Date(),
     }))
 
-    return {
-      MfaConfiguration: mfaConfiguration,
-      SmsMfaConfiguration: smsMfaConfiguration,
-      SoftwareTokenMfaConfiguration: softwareTokenMfaConfiguration,
+    const result: MfaConfigResult = { MfaConfiguration: mfaConfiguration }
+    if (smsMfaConfiguration !== undefined) {
+      result.SmsMfaConfiguration = smsMfaConfiguration
     }
+    if (softwareTokenMfaConfiguration !== undefined) {
+      result.SoftwareTokenMfaConfiguration = softwareTokenMfaConfiguration
+    }
+    return result
   }
 
   clear(): void {

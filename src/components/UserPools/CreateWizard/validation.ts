@@ -1,3 +1,4 @@
+import type { TFunction } from 'i18next'
 import type {
   GeneralStepState,
   SignInStepState,
@@ -10,7 +11,7 @@ export interface StepErrors {
 
 export function validateGeneralStep(
   state: GeneralStepState,
-  t: (key: string) => string,
+  t: TFunction,
 ): StepErrors {
   const errors: StepErrors = {}
   const trimmed = state.poolName.trim()
@@ -24,7 +25,7 @@ export function validateGeneralStep(
 
 export function validateSignInStep(
   state: SignInStepState,
-  t: (key: string, options?: Record<string, string>) => string,
+  t: TFunction,
 ): StepErrors {
   const errors: StepErrors = {}
   const { username, email, phone } = state.signInOptions
@@ -36,7 +37,7 @@ export function validateSignInStep(
 
 export function validateSecurityStep(
   state: SecurityStepState,
-  t: (key: string) => string,
+  t: TFunction,
 ): StepErrors {
   const errors: StepErrors = {}
   const { minLength, tempPasswordDays } = state.passwordPolicy

@@ -5,6 +5,7 @@ import SideNavigation, {
 import { useTranslation } from 'react-i18next'
 import { useRouter } from '@tanstack/react-router'
 import { usePermissions } from '../../hooks/usePermissions'
+import type { CognitoPermission } from '../../types/permissions'
 import {
   navigationConfig,
   type NavLinkConfig,
@@ -12,7 +13,7 @@ import {
 
 function isLinkVisible(
   item: NavLinkConfig,
-  hasAnyPermission: (ps: readonly string[]) => boolean,
+  hasAnyPermission: (ps: readonly CognitoPermission[]) => boolean,
 ): boolean {
   return item.permissions.length === 0 || hasAnyPermission(item.permissions)
 }
@@ -72,7 +73,7 @@ export function SideNav() {
 
 function filterSectionItems(
   items: readonly NavLinkConfig[],
-  hasAnyPermission: (ps: readonly string[]) => boolean,
+  hasAnyPermission: (ps: readonly CognitoPermission[]) => boolean,
   t: (key: string) => string,
 ): SideNavigationProps.Item[] {
   return items

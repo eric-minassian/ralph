@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import type { UserPoolMfaType } from '@aws-sdk/client-cognito-identity-provider'
 import { renderWithProviders } from '../../../test-utils'
 import { userPoolStore } from '../../../mocks/stores/userPoolStore'
 import {
@@ -193,7 +194,7 @@ function MfaEditTestHarness({ userPoolId }: { userPoolId: string }) {
   const mfaConfig = useGetUserPoolMfaConfig(userPoolId)
   const setMfaConfig = useSetUserPoolMfaConfig()
 
-  const handleSetMfa = (mode: string) => {
+  const handleSetMfa = (mode: UserPoolMfaType) => {
     setMfaConfig.mutate({
       UserPoolId: userPoolId,
       MfaConfiguration: mode,

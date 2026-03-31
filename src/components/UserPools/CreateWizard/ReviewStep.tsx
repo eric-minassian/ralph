@@ -140,7 +140,7 @@ export function ReviewStep({ state, onEditStep }: ReviewStepProps) {
             {
               label: t('create.steps.review.tempPasswordDays'),
               value: t('create.steps.review.days', {
-                count: String(state.security.passwordPolicy.tempPasswordDays),
+                count: state.security.passwordPolicy.tempPasswordDays,
               }),
             },
             {

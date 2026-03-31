@@ -16,7 +16,7 @@ function findAttribute(attributes: readonly AttributeType[], name: string): stri
  * Creates a realistic mock UserType for admin user operations.
  */
 export function createMockUser(
-  userPoolId: string,
+  _userPoolId: string,
   overrides: Partial<UserType> & { Attributes?: AttributeType[] } = {},
 ): UserType {
   const username = overrides.Username ?? nextUsername()

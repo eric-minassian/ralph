@@ -9,8 +9,18 @@ import Input from '@cloudscape-design/components/input'
 import Select from '@cloudscape-design/components/select'
 import type { SelectProps } from '@cloudscape-design/components/select'
 import Toggle from '@cloudscape-design/components/toggle'
+import type { AttributeDataType } from '@aws-sdk/client-cognito-identity-provider'
 import { useAddCustomAttributes } from '../../../api/hooks/useUserPools'
 import { useNotifications } from '../../../hooks/useNotifications'
+
+function isAttributeDataType(value: unknown): value is AttributeDataType {
+  return value === 'String' || value === 'Number' || value === 'DateTime' || value === 'Boolean'
+}
+
+function toAttributeDataType(value: string | undefined): AttributeDataType {
+  if (isAttributeDataType(value)) return value
+  return 'String'
+}
 
 interface AddCustomAttributeModalProps {
   userPoolId: string
@@ -50,7 +60,7 @@ export function AddCustomAttributeModal({ userPoolId, onDismiss }: AddCustomAttr
         CustomAttributes: [
           {
             Name: trimmedName,
-            AttributeDataType: dataType.value ?? 'String',
+            AttributeDataType: toAttributeDataType(dataType.value),
             Mutable: mutable,
           },
         ],

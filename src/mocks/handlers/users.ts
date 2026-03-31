@@ -34,10 +34,13 @@ function parseAttributeTypes(value: unknown): { Name: string; Value?: string }[]
   if (!isRecordArray(value)) return []
   return value
     .filter((a): a is Record<string, unknown> & { Name: string } => typeof a.Name === 'string')
-    .map((a) => ({
-      Name: a.Name,
-      Value: typeof a.Value === 'string' ? a.Value : undefined,
-    }))
+    .map((a) => {
+      const base: { Name: string; Value?: string } = { Name: a.Name }
+      if (typeof a.Value === 'string') {
+        base.Value = a.Value
+      }
+      return base
+    })
 }
 
 // ── Operations ──────────────────────────────────────────────────────

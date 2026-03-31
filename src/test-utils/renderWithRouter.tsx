@@ -36,7 +36,7 @@ export async function renderWithRouter(
   const queryClient = createTestQueryClient()
 
   const rootRoute = createRootRoute({
-    component: Component,
+    component: () => <Component />,
   })
 
   const router = createRouter({
