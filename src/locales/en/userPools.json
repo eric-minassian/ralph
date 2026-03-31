@@ -1,2 +1,34 @@
 {
+  "list": {
+    "title": "User Pools",
+    "description": "Manage your Amazon Cognito user pools",
+    "createButton": "Create user pool",
+    "searchPlaceholder": "Find user pools",
+    "emptyTitle": "No user pools",
+    "emptyDescription": "No user pools to display.",
+    "emptyAction": "Create user pool",
+    "columns": {
+      "name": "Name",
+      "id": "ID",
+      "status": "Status",
+      "creationDate": "Creation date",
+      "lastModifiedDate": "Last modified"
+    },
+    "preferences": {
+      "title": "Preferences",
+      "pageSize": "Page size",
+      "columns": "Select visible columns",
+      "wrapLines": "Wrap lines"
+    }
+  },
+  "status": {
+    "Enabled": "Active",
+    "Disabled": "Disabled"
+  },
+  "notifications": {
+    "deleteSuccess": "User pool deleted successfully",
+    "deleteError": "Failed to delete user pool",
+    "createSuccess": "User pool created successfully",
+    "createError": "Failed to create user pool"
+  }
 }

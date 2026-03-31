@@ -20,6 +20,23 @@ export type OperationResolver = (
   body: Record<string, unknown>,
 ) => unknown
 
+/**
+ * Recursively converts Date objects to epoch seconds (numbers),
+ * matching the Cognito JSON wire format (application/x-amz-json-1.1).
+ */
+function serializeDates(value: unknown): unknown {
+  if (value instanceof Date) return Math.floor(value.getTime() / 1000)
+  if (Array.isArray(value)) return value.map(serializeDates)
+  if (typeof value === 'object' && value !== null) {
+    const result: Record<string, unknown> = {}
+    for (const [key, val] of Object.entries(value)) {
+      result[key] = serializeDates(val)
+    }
+    return result
+  }
+  return value
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value)
 }
@@ -48,9 +65,10 @@ export function createCognitoHandler(
     }
 
     try {
-      const raw: unknown = await request.json()
-      const body = isRecord(raw) ? raw : {}
-      const result: unknown = await Promise.resolve(resolver(body))
+      const requestBody: unknown = await request.json()
+      const body = isRecord(requestBody) ? requestBody : {}
+      const resolverResult: unknown = await Promise.resolve(resolver(body))
+      const result = serializeDates(resolverResult)
       return HttpResponse.json(result, {
         headers: { 'Content-Type': 'application/x-amz-json-1.1' },
       })

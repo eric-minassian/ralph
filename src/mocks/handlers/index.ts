@@ -1,16 +1,10 @@
 import type { HttpHandler } from 'msw'
 import { createCognitoHandler } from './cognitoHandler'
 import type { OperationResolver } from './cognitoHandler'
-
-// Each domain handler file exports a Record<string, OperationResolver>.
-// Import and merge them here as features are implemented.
-// Example:
-//   import { userPoolOperations } from './userPools'
-//   import { userOperations } from './users'
+import { userPoolOperations } from './userPools'
 
 const allOperations: Record<string, OperationResolver> = {
-  // ...userPoolOperations,
-  // ...userOperations,
+  ...userPoolOperations,
 }
 
 export const handlers: HttpHandler[] = [createCognitoHandler(allOperations)]

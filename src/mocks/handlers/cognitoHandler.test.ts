@@ -5,8 +5,8 @@ import type { OperationResolver } from './cognitoHandler'
 import { StoreError } from '../stores/baseStore'
 
 const operations: Record<string, OperationResolver> = {
-  ListUserPools: (body) => ({
-    UserPools: [],
+  TestListOperation: (body) => ({
+    Items: [],
     MaxResults: body['MaxResults'] ?? 10,
   }),
   FailingOperation: () => {
@@ -44,14 +44,14 @@ function cognitoRequest(
 
 describe('createCognitoHandler', () => {
   it('dispatches to the correct operation resolver', async () => {
-    const response = await cognitoRequest('ListUserPools', { MaxResults: 5 })
+    const response = await cognitoRequest('TestListOperation', { MaxResults: 5 })
     expect(response.ok).toBe(true)
     const data: unknown = await response.json()
-    expect(data).toEqual({ UserPools: [], MaxResults: 5 })
+    expect(data).toEqual({ Items: [], MaxResults: 5 })
   })
 
   it('returns application/x-amz-json-1.1 content type', async () => {
-    const response = await cognitoRequest('ListUserPools')
+    const response = await cognitoRequest('TestListOperation')
     expect(response.headers.get('Content-Type')).toContain(
       'application/x-amz-json-1.1',
     )

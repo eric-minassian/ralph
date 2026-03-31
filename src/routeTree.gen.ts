@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as NotAuthorizedRouteImport } from './routes/not-authorized'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as UserPoolsIndexRouteImport } from './routes/user-pools/index'
 
 const NotAuthorizedRoute = NotAuthorizedRouteImport.update({
   id: '/not-authorized',
@@ -22,31 +23,40 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UserPoolsIndexRoute = UserPoolsIndexRouteImport.update({
+  id: '/user-pools/',
+  path: '/user-pools/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/not-authorized': typeof NotAuthorizedRoute
+  '/user-pools/': typeof UserPoolsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/not-authorized': typeof NotAuthorizedRoute
+  '/user-pools': typeof UserPoolsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/not-authorized': typeof NotAuthorizedRoute
+  '/user-pools/': typeof UserPoolsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/not-authorized'
+  fullPaths: '/' | '/not-authorized' | '/user-pools/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/not-authorized'
-  id: '__root__' | '/' | '/not-authorized'
+  to: '/' | '/not-authorized' | '/user-pools'
+  id: '__root__' | '/' | '/not-authorized' | '/user-pools/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   NotAuthorizedRoute: typeof NotAuthorizedRoute
+  UserPoolsIndexRoute: typeof UserPoolsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/user-pools/': {
+      id: '/user-pools/'
+      path: '/user-pools'
+      fullPath: '/user-pools/'
+      preLoaderRoute: typeof UserPoolsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   NotAuthorizedRoute: NotAuthorizedRoute,
+  UserPoolsIndexRoute: UserPoolsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
