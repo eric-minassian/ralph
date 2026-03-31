@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 20 of 27 tasks complete
+Status: 21 of 27 tasks complete
 
 ## Overview
 
@@ -455,7 +455,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-021: User Import
 - **Spec**: `specs/12-user-import.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 5
 - **Description**: Create `src/api/hooks/useUserImport.ts` with hooks for all 6 import operations. Create MSW handlers with async job status simulation. Build Import Jobs List page (Table: Job ID, Name, Status with StatusIndicator, Created, Started, Completed, Users Imported/Skipped/Failed; auto-refresh for in-progress jobs via `refetchInterval`; create button). Build Create Import Job wizard (5 steps: name, download CSV template via GetCSVHeader, file upload, IAM role ARN, review). Build Job Detail page with metadata, progress stats, stop button.
 - **Acceptance criteria**:
