@@ -16,7 +16,7 @@ pnpm run dev           # starts Vite dev server with MSW mocking enabled
 
 ## Verify (backpressure)
 
-These commands MUST pass before any commit:
+These commands MUST pass before any commit. Even if the error is in a file you didn't touch, fix it before committing. This ensures the main branch stays green and prevents regressions.:
 
 ```bash
 pnpm run build         # tsc -b && vite build
