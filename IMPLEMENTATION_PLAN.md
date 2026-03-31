@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 19 of 27 tasks complete
+Status: 20 of 27 tasks complete
 
 ## Overview
 
@@ -433,7 +433,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-020: Resource Server Management
 - **Spec**: `specs/11-resource-servers.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 5
 - **Description**: Create `src/api/hooks/useResourceServers.ts` with hooks for all 5 resource server operations. Create MSW handlers and mock store. Build List page (Table: Name, Identifier, Number of Scopes; TextFilter; create button). Build Create/Edit form (Name, Identifier immutable on edit) with Cloudscape `AttributeEditor` for scopes (each scope: Name + Description). Build Detail page with identifier, name, scopes table, edit/delete.
 - **Acceptance criteria**:
