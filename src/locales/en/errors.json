@@ -2,5 +2,10 @@
   "generic": "An unexpected error occurred",
   "notFound": "Resource not found",
   "unauthorized": "You are not authorized to perform this action",
-  "network": "Network error. Please check your connection."
+  "network": "Network error. Please check your connection.",
+  "notAuthorized": {
+    "title": "Not Authorized",
+    "description": "You do not have permission to access this page.",
+    "goHome": "Go to home"
+  }
 }
