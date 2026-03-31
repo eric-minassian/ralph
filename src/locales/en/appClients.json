@@ -1,2 +1,168 @@
 {
+  "list": {
+    "title": "App clients",
+    "description": "Manage app clients in this user pool",
+    "createButton": "Create app client",
+    "searchPlaceholder": "Find app clients",
+    "emptyTitle": "No app clients",
+    "emptyDescription": "No app clients to display.",
+    "emptyAction": "Create app client",
+    "columns": {
+      "clientName": "Client name",
+      "clientId": "Client ID",
+      "creationDate": "Created",
+      "lastModifiedDate": "Last modified"
+    },
+    "preferences": {
+      "title": "Preferences",
+      "pageSize": "Page size",
+      "columns": "Select visible columns",
+      "wrapLines": "Wrap lines"
+    }
+  },
+  "detail": {
+    "title": "App client: {{name}}",
+    "loading": "Loading app client...",
+    "notFound": "App client not found",
+    "notFoundDescription": "The app client you are looking for does not exist.",
+    "backToList": "Back to app clients",
+    "editButton": "Edit",
+    "deleteButton": "Delete",
+    "general": {
+      "title": "General settings",
+      "clientName": "Client name",
+      "clientId": "Client ID",
+      "hasSecret": "Client secret",
+      "hasSecretYes": "Yes",
+      "hasSecretNo": "No",
+      "creationDate": "Creation date",
+      "lastModifiedDate": "Last modified",
+      "noneSet": "\u2014"
+    },
+    "secrets": {
+      "title": "Client secrets",
+      "createButton": "Create secret",
+      "secretId": "Secret ID",
+      "creationDate": "Creation date",
+      "deleteButton": "Delete",
+      "empty": "No secrets configured.",
+      "deleteModal": {
+        "title": "Delete secret",
+        "description": "Permanently delete this client secret? This action cannot be undone.",
+        "deleteButton": "Delete",
+        "cancelButton": "Cancel"
+      },
+      "newSecret": {
+        "title": "Secret created",
+        "description": "Save this secret value now. You will not be able to view it again.",
+        "secretValue": "Secret value",
+        "copyButton": "Copy",
+        "copied": "Copied",
+        "closeButton": "Close"
+      }
+    },
+    "authFlows": {
+      "title": "Authentication flows",
+      "ALLOW_USER_PASSWORD_AUTH": "User password authentication",
+      "ALLOW_USER_SRP_AUTH": "User SRP authentication",
+      "ALLOW_REFRESH_TOKEN_AUTH": "Refresh token authentication",
+      "ALLOW_CUSTOM_AUTH": "Custom authentication",
+      "ALLOW_ADMIN_USER_PASSWORD_AUTH": "Admin user password authentication",
+      "ALLOW_USER_AUTH": "User authentication",
+      "noneConfigured": "No authentication flows configured"
+    },
+    "oauth": {
+      "title": "OAuth 2.0 settings",
+      "enabled": "OAuth enabled",
+      "enabledYes": "Yes",
+      "enabledNo": "No",
+      "allowedFlows": "Allowed OAuth flows",
+      "allowedScopes": "Allowed OAuth scopes",
+      "callbackUrls": "Callback URLs",
+      "logoutUrls": "Logout URLs",
+      "noneConfigured": "None"
+    },
+    "tokenValidity": {
+      "title": "Token validity",
+      "accessToken": "Access token",
+      "idToken": "ID token",
+      "refreshToken": "Refresh token"
+    },
+    "attributes": {
+      "title": "Attribute permissions",
+      "readAttributes": "Read attributes",
+      "writeAttributes": "Write attributes",
+      "noneConfigured": "None"
+    },
+    "settings": {
+      "title": "Advanced settings",
+      "preventUserExistenceErrors": "Prevent user existence errors",
+      "enableTokenRevocation": "Token revocation",
+      "enabled": "Enabled",
+      "disabled": "Disabled"
+    },
+    "delete": {
+      "title": "Delete app client",
+      "description": "Permanently delete this app client? This action cannot be undone.",
+      "confirmLabel": "To confirm deletion, type the client name:",
+      "confirmPlaceholder": "Enter client name",
+      "deleteButton": "Delete",
+      "cancelButton": "Cancel"
+    },
+    "edit": {
+      "title": "Edit app client",
+      "saveButton": "Save changes",
+      "cancelButton": "Cancel"
+    }
+  },
+  "create": {
+    "title": "Create app client",
+    "form": {
+      "clientName": "Client name",
+      "clientNamePlaceholder": "Enter client name",
+      "clientNameConstraint": "Required. Must be unique within the user pool.",
+      "generateSecret": "Generate a client secret",
+      "generateSecretDescription": "Recommended for server-side applications",
+      "authFlows": "Authentication flows",
+      "authFlowsDescription": "Select the authentication flows this client supports",
+      "oauthEnabled": "Enable OAuth 2.0",
+      "allowedOAuthFlows": "Allowed OAuth flows",
+      "allowedOAuthScopes": "Allowed OAuth scopes",
+      "allowedOAuthScopesPlaceholder": "Enter scopes (comma-separated)",
+      "callbackUrls": "Callback URLs",
+      "callbackUrlsPlaceholder": "Enter callback URLs (one per line)",
+      "callbackUrlsConstraint": "Valid URIs required. One URL per line.",
+      "logoutUrls": "Sign out URLs",
+      "logoutUrlsPlaceholder": "Enter sign out URLs (one per line)",
+      "logoutUrlsConstraint": "Valid URIs required. One URL per line.",
+      "tokenValidity": "Token validity",
+      "accessTokenValidity": "Access token validity",
+      "idTokenValidity": "ID token validity",
+      "refreshTokenValidity": "Refresh token validity",
+      "tokenUnit": "Unit",
+      "preventUserExistenceErrors": "Prevent user existence errors",
+      "preventUserExistenceErrorsDescription": "Return generic error messages to prevent user enumeration",
+      "enableTokenRevocation": "Enable token revocation",
+      "enableTokenRevocationDescription": "Allow tokens to be revoked",
+      "createButton": "Create app client",
+      "cancelButton": "Cancel"
+    },
+    "validation": {
+      "clientNameRequired": "Client name is required",
+      "callbackUrlInvalid": "Invalid callback URL format"
+    }
+  },
+  "notifications": {
+    "createSuccess": "App client \"{{name}}\" created successfully",
+    "createError": "Failed to create app client",
+    "updateSuccess": "App client \"{{name}}\" updated successfully",
+    "updateError": "Failed to update app client",
+    "deleteSuccess": "App client \"{{name}}\" deleted successfully",
+    "deleteError": "Failed to delete app client",
+    "secretCreatedSuccess": "Client secret created successfully",
+    "secretCreatedError": "Failed to create client secret",
+    "secretDeletedSuccess": "Client secret deleted successfully",
+    "secretDeletedError": "Failed to delete client secret",
+    "copiedToClipboard": "Copied to clipboard"
+  }
 }
