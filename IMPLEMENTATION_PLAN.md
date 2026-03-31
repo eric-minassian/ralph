@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 13 of 27 tasks complete
+Status: 14 of 27 tasks complete
 
 ## Overview
 
@@ -293,7 +293,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-014: User Groups & Linked Providers Tabs
 - **Spec**: `specs/06-user-management.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 4
 - **Description**: Build the Groups tab in user detail: table of group memberships (Group Name, Description, Precedence, Joined Date) with add user to group action (modal with group search/select via `ListGroups`) and remove from group action with confirmation. Build the Linked Providers tab: table of linked IdPs with provider name, provider type, link/unlink actions. Link provider modal with provider selection and attribute mapping. Unlink with confirmation.
 - **Acceptance criteria**:

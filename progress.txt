@@ -92,3 +92,10 @@ Result: done
 Summary: Added user actions dropdown (ButtonDropdown) to user detail page header with enable/disable toggle, reset password, set password (with strength indicator), confirm sign-up (conditional on status), global sign-out, and delete (type username to confirm). Each action opens a confirmation modal and calls the corresponding mutation hook. Built Security tab with MFA preferences section (SMS/TOTP display + edit modal) and auth events table (Event ID, Type, Date, Response, Risk Level, IP Address, Feedback with valid/invalid actions). Added MSW handlers for AdminListUserAuthEvents and AdminUpdateAuthEventFeedback with seed auth event data in userStore. 13 new tests (7 action mutations, 3 auth events, 2 MFA, 1 feedback). Total: 237 tests passing.
 Learnings: FeedbackValueType from the AWS SDK is a union type ('Valid' | 'Invalid'), not a plain string — when constructing EventFeedback objects in the store, the FeedbackValue must be typed to match the union or TypeScript will reject the mapped array type as incompatible with AuthEventType[].
 ---
+
+## Iteration — 2026-03-30T19:15:00Z
+Task: TASK-014 — User Groups & Linked Providers Tabs
+Result: done
+Summary: Built GroupsTab (group membership table with add/remove via modals, permission-gated actions) and LinkedProvidersTab (linked IdP table with link/unlink via modals). Added provider tracking to userStore (LinkedProvider type, linkProvider/unlinkProvider/listLinkedProviders methods). Added MSW handlers for AdminLinkProviderForUser and AdminDisableProviderForUser. Integrated both tabs into UserDetailPage with 9 new tests (4 groups, 5 providers). Total: 246 tests passing.
+Learnings: Cognito doesn't have a dedicated "list linked providers" API — linked provider info must be returned as a custom field on AdminGetUser responses in the mock. The AdminDisableProviderForUser handler needs to search all users by provider link since the API identifies the link by provider info, not username.
+---
