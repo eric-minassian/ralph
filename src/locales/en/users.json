@@ -77,7 +77,110 @@
     "title": "{{username}}",
     "tabs": {
       "overview": "Overview",
-      "attributes": "Attributes"
+      "attributes": "Attributes",
+      "security": "Security"
+    },
+    "actions": {
+      "label": "Actions",
+      "enable": "Enable user",
+      "disable": "Disable user",
+      "resetPassword": "Reset password",
+      "setPassword": "Set password",
+      "confirmSignUp": "Confirm sign-up",
+      "globalSignOut": "Global sign-out",
+      "delete": "Delete user",
+      "enableModal": {
+        "title": "Enable user",
+        "description": "Are you sure you want to enable the user \"{{username}}\"?",
+        "cancelButton": "Cancel",
+        "submitButton": "Enable"
+      },
+      "disableModal": {
+        "title": "Disable user",
+        "description": "Are you sure you want to disable the user \"{{username}}\"? The user will no longer be able to sign in.",
+        "cancelButton": "Cancel",
+        "submitButton": "Disable"
+      },
+      "resetPasswordModal": {
+        "title": "Reset password",
+        "description": "Are you sure you want to reset the password for \"{{username}}\"? The user will be required to set a new password on next sign-in.",
+        "cancelButton": "Cancel",
+        "submitButton": "Reset password"
+      },
+      "setPasswordModal": {
+        "title": "Set password",
+        "password": "New password",
+        "passwordPlaceholder": "Enter new password",
+        "permanent": "Set as permanent password",
+        "permanentDescription": "If checked, the user will not be required to change this password on next sign-in.",
+        "cancelButton": "Cancel",
+        "submitButton": "Set password",
+        "strengthLabel": "Password strength",
+        "strengthWeak": "Weak",
+        "strengthFair": "Fair",
+        "strengthGood": "Good",
+        "strengthStrong": "Strong"
+      },
+      "confirmSignUpModal": {
+        "title": "Confirm sign-up",
+        "description": "Are you sure you want to confirm the sign-up for \"{{username}}\"? This will set the user status to CONFIRMED.",
+        "cancelButton": "Cancel",
+        "submitButton": "Confirm"
+      },
+      "globalSignOutModal": {
+        "title": "Global sign-out",
+        "description": "Are you sure you want to sign out \"{{username}}\" from all devices? All refresh tokens will be revoked.",
+        "cancelButton": "Cancel",
+        "submitButton": "Sign out"
+      },
+      "deleteModal": {
+        "title": "Delete user",
+        "description": "This action cannot be undone. Type the username to confirm.",
+        "confirmLabel": "Username",
+        "confirmPlaceholder": "Type username to confirm",
+        "cancelButton": "Cancel",
+        "submitButton": "Delete"
+      }
+    },
+    "security": {
+      "title": "Security",
+      "mfa": {
+        "title": "MFA preferences",
+        "sms": "SMS MFA",
+        "totp": "TOTP MFA",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "preferred": "Preferred",
+        "editButton": "Edit",
+        "editModal": {
+          "title": "Edit MFA preferences",
+          "smsEnabled": "Enable SMS MFA",
+          "smsPreferred": "SMS as preferred method",
+          "totpEnabled": "Enable TOTP MFA",
+          "totpPreferred": "TOTP as preferred method",
+          "cancelButton": "Cancel",
+          "submitButton": "Save"
+        },
+        "none": "No MFA configured"
+      },
+      "authEvents": {
+        "title": "Authentication events",
+        "eventId": "Event ID",
+        "eventType": "Event type",
+        "creationDate": "Date",
+        "eventResponse": "Response",
+        "riskDecision": "Risk decision",
+        "riskLevel": "Risk level",
+        "ipAddress": "IP address",
+        "city": "City",
+        "country": "Country",
+        "device": "Device",
+        "feedback": "Feedback",
+        "feedbackValid": "Valid",
+        "feedbackInvalid": "Invalid",
+        "noEvents": "No authentication events found.",
+        "loadMore": "Load more"
+      }
     },
     "overview": {
       "title": "User overview",
@@ -149,6 +252,18 @@
     "deleteAttributeSuccess": "Attribute \"{{name}}\" deleted successfully",
     "deleteAttributeError": "Failed to delete attribute",
     "addAttributeSuccess": "Attribute \"{{name}}\" added successfully",
-    "addAttributeError": "Failed to add attribute"
+    "addAttributeError": "Failed to add attribute",
+    "resetPasswordSuccess": "Password reset successfully for \"{{username}}\"",
+    "resetPasswordError": "Failed to reset password",
+    "setPasswordSuccess": "Password set successfully for \"{{username}}\"",
+    "setPasswordError": "Failed to set password",
+    "confirmSignUpSuccess": "Sign-up confirmed for \"{{username}}\"",
+    "confirmSignUpError": "Failed to confirm sign-up",
+    "globalSignOutSuccess": "\"{{username}}\" signed out from all devices",
+    "globalSignOutError": "Failed to sign out user",
+    "setMfaPreferenceSuccess": "MFA preferences updated successfully",
+    "setMfaPreferenceError": "Failed to update MFA preferences",
+    "authEventFeedbackSuccess": "Feedback submitted for event",
+    "authEventFeedbackError": "Failed to submit feedback"
   }
 }

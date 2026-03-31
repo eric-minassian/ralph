@@ -2,6 +2,8 @@ import type {
   UserType,
   AttributeType,
   GroupType,
+  AuthEventType,
+  FeedbackValueType,
 } from '@aws-sdk/client-cognito-identity-provider'
 import { BaseStore, StoreError } from './baseStore'
 
@@ -37,6 +39,7 @@ interface StoredUser {
   user: UserType
   groups: Set<string>
   mfaPreference: MfaPreference
+  authEvents: AuthEventType[]
 }
 
 function getStoredUserKey(stored: StoredUser): string {
@@ -114,6 +117,7 @@ class UserStore {
         softwareTokenEnabled: false,
         softwareTokenPreferred: false,
       },
+      authEvents: createSeedAuthEvents(),
     }
 
     this.store.create(stored)
@@ -268,6 +272,58 @@ class UserStore {
     }))
   }
 
+  // ── Auth events ──────────────────────────────────────────────────
+
+  getMfaPreference(userPoolId: string, username: string): MfaPreference {
+    const key = compositeKey(userPoolId, username)
+    return this.store.get(key).mfaPreference
+  }
+
+  listAuthEvents(
+    userPoolId: string,
+    username: string,
+    maxResults: number,
+    nextToken?: string,
+  ): { AuthEvents: AuthEventType[]; NextToken: string | undefined } {
+    const key = compositeKey(userPoolId, username)
+    const stored = this.store.get(key)
+    const events = stored.authEvents
+    const startIndex = nextToken ? parseInt(nextToken, 10) : 0
+    const endIndex = startIndex + maxResults
+    const page = events.slice(startIndex, endIndex)
+    const newNextToken = endIndex < events.length ? String(endIndex) : undefined
+    return { AuthEvents: page, NextToken: newNextToken }
+  }
+
+  updateAuthEventFeedback(
+    userPoolId: string,
+    username: string,
+    eventId: string,
+    feedbackValue: string,
+  ): void {
+    const key = compositeKey(userPoolId, username)
+    const typedFeedback = feedbackValue === 'Valid' || feedbackValue === 'Invalid'
+      ? feedbackValue satisfies FeedbackValueType
+      : 'Valid' satisfies FeedbackValueType
+    this.store.update(key, (stored) => {
+      const events: AuthEventType[] = stored.authEvents.map((event) => {
+        if (event.EventId === eventId) {
+          const updated: AuthEventType = {
+            ...event,
+            EventFeedback: {
+              FeedbackValue: typedFeedback,
+              Provider: 'Admin',
+              FeedbackDate: new Date(),
+            },
+          }
+          return updated
+        }
+        return event
+      })
+      return { ...stored, authEvents: events }
+    })
+  }
+
   // ── List with pagination ──────────────────────────────────────────
 
   listUsers(
@@ -295,6 +351,38 @@ class UserStore {
   clear(): void {
     this.store.clear()
   }
+}
+
+// ── Seed auth events for new users ──────────────────────────────────
+
+function createSeedAuthEvents(): AuthEventType[] {
+  const now = Date.now()
+  return [
+    {
+      EventId: crypto.randomUUID(),
+      EventType: 'SignIn',
+      CreationDate: new Date(now - 3_600_000),
+      EventResponse: 'Pass',
+      EventRisk: { RiskDecision: 'NoRisk', RiskLevel: 'Low', CompromisedCredentialsDetected: false },
+      EventContextData: { IpAddress: '203.0.113.42', DeviceName: 'Chrome on Mac', City: 'Seattle', Country: 'US' },
+    },
+    {
+      EventId: crypto.randomUUID(),
+      EventType: 'SignIn',
+      CreationDate: new Date(now - 86_400_000),
+      EventResponse: 'Fail',
+      EventRisk: { RiskDecision: 'AccountTakeover', RiskLevel: 'High', CompromisedCredentialsDetected: true },
+      EventContextData: { IpAddress: '198.51.100.7', DeviceName: 'Firefox on Windows', City: 'New York', Country: 'US' },
+    },
+    {
+      EventId: crypto.randomUUID(),
+      EventType: 'ForgotPassword',
+      CreationDate: new Date(now - 172_800_000),
+      EventResponse: 'Pass',
+      EventRisk: { RiskDecision: 'NoRisk', RiskLevel: 'Low', CompromisedCredentialsDetected: false },
+      EventContextData: { IpAddress: '203.0.113.42', DeviceName: 'Safari on iPhone', City: 'Portland', Country: 'US' },
+    },
+  ]
 }
 
 // ── ListUsers filter parser ─────────────────────────────────────────

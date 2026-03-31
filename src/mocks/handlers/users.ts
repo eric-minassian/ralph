@@ -177,6 +177,23 @@ const AdminListGroupsForUser: OperationResolver = (body) => {
   return { Groups: groups }
 }
 
+const AdminListUserAuthEvents: OperationResolver = (body) => {
+  const userPoolId = getString(body, 'UserPoolId') ?? ''
+  const username = getString(body, 'Username') ?? ''
+  const maxResults = getNumber(body, 'MaxResults') ?? 10
+  const nextToken = getString(body, 'NextToken')
+  return userStore.listAuthEvents(userPoolId, username, maxResults, nextToken)
+}
+
+const AdminUpdateAuthEventFeedback: OperationResolver = (body) => {
+  const userPoolId = getString(body, 'UserPoolId') ?? ''
+  const username = getString(body, 'Username') ?? ''
+  const eventId = getString(body, 'EventId') ?? ''
+  const feedbackValue = getString(body, 'FeedbackValue') ?? ''
+  userStore.updateAuthEventFeedback(userPoolId, username, eventId, feedbackValue)
+  return {}
+}
+
 export const userOperations: Record<string, OperationResolver> = {
   ListUsers,
   AdminCreateUser,
@@ -194,4 +211,6 @@ export const userOperations: Record<string, OperationResolver> = {
   AdminAddUserToGroup,
   AdminRemoveUserFromGroup,
   AdminListGroupsForUser,
+  AdminListUserAuthEvents,
+  AdminUpdateAuthEventFeedback,
 }

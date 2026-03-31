@@ -13,6 +13,8 @@ import type { StatusIndicatorProps } from '@cloudscape-design/components/status-
 import { useAdminGetUser } from '../../../api/hooks/useUsers'
 import { OverviewTab } from './OverviewTab'
 import { AttributesTab } from './AttributesTab'
+import { SecurityTab } from './SecurityTab'
+import { UserActions } from './UserActions'
 
 interface UserDetailPageProps {
   userPoolId: string
@@ -80,6 +82,14 @@ export function UserDetailPage({ userPoolId, username }: UserDetailPageProps) {
             {t(`status.${data.UserStatus ?? 'UNKNOWN'}`)}
           </StatusIndicator>
         }
+        actions={
+          <UserActions
+            userPoolId={userPoolId}
+            username={username}
+            enabled={data.Enabled === true}
+            userStatus={data.UserStatus}
+          />
+        }
       >
         {t('detail.title', { username: data.Username ?? '' })}
       </Header>
@@ -101,6 +111,16 @@ export function UserDetailPage({ userPoolId, username }: UserDetailPageProps) {
                 userPoolId={userPoolId}
                 username={username}
                 attributes={data.UserAttributes ?? []}
+              />
+            ),
+          },
+          {
+            id: 'security',
+            label: t('detail.tabs.security'),
+            content: (
+              <SecurityTab
+                userPoolId={userPoolId}
+                username={username}
               />
             ),
           },
