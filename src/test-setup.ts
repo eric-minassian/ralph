@@ -16,12 +16,13 @@ import groups from './locales/en/groups.json'
 import appClients from './locales/en/appClients.json'
 import identityProviders from './locales/en/identityProviders.json'
 import domains from './locales/en/domains.json'
+import resourceServers from './locales/en/resourceServers.json'
 
 // Initialize i18n for tests with real translation files
 void i18n.use(initReactI18next).init({
   lng: 'en',
   fallbackLng: 'en',
-  ns: ['common', 'navigation', 'errors', 'userPools', 'users', 'validation', 'devices', 'webauthn', 'groups', 'appClients', 'identityProviders', 'domains'],
+  ns: ['common', 'navigation', 'errors', 'userPools', 'users', 'validation', 'devices', 'webauthn', 'groups', 'appClients', 'identityProviders', 'domains', 'resourceServers'],
   defaultNS: 'common',
   resources: {
     en: {
@@ -37,6 +38,7 @@ void i18n.use(initReactI18next).init({
       appClients,
       identityProviders,
       domains,
+      resourceServers,
     },
   },
   interpolation: {

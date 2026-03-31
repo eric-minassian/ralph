@@ -13,5 +13,6 @@
   "filter": "Filter",
   "noResults": "No results found",
   "error": "Error",
-  "success": "Success"
+  "success": "Success",
+  "remove": "Remove"
 }

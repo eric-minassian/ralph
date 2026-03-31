@@ -1,2 +1,99 @@
 {
+  "list": {
+    "title": "Resource Servers",
+    "description": "Manage OAuth 2.0 resource servers and custom scopes",
+    "createButton": "Create resource server",
+    "searchPlaceholder": "Find resource servers",
+    "emptyTitle": "No resource servers",
+    "emptyDescription": "No resource servers to display.",
+    "emptyAction": "Create resource server",
+    "columns": {
+      "name": "Name",
+      "identifier": "Identifier",
+      "scopeCount": "Number of scopes"
+    },
+    "preferences": {
+      "title": "Preferences",
+      "pageSize": "Page size",
+      "columns": "Select visible columns",
+      "wrapLines": "Wrap lines"
+    }
+  },
+  "detail": {
+    "title": "Resource server: {{name}}",
+    "loading": "Loading resource server...",
+    "notFound": "Resource server not found",
+    "notFoundDescription": "The resource server you are looking for does not exist.",
+    "backToList": "Back to resource servers",
+    "editButton": "Edit",
+    "deleteButton": "Delete resource server",
+    "general": {
+      "title": "General settings",
+      "name": "Name",
+      "identifier": "Identifier",
+      "noneSet": "—"
+    },
+    "scopes": {
+      "title": "Scopes",
+      "name": "Scope name",
+      "description": "Description",
+      "empty": "No scopes defined."
+    },
+    "edit": {
+      "title": "Edit resource server",
+      "name": "Name",
+      "namePlaceholder": "Enter resource server name",
+      "scopes": "Scopes",
+      "scopeName": "Scope name",
+      "scopeNamePlaceholder": "e.g. read",
+      "scopeDescription": "Description",
+      "scopeDescriptionPlaceholder": "e.g. Read access",
+      "addScope": "Add scope",
+      "saveButton": "Save",
+      "cancelButton": "Cancel"
+    },
+    "delete": {
+      "title": "Delete resource server",
+      "description": "Permanently delete this resource server? This action cannot be undone.",
+      "confirmLabel": "To confirm deletion, type the identifier:",
+      "confirmPlaceholder": "Enter identifier",
+      "mismatch": "The identifier does not match.",
+      "deleteButton": "Delete",
+      "cancelButton": "Cancel"
+    }
+  },
+  "create": {
+    "title": "Create resource server",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Enter resource server name",
+      "nameConstraint": "Required. A friendly name for the resource server.",
+      "identifier": "Identifier",
+      "identifierPlaceholder": "e.g. https://api.example.com",
+      "identifierConstraint": "Required. A unique identifier (URI) for the resource server. Immutable after creation.",
+      "scopes": "Scopes",
+      "scopeName": "Scope name",
+      "scopeNamePlaceholder": "e.g. read",
+      "scopeDescription": "Description",
+      "scopeDescriptionPlaceholder": "e.g. Read access",
+      "addScope": "Add scope",
+      "createButton": "Create resource server",
+      "cancelButton": "Cancel"
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "identifierRequired": "Identifier is required",
+      "scopeNameRequired": "Scope name is required",
+      "scopeDescriptionRequired": "Scope description is required",
+      "scopeNameDuplicate": "Scope names must be unique"
+    }
+  },
+  "notifications": {
+    "createSuccess": "Resource server \"{{name}}\" created successfully",
+    "createError": "Failed to create resource server",
+    "updateSuccess": "Resource server \"{{name}}\" updated successfully",
+    "updateError": "Failed to update resource server",
+    "deleteSuccess": "Resource server \"{{name}}\" deleted successfully",
+    "deleteError": "Failed to delete resource server"
+  }
 }

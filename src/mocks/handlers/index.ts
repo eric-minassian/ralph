@@ -7,6 +7,7 @@ import { groupOperations } from './groups'
 import { appClientOperations } from './appClients'
 import { identityProviderOperations } from './identityProviders'
 import { domainOperations } from './domains'
+import { resourceServerOperations } from './resourceServers'
 
 const allOperations: Record<string, OperationResolver> = {
   ...userPoolOperations,
@@ -15,6 +16,7 @@ const allOperations: Record<string, OperationResolver> = {
   ...appClientOperations,
   ...identityProviderOperations,
   ...domainOperations,
+  ...resourceServerOperations,
 }
 
 export const handlers: HttpHandler[] = [createCognitoHandler(allOperations)]
