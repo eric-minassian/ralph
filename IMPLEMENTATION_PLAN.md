@@ -1,7 +1,7 @@
 # Implementation Plan
 
 Generated: 2026-03-30
-Status: 18 of 27 tasks complete
+Status: 19 of 27 tasks complete
 
 ## Overview
 
@@ -409,7 +409,7 @@ Cognito Manager is a greenfield React + TypeScript application for managing AWS 
 
 ### TASK-019: Domain Management
 - **Spec**: `specs/10-domain-management.md`
-- **Status**: pending
+- **Status**: done
 - **Priority**: 5
 - **Description**: Create `src/api/hooks/useDomains.ts` with hooks for `CreateUserPoolDomain`, `DescribeUserPoolDomain`, `UpdateUserPoolDomain`, `DeleteUserPoolDomain`. Create MSW handlers with async domain creation simulation. Build Domain page: show current domain if exists (URL, status, CloudFront distribution), or create form if none. Create form: toggle between Cognito prefix (text + suffix preview) and custom domain (full domain + ACM certificate ARN). Update domain (certificate change). Delete with confirmation. Link to open hosted UI.
 - **Acceptance criteria**:
