@@ -1,2 +1,120 @@
 {
+  "list": {
+    "title": "Groups",
+    "description": "Manage groups in this user pool",
+    "createButton": "Create group",
+    "searchPlaceholder": "Find groups",
+    "emptyTitle": "No groups",
+    "emptyDescription": "No groups to display.",
+    "emptyAction": "Create group",
+    "columns": {
+      "groupName": "Group name",
+      "description": "Description",
+      "precedence": "Precedence",
+      "roleArn": "IAM role ARN",
+      "creationDate": "Creation date",
+      "lastModifiedDate": "Last modified"
+    },
+    "preferences": {
+      "title": "Preferences",
+      "pageSize": "Page size",
+      "columns": "Select visible columns",
+      "wrapLines": "Wrap lines"
+    }
+  },
+  "detail": {
+    "title": "Group: {{name}}",
+    "loading": "Loading group...",
+    "notFound": "Group not found",
+    "notFoundDescription": "The group you are looking for does not exist.",
+    "backToList": "Back to groups",
+    "editButton": "Edit",
+    "deleteButton": "Delete group",
+    "general": {
+      "title": "General settings",
+      "groupName": "Group name",
+      "description": "Description",
+      "precedence": "Precedence",
+      "roleArn": "IAM role ARN",
+      "creationDate": "Creation date",
+      "lastModifiedDate": "Last modified",
+      "noneSet": "—"
+    },
+    "members": {
+      "title": "Members",
+      "username": "Username",
+      "email": "Email",
+      "status": "Status",
+      "enabled": "Enabled",
+      "addButton": "Add user",
+      "removeButton": "Remove",
+      "empty": "No members in this group.",
+      "addModal": {
+        "title": "Add user to group",
+        "username": "Username",
+        "usernamePlaceholder": "Enter username",
+        "cancelButton": "Cancel",
+        "submitButton": "Add"
+      },
+      "removeModal": {
+        "title": "Remove user from group",
+        "description": "Remove user \"{{username}}\" from group \"{{groupName}}\"?",
+        "cancelButton": "Cancel",
+        "submitButton": "Remove"
+      }
+    },
+    "delete": {
+      "title": "Delete group",
+      "description": "Permanently delete this group? This action cannot be undone.",
+      "confirmLabel": "To confirm deletion, type the group name:",
+      "confirmPlaceholder": "Enter group name",
+      "mismatch": "The group name does not match.",
+      "deleteButton": "Delete",
+      "cancelButton": "Cancel"
+    },
+    "edit": {
+      "title": "Edit group",
+      "description": "Description",
+      "descriptionPlaceholder": "Enter an optional description",
+      "precedence": "Precedence",
+      "precedencePlaceholder": "Enter numeric precedence (lower = higher priority)",
+      "roleArn": "IAM role ARN",
+      "roleArnPlaceholder": "arn:aws:iam::123456789012:role/CognitoGroupRole",
+      "saveButton": "Save",
+      "cancelButton": "Cancel"
+    }
+  },
+  "create": {
+    "title": "Create group",
+    "form": {
+      "groupName": "Group name",
+      "groupNamePlaceholder": "Enter group name",
+      "groupNameConstraint": "Required. Must be unique within the user pool.",
+      "description": "Description",
+      "descriptionPlaceholder": "Enter an optional description",
+      "precedence": "Precedence",
+      "precedencePlaceholder": "Enter numeric precedence (lower = higher priority)",
+      "precedenceConstraint": "Non-negative integer. Lower values indicate higher priority.",
+      "roleArn": "IAM role ARN",
+      "roleArnPlaceholder": "arn:aws:iam::123456789012:role/CognitoGroupRole",
+      "roleArnConstraint": "The role that users in this group assume.",
+      "createButton": "Create group",
+      "cancelButton": "Cancel"
+    },
+    "validation": {
+      "groupNameRequired": "Group name is required"
+    }
+  },
+  "notifications": {
+    "createSuccess": "Group \"{{name}}\" created successfully",
+    "createError": "Failed to create group",
+    "updateSuccess": "Group \"{{name}}\" updated successfully",
+    "updateError": "Failed to update group",
+    "deleteSuccess": "Group \"{{name}}\" deleted successfully",
+    "deleteError": "Failed to delete group",
+    "addUserSuccess": "User \"{{username}}\" added to group",
+    "addUserError": "Failed to add user to group",
+    "removeUserSuccess": "User \"{{username}}\" removed from group",
+    "removeUserError": "Failed to remove user from group"
+  }
 }

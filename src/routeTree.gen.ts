@@ -16,9 +16,13 @@ import { Route as UserPoolsCreateRouteImport } from './routes/user-pools/create'
 import { Route as UserPoolsUserPoolIdRouteImport } from './routes/user-pools/$userPoolId'
 import { Route as UserPoolsUserPoolIdIndexRouteImport } from './routes/user-pools/$userPoolId/index'
 import { Route as UserPoolsUserPoolIdUsersIndexRouteImport } from './routes/user-pools/$userPoolId/users/index'
+import { Route as UserPoolsUserPoolIdGroupsIndexRouteImport } from './routes/user-pools/$userPoolId/groups/index'
 import { Route as UserPoolsUserPoolIdUsersCreateRouteImport } from './routes/user-pools/$userPoolId/users/create'
 import { Route as UserPoolsUserPoolIdUsersUsernameRouteImport } from './routes/user-pools/$userPoolId/users/$username'
+import { Route as UserPoolsUserPoolIdGroupsCreateRouteImport } from './routes/user-pools/$userPoolId/groups/create'
+import { Route as UserPoolsUserPoolIdGroupsGroupNameRouteImport } from './routes/user-pools/$userPoolId/groups/$groupName'
 import { Route as UserPoolsUserPoolIdUsersUsernameIndexRouteImport } from './routes/user-pools/$userPoolId/users/$username/index'
+import { Route as UserPoolsUserPoolIdGroupsGroupNameIndexRouteImport } from './routes/user-pools/$userPoolId/groups/$groupName/index'
 
 const NotAuthorizedRoute = NotAuthorizedRouteImport.update({
   id: '/not-authorized',
@@ -57,6 +61,12 @@ const UserPoolsUserPoolIdUsersIndexRoute =
     path: '/users/',
     getParentRoute: () => UserPoolsUserPoolIdRoute,
   } as any)
+const UserPoolsUserPoolIdGroupsIndexRoute =
+  UserPoolsUserPoolIdGroupsIndexRouteImport.update({
+    id: '/groups/',
+    path: '/groups/',
+    getParentRoute: () => UserPoolsUserPoolIdRoute,
+  } as any)
 const UserPoolsUserPoolIdUsersCreateRoute =
   UserPoolsUserPoolIdUsersCreateRouteImport.update({
     id: '/users/create',
@@ -69,11 +79,29 @@ const UserPoolsUserPoolIdUsersUsernameRoute =
     path: '/users/$username',
     getParentRoute: () => UserPoolsUserPoolIdRoute,
   } as any)
+const UserPoolsUserPoolIdGroupsCreateRoute =
+  UserPoolsUserPoolIdGroupsCreateRouteImport.update({
+    id: '/groups/create',
+    path: '/groups/create',
+    getParentRoute: () => UserPoolsUserPoolIdRoute,
+  } as any)
+const UserPoolsUserPoolIdGroupsGroupNameRoute =
+  UserPoolsUserPoolIdGroupsGroupNameRouteImport.update({
+    id: '/groups/$groupName',
+    path: '/groups/$groupName',
+    getParentRoute: () => UserPoolsUserPoolIdRoute,
+  } as any)
 const UserPoolsUserPoolIdUsersUsernameIndexRoute =
   UserPoolsUserPoolIdUsersUsernameIndexRouteImport.update({
     id: '/',
     path: '/',
     getParentRoute: () => UserPoolsUserPoolIdUsersUsernameRoute,
+  } as any)
+const UserPoolsUserPoolIdGroupsGroupNameIndexRoute =
+  UserPoolsUserPoolIdGroupsGroupNameIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => UserPoolsUserPoolIdGroupsGroupNameRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -83,9 +111,13 @@ export interface FileRoutesByFullPath {
   '/user-pools/create': typeof UserPoolsCreateRoute
   '/user-pools/': typeof UserPoolsIndexRoute
   '/user-pools/$userPoolId/': typeof UserPoolsUserPoolIdIndexRoute
+  '/user-pools/$userPoolId/groups/$groupName': typeof UserPoolsUserPoolIdGroupsGroupNameRouteWithChildren
+  '/user-pools/$userPoolId/groups/create': typeof UserPoolsUserPoolIdGroupsCreateRoute
   '/user-pools/$userPoolId/users/$username': typeof UserPoolsUserPoolIdUsersUsernameRouteWithChildren
   '/user-pools/$userPoolId/users/create': typeof UserPoolsUserPoolIdUsersCreateRoute
+  '/user-pools/$userPoolId/groups/': typeof UserPoolsUserPoolIdGroupsIndexRoute
   '/user-pools/$userPoolId/users/': typeof UserPoolsUserPoolIdUsersIndexRoute
+  '/user-pools/$userPoolId/groups/$groupName/': typeof UserPoolsUserPoolIdGroupsGroupNameIndexRoute
   '/user-pools/$userPoolId/users/$username/': typeof UserPoolsUserPoolIdUsersUsernameIndexRoute
 }
 export interface FileRoutesByTo {
@@ -94,8 +126,11 @@ export interface FileRoutesByTo {
   '/user-pools/create': typeof UserPoolsCreateRoute
   '/user-pools': typeof UserPoolsIndexRoute
   '/user-pools/$userPoolId': typeof UserPoolsUserPoolIdIndexRoute
+  '/user-pools/$userPoolId/groups/create': typeof UserPoolsUserPoolIdGroupsCreateRoute
   '/user-pools/$userPoolId/users/create': typeof UserPoolsUserPoolIdUsersCreateRoute
+  '/user-pools/$userPoolId/groups': typeof UserPoolsUserPoolIdGroupsIndexRoute
   '/user-pools/$userPoolId/users': typeof UserPoolsUserPoolIdUsersIndexRoute
+  '/user-pools/$userPoolId/groups/$groupName': typeof UserPoolsUserPoolIdGroupsGroupNameIndexRoute
   '/user-pools/$userPoolId/users/$username': typeof UserPoolsUserPoolIdUsersUsernameIndexRoute
 }
 export interface FileRoutesById {
@@ -106,9 +141,13 @@ export interface FileRoutesById {
   '/user-pools/create': typeof UserPoolsCreateRoute
   '/user-pools/': typeof UserPoolsIndexRoute
   '/user-pools/$userPoolId/': typeof UserPoolsUserPoolIdIndexRoute
+  '/user-pools/$userPoolId/groups/$groupName': typeof UserPoolsUserPoolIdGroupsGroupNameRouteWithChildren
+  '/user-pools/$userPoolId/groups/create': typeof UserPoolsUserPoolIdGroupsCreateRoute
   '/user-pools/$userPoolId/users/$username': typeof UserPoolsUserPoolIdUsersUsernameRouteWithChildren
   '/user-pools/$userPoolId/users/create': typeof UserPoolsUserPoolIdUsersCreateRoute
+  '/user-pools/$userPoolId/groups/': typeof UserPoolsUserPoolIdGroupsIndexRoute
   '/user-pools/$userPoolId/users/': typeof UserPoolsUserPoolIdUsersIndexRoute
+  '/user-pools/$userPoolId/groups/$groupName/': typeof UserPoolsUserPoolIdGroupsGroupNameIndexRoute
   '/user-pools/$userPoolId/users/$username/': typeof UserPoolsUserPoolIdUsersUsernameIndexRoute
 }
 export interface FileRouteTypes {
@@ -120,9 +159,13 @@ export interface FileRouteTypes {
     | '/user-pools/create'
     | '/user-pools/'
     | '/user-pools/$userPoolId/'
+    | '/user-pools/$userPoolId/groups/$groupName'
+    | '/user-pools/$userPoolId/groups/create'
     | '/user-pools/$userPoolId/users/$username'
     | '/user-pools/$userPoolId/users/create'
+    | '/user-pools/$userPoolId/groups/'
     | '/user-pools/$userPoolId/users/'
+    | '/user-pools/$userPoolId/groups/$groupName/'
     | '/user-pools/$userPoolId/users/$username/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -131,8 +174,11 @@ export interface FileRouteTypes {
     | '/user-pools/create'
     | '/user-pools'
     | '/user-pools/$userPoolId'
+    | '/user-pools/$userPoolId/groups/create'
     | '/user-pools/$userPoolId/users/create'
+    | '/user-pools/$userPoolId/groups'
     | '/user-pools/$userPoolId/users'
+    | '/user-pools/$userPoolId/groups/$groupName'
     | '/user-pools/$userPoolId/users/$username'
   id:
     | '__root__'
@@ -142,9 +188,13 @@ export interface FileRouteTypes {
     | '/user-pools/create'
     | '/user-pools/'
     | '/user-pools/$userPoolId/'
+    | '/user-pools/$userPoolId/groups/$groupName'
+    | '/user-pools/$userPoolId/groups/create'
     | '/user-pools/$userPoolId/users/$username'
     | '/user-pools/$userPoolId/users/create'
+    | '/user-pools/$userPoolId/groups/'
     | '/user-pools/$userPoolId/users/'
+    | '/user-pools/$userPoolId/groups/$groupName/'
     | '/user-pools/$userPoolId/users/$username/'
   fileRoutesById: FileRoutesById
 }
@@ -207,6 +257,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserPoolsUserPoolIdUsersIndexRouteImport
       parentRoute: typeof UserPoolsUserPoolIdRoute
     }
+    '/user-pools/$userPoolId/groups/': {
+      id: '/user-pools/$userPoolId/groups/'
+      path: '/groups'
+      fullPath: '/user-pools/$userPoolId/groups/'
+      preLoaderRoute: typeof UserPoolsUserPoolIdGroupsIndexRouteImport
+      parentRoute: typeof UserPoolsUserPoolIdRoute
+    }
     '/user-pools/$userPoolId/users/create': {
       id: '/user-pools/$userPoolId/users/create'
       path: '/users/create'
@@ -221,6 +278,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserPoolsUserPoolIdUsersUsernameRouteImport
       parentRoute: typeof UserPoolsUserPoolIdRoute
     }
+    '/user-pools/$userPoolId/groups/create': {
+      id: '/user-pools/$userPoolId/groups/create'
+      path: '/groups/create'
+      fullPath: '/user-pools/$userPoolId/groups/create'
+      preLoaderRoute: typeof UserPoolsUserPoolIdGroupsCreateRouteImport
+      parentRoute: typeof UserPoolsUserPoolIdRoute
+    }
+    '/user-pools/$userPoolId/groups/$groupName': {
+      id: '/user-pools/$userPoolId/groups/$groupName'
+      path: '/groups/$groupName'
+      fullPath: '/user-pools/$userPoolId/groups/$groupName'
+      preLoaderRoute: typeof UserPoolsUserPoolIdGroupsGroupNameRouteImport
+      parentRoute: typeof UserPoolsUserPoolIdRoute
+    }
     '/user-pools/$userPoolId/users/$username/': {
       id: '/user-pools/$userPoolId/users/$username/'
       path: '/'
@@ -228,8 +299,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserPoolsUserPoolIdUsersUsernameIndexRouteImport
       parentRoute: typeof UserPoolsUserPoolIdUsersUsernameRoute
     }
+    '/user-pools/$userPoolId/groups/$groupName/': {
+      id: '/user-pools/$userPoolId/groups/$groupName/'
+      path: '/'
+      fullPath: '/user-pools/$userPoolId/groups/$groupName/'
+      preLoaderRoute: typeof UserPoolsUserPoolIdGroupsGroupNameIndexRouteImport
+      parentRoute: typeof UserPoolsUserPoolIdGroupsGroupNameRoute
+    }
   }
 }
+
+interface UserPoolsUserPoolIdGroupsGroupNameRouteChildren {
+  UserPoolsUserPoolIdGroupsGroupNameIndexRoute: typeof UserPoolsUserPoolIdGroupsGroupNameIndexRoute
+}
+
+const UserPoolsUserPoolIdGroupsGroupNameRouteChildren: UserPoolsUserPoolIdGroupsGroupNameRouteChildren =
+  {
+    UserPoolsUserPoolIdGroupsGroupNameIndexRoute:
+      UserPoolsUserPoolIdGroupsGroupNameIndexRoute,
+  }
+
+const UserPoolsUserPoolIdGroupsGroupNameRouteWithChildren =
+  UserPoolsUserPoolIdGroupsGroupNameRoute._addFileChildren(
+    UserPoolsUserPoolIdGroupsGroupNameRouteChildren,
+  )
 
 interface UserPoolsUserPoolIdUsersUsernameRouteChildren {
   UserPoolsUserPoolIdUsersUsernameIndexRoute: typeof UserPoolsUserPoolIdUsersUsernameIndexRoute
@@ -248,16 +341,23 @@ const UserPoolsUserPoolIdUsersUsernameRouteWithChildren =
 
 interface UserPoolsUserPoolIdRouteChildren {
   UserPoolsUserPoolIdIndexRoute: typeof UserPoolsUserPoolIdIndexRoute
+  UserPoolsUserPoolIdGroupsGroupNameRoute: typeof UserPoolsUserPoolIdGroupsGroupNameRouteWithChildren
+  UserPoolsUserPoolIdGroupsCreateRoute: typeof UserPoolsUserPoolIdGroupsCreateRoute
   UserPoolsUserPoolIdUsersUsernameRoute: typeof UserPoolsUserPoolIdUsersUsernameRouteWithChildren
   UserPoolsUserPoolIdUsersCreateRoute: typeof UserPoolsUserPoolIdUsersCreateRoute
+  UserPoolsUserPoolIdGroupsIndexRoute: typeof UserPoolsUserPoolIdGroupsIndexRoute
   UserPoolsUserPoolIdUsersIndexRoute: typeof UserPoolsUserPoolIdUsersIndexRoute
 }
 
 const UserPoolsUserPoolIdRouteChildren: UserPoolsUserPoolIdRouteChildren = {
   UserPoolsUserPoolIdIndexRoute: UserPoolsUserPoolIdIndexRoute,
+  UserPoolsUserPoolIdGroupsGroupNameRoute:
+    UserPoolsUserPoolIdGroupsGroupNameRouteWithChildren,
+  UserPoolsUserPoolIdGroupsCreateRoute: UserPoolsUserPoolIdGroupsCreateRoute,
   UserPoolsUserPoolIdUsersUsernameRoute:
     UserPoolsUserPoolIdUsersUsernameRouteWithChildren,
   UserPoolsUserPoolIdUsersCreateRoute: UserPoolsUserPoolIdUsersCreateRoute,
+  UserPoolsUserPoolIdGroupsIndexRoute: UserPoolsUserPoolIdGroupsIndexRoute,
   UserPoolsUserPoolIdUsersIndexRoute: UserPoolsUserPoolIdUsersIndexRoute,
 }
 
